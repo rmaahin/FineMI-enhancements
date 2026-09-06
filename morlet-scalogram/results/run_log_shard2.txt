@@ -1,0 +1,36 @@
+[2026-09-06 00:22:58] START mode=raw shard=2/3 pairs=9 jobs=9 todo=8 already_done=1 epochs=50 smoke=False gpu=NVIDIA A100-PCIE-40GB
+[2026-09-06 00:22:58] [1/8] raw HOC/WAA
+[2026-09-06 00:26:25]       done in 3.4 min | mean 58.72% | sd 4.12
+[2026-09-06 00:26:25] [2/8] raw WFE/WAA | ETA 0.4 h
+[2026-09-06 00:29:27]       done in 3.0 min | mean 59.65% | sd 6.27
+[2026-09-06 00:29:27] [3/8] raw WFE/SPS | ETA 0.3 h
+[2026-09-06 00:32:28]       done in 3.0 min | mean 61.50% | sd 9.28
+[2026-09-06 00:32:28] [4/8] raw WAA/EPS | ETA 0.3 h
+[2026-09-06 00:35:30]       done in 3.0 min | mean 53.94% | sd 8.63
+[2026-09-06 00:35:30] [5/8] raw WAA/SAA | ETA 0.2 h
+[2026-09-06 00:38:32]       done in 3.0 min | mean 60.94% | sd 14.42
+[2026-09-06 00:38:32] [6/8] raw EPS/SPS | ETA 0.2 h
+[2026-09-06 00:41:36]       done in 3.1 min | mean 57.99% | sd 7.84
+[2026-09-06 00:41:36] [7/8] raw EFE/SPS | ETA 0.1 h
+[2026-09-06 00:44:40]       done in 3.1 min | mean 57.55% | sd 7.65
+[2026-09-06 00:44:40] [8/8] raw SPS/SAA | ETA 0.1 h
+[2026-09-06 00:47:37]       done in 2.9 min | mean 55.76% | sd 10.80
+[2026-09-06 00:47:37] SWEEP COMPLETE: 8/8 jobs in 0.41 h
+[2026-09-06 00:53:17] START mode=cwt shard=2/3 pairs=9 jobs=9 todo=8 already_done=1 epochs=50 smoke=False gpu=NVIDIA A100-PCIE-40GB
+[2026-09-06 00:53:17] [1/8] cwt HOC/WAA
+[2026-09-06 00:59:39]       done in 6.4 min | mean 56.78% | sd 8.47
+[2026-09-06 00:59:39] [2/8] cwt WFE/WAA | ETA 0.7 h
+[2026-09-06 01:05:18]       done in 5.6 min | mean 54.92% | sd 5.16
+[2026-09-06 01:05:18] [3/8] cwt WFE/SPS | ETA 0.6 h
+[2026-09-06 01:11:02]       done in 5.7 min | mean 61.39% | sd 8.00
+[2026-09-06 01:11:02] [4/8] cwt WAA/EPS | ETA 0.5 h
+[2026-09-06 01:16:40]       done in 5.6 min | mean 50.73% | sd 7.13
+[2026-09-06 01:16:40] [5/8] cwt WAA/SAA | ETA 0.4 h
+[2026-09-06 01:22:21]       done in 5.7 min | mean 63.42% | sd 12.87
+[2026-09-06 01:22:21] [6/8] cwt EPS/SPS | ETA 0.3 h
+[2026-09-06 01:28:01]       done in 5.7 min | mean 59.39% | sd 9.68
+[2026-09-06 01:28:01] [7/8] cwt EFE/SPS | ETA 0.2 h
+[2026-09-06 01:33:44]       done in 5.7 min | mean 58.36% | sd 8.08
+[2026-09-06 01:33:44] [8/8] cwt SPS/SAA | ETA 0.1 h
+[2026-09-06 01:39:26]       done in 5.7 min | mean 52.32% | sd 9.66
+[2026-09-06 01:39:26] SWEEP COMPLETE: 8/8 jobs in 0.77 h
