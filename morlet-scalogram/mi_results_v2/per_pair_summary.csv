@@ -1,0 +1,6 @@
+mode,pair,proximity,mean,sd,n
+cwt,HOC/SPS,distant,66.62,13.776,18
+cwt,SAA/SFE,same,51.095,6.781,18
+raw,HOC/SPS,distant,66.698,10.864,18
+raw,WAA/SAA,distant,60.316,13.722,18
+raw,SAA/SFE,same,54.335,8.694,18

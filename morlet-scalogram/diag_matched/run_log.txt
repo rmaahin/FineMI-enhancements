@@ -1,0 +1,6 @@
+[2026-09-03 14:31:14] START mode=cwt pairs=2 jobs=2 todo=2 already_done=0 epochs=50 smoke=False gpu=NVIDIA GeForce RTX 5070 Laptop GPU
+[2026-09-03 14:31:14] [1/2] cwt SAA/SFE
+[2026-09-03 14:44:24]       done in 13.2 min | mean 49.70% | sd 6.92
+[2026-09-03 14:44:24] [2/2] cwt HOC/SPS | ETA 0.2 h
+[2026-09-03 14:58:14]       done in 13.8 min | mean 64.58% | sd 14.76
+[2026-09-03 14:58:14] SWEEP COMPLETE: 2/2 jobs in 0.45 h

@@ -1,0 +1,7 @@
+pair,mode,subject,window_ms,accuracy,n_test
+SAA/SFE,raw,1,4000,51.11111111111111,90
+SAA/SFE,raw,2,4000,53.75,80
+SAA/SFE,raw,3,4000,65.0,80
+SAA/SFE,raw,4,4000,50.0,80
+SAA/SFE,raw,5,4000,46.913580246913575,81
+SAA/SFE,raw,6,4000,65.0,80

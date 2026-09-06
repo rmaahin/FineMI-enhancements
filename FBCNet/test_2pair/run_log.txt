@@ -1,0 +1,10 @@
+[2026-09-04 14:10:26] START mode=both pairs=2 jobs=4 todo=4 already_done=0 epochs=50 smoke=False max_subjects=6 gpu=NVIDIA GeForce RTX 5070 Laptop GPU
+[2026-09-04 14:10:26] [1/4] raw HOC/SPS
+[2026-09-04 14:11:19]       done in 0.9 min | mean 68.01% | sd 14.04
+[2026-09-04 14:11:19] [2/4] raw SAA/SFE | ETA 0.0 h
+[2026-09-04 14:12:11]       done in 0.9 min | mean 55.30% | sd 7.83
+[2026-09-04 14:12:11] [3/4] fbc HOC/SPS | ETA 0.0 h
+[2026-09-04 14:15:24]       done in 3.2 min | mean 68.24% | sd 10.32
+[2026-09-04 14:15:24] [4/4] fbc SAA/SFE | ETA 0.0 h
+[2026-09-04 14:18:36]       done in 3.2 min | mean 52.50% | sd 5.50
+[2026-09-04 14:18:36] SWEEP COMPLETE: 4/4 jobs in 0.14 h
