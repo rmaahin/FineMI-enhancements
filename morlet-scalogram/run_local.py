@@ -241,6 +241,7 @@ def main():
         return 0
 
     durations, failures = [], []
+    probe = {}
     sweep_start = time.time()
 
     for i, (mode, a, b) in enumerate(todo, 1):
@@ -275,11 +276,20 @@ def main():
                 f"{wide.mean().iloc[0]:.2f}% | sd {wide.std(ddof=1).iloc[0]:.2f}", log_path)
 
         if args.time_probe:
-            per_pair = dt / 60
-            log(f"\nTIME PROBE: {per_pair:.1f} min/pair for mode '{mode}'", log_path)
-            log(f"  28 pairs, this mode : {per_pair * 28 / 60:.1f} h", log_path)
-            log(f"  56 jobs, both modes : ~{per_pair * 56 / 60:.1f} h "
-                f"(upper bound; 'raw' is cheaper)", log_path)
+            probe[mode] = dt / 60.0
+            if len(probe) < len(modes):
+                log(f"      probe: {mode} = {probe[mode]:.1f} min/pair; "
+                    f"continuing to time the other arm", log_path)
+                continue
+            log("", log_path)
+            log(f"TIME PROBE ({', '.join(f'{m} {v:.1f} min/pair' for m, v in probe.items())})",
+                log_path)
+            total_h = sum(v * 28 for v in probe.values()) / 60.0
+            for m, v in probe.items():
+                log(f"  28 pairs, {m:3s} : {v * 28 / 60:.1f} h", log_path)
+            log(f"  ALL {len(probe) * 28} jobs   : {total_h:.1f} h on one GPU", log_path)
+            for n in (2, 3, 4):
+                log(f"    with {n} shards (if they scale): {total_h / n:.1f} h", log_path)
             return 0
 
     total = (time.time() - sweep_start) / 3600

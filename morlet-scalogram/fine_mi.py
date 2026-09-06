@@ -211,8 +211,9 @@ def describe_environment(device, gpu):
     else:
         lines.append("WARNING: no CUDA device. Training on CPU is roughly 20-40x slower; "
                      "a full 28-pair sweep would take days.")
-    lines.append("NOTE: determinism holds per-GPU-model. Results are not bit-comparable "
-                 "across different GPUs (e.g. these will not match the A100 runs).")
+    lines.append(f"NOTE: determinism holds per-GPU-model. Run BOTH arms on this same "
+                 f"GPU model ({gpu}); results from a different card are not "
+                 f"bit-comparable (measured: up to 7.5 pp per-subject drift).")
     return "\n".join(lines)
 
 
