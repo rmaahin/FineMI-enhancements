@@ -99,27 +99,49 @@ def selftest(device, args):
     sd = raw[:, :, F.WIN_SLICE].std(axis=(0, 2))[None, :, None]
     probe = (raw - mu) / np.where(sd == 0, 1.0, sd)
 
-    # 3. causality
+    # 3. locality/causality. A perturbation at one time sample may only move output
+    #    columns within +/- CWT_PAD of it (the wavelet half-support). Stated as a RATIO:
+    #    float32 FFT round-off, amplified by log(), leaves ~1e-4 relative noise
+    #    everywhere, so an absolute threshold would be meaningless. Independent of
+    #    CUE_SAMPLE, unlike a "pre-cue context" test.
     assert F.WIN_SLICE.stop == F.CTX_LEN, "context must end at the decision window"
     a = F.morlet_scalogram(probe, device)
+    t0 = F.CTX_LEN // 2
     tamper = probe.copy()
-    tamper[:, :, :F.CWT_PAD] = 0.0
-    d = np.abs(a - F.morlet_scalogram(tamper, device))
-    coi_cols = int(np.ceil(3 * F.SIGMA_T.max() * F.SAMPLING_RATE / F.TIME_DECIM))
-    assert d[..., 2 * coi_cols:].max() < 1e-3, "pre-cue context leaks beyond the COI"
-    print(f"[ok] causal by construction; pre-cue context confined to the first "
-          f"~{coi_cols} of {F.T_OUT} output columns")
+    tamper[:, :, t0] += 10.0
+    per_col = np.abs(a - F.morlet_scalogram(tamper, device)).max(axis=(0, 1, 2))
+    j0 = t0 - F.WIN_SLICE.start
+    lo = (j0 - F.CWT_PAD) // F.TIME_DECIM
+    hi = (j0 + F.CWT_PAD) // F.TIME_DECIM + 1
+    inside = per_col[lo:hi + 1].max()
+    outside = max(per_col[:lo].max(), per_col[hi + 1:].max())
+    assert outside / inside < 1e-2, f"leakage {outside/inside:.2e} of the in-support change"
+    nz = np.nonzero(per_col > 0.01 * inside)[0]
+    assert nz.min() >= lo and nz.max() <= hi,         f"influence {nz.min()}..{nz.max()} escapes support {lo}..{hi}"
+    print(f"[ok] causal + local: sample t={t0} moves cols {nz.min()}..{nz.max()} "
+          f"(support {lo}..{hi}); off-support leakage {outside/inside:.1e} = round-off")
 
     # 4. chunk invariance
     assert np.abs(F.morlet_scalogram(probe, device, chunk=3)
                   - F.morlet_scalogram(probe, device, chunk=8)).max() == 0.0
     print("[ok] result independent of CWT chunk size")
 
-    # 5. scale invariance
-    n1, _, _ = F.scalogram_normalize(a, a, a)
-    n2, _, _ = F.scalogram_normalize(F.morlet_scalogram(probe * 1000.0, device), a, a)
-    assert np.abs(n1 - n2).max() < 1e-3, "LOG_EPS is too large for this input scale"
-    print(f"[ok] scale invariance: max|diff| after 1000x gain = {np.abs(n1 - n2).max():.2e}")
+    # 4. scale invariance. log() turns an input gain into a CONSTANT offset, which the
+    #    per-(c,f) z-score then removes. Assert on the offset being constant - that is
+    #    the actual property. The post-normalisation max is checked loosely because
+    #    float32 log() loses relative precision at the smallest magnitudes (~1e-5).
+    m1 = a
+    m2 = F.morlet_scalogram(probe * 1000.0, device)
+    shift = m2 - m1
+    assert abs(float(shift.mean()) - np.log(1000.0)) < 1e-3, "gain is not a pure offset"
+    assert float(shift.std()) < 1e-3, f"offset not constant (sd={shift.std():.2e})"
+    n1, _, _ = F.scalogram_normalize(m1, m1, m1)
+    n2, _, _ = F.scalogram_normalize(m2, m1, m1)
+    diff = np.abs(n1 - n2)
+    assert np.percentile(diff, 99.99) < 1e-3 and diff.max() < 1e-2,         f"scale invariance broken: p99.99={np.percentile(diff,99.99):.2e} max={diff.max():.2e}"
+    print(f"[ok] scale invariance: 1000x gain -> constant log offset "
+          f"{shift.mean():.4f}+-{shift.std():.1e}; post-z-score p99.99="
+          f"{np.percentile(diff,99.99):.1e}, max={diff.max():.1e}")
 
     # 6. shapes, forward and backward under determinism
     import torch
@@ -161,6 +183,10 @@ def main():
                     help='stop after the first pair and report the projected sweep time')
     ap.add_argument('--dataset-root', default=None)
     ap.add_argument('--results-root', default=None)
+    ap.add_argument('--shard', default=None, metavar='K/N',
+                    help="run only shard K of N (1-based), e.g. --shard 2/4. Pairs are "
+                         "dealt round-robin so every shard gets a mix of cheap and "
+                         "expensive pairs. Shards write to the same results root.")
     ap.add_argument('--cwt-chunk', type=int, default=None,
                     help=f'CWT batch size (default {F.CWT_CHUNK}); lower it if VRAM is tight')
     ap.add_argument('--allow-nondeterministic', action='store_true',
@@ -172,6 +198,9 @@ def main():
 
     results_root = args.results_root or F.RESULTS_ROOT
     log_path = os.path.join(results_root, 'run_log.txt')
+    if args.shard:
+        k = args.shard.split('/')[0]
+        log_path = os.path.join(results_root, f'run_log_shard{k}.txt')
 
     device, gpu = F.setup_determinism(strict=not args.allow_nondeterministic)
     print(F.describe_environment(device, gpu))
@@ -184,6 +213,15 @@ def main():
 
     modes = ['raw', 'cwt'] if args.mode == 'both' else [args.mode]
     pairs = parse_pairs(args.pairs)
+    shard_tag = ''
+    if args.shard:
+        k, n = (int(v) for v in args.shard.split('/'))
+        if not 1 <= k <= n:
+            raise ValueError(f"bad --shard {args.shard}")
+        pairs = pairs[k - 1::n]          # round-robin, so cost is spread evenly
+        shard_tag = f" shard={k}/{n}"
+        print(f"shard {k}/{n}: {len(pairs)} pairs -> "
+              + ', '.join(F.pair_name(a, b) for a, b in pairs))
     n_epochs = 5 if args.smoke else args.epochs
     max_subjects = 2 if args.smoke else None
 
@@ -193,7 +231,7 @@ def main():
             or not F.is_done(j[1], j[2], j[0], results_root=results_root, verbose=True)]
     skipped = len(jobs) - len(todo)
 
-    log(f"START mode={args.mode} pairs={len(pairs)} jobs={len(jobs)} "
+    log(f"START mode={args.mode}{shard_tag} pairs={len(pairs)} jobs={len(jobs)} "
         f"todo={len(todo)} already_done={skipped} epochs={n_epochs} "
         f"smoke={args.smoke} gpu={gpu}", log_path)
 

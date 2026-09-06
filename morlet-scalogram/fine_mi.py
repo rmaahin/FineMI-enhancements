@@ -72,11 +72,27 @@ try:
 except ImportError:
     IN_COLAB = False
 
-if IN_COLAB:
+# Both are overridable, which is what a server deployment wants: the repo is cloned to
+# one place and the 3.1 GB dataset downloaded to another, so they are rarely siblings.
+#   FINE_DATASET_ROOT=/data/FineMI   FINE_RESULTS_ROOT=/data/mi_results_v2
+if os.environ.get('FINE_DATASET_ROOT'):
+    DATASET_ROOT = os.path.abspath(os.path.expanduser(os.environ['FINE_DATASET_ROOT']))
+elif IN_COLAB:
     DATASET_ROOT = '/content/drive/MyDrive/multi_joint_mi_dataset/extracted/FineMI/FineMI'
+else:
+    # search upwards for a FineMI/ directory holding the subject files
+    DATASET_ROOT = os.path.join(HERE, 'FineMI')
+    for up in ('FineMI', '../FineMI', '../../FineMI', '../../../FineMI'):
+        cand = os.path.normpath(os.path.join(HERE, up))
+        if glob.glob(os.path.join(cand, 'subject*_eeg_epochs_*.npz')):
+            DATASET_ROOT = cand
+            break
+
+if os.environ.get('FINE_RESULTS_ROOT'):
+    RESULTS_ROOT = os.path.abspath(os.path.expanduser(os.environ['FINE_RESULTS_ROOT']))
+elif IN_COLAB:
     RESULTS_ROOT = '/content/drive/MyDrive/mi_results_v2'
 else:
-    DATASET_ROOT = os.path.join(HERE, '../FineMI')
     RESULTS_ROOT = os.path.join(HERE, 'mi_results_v2')
 
 # ===========================================================================
