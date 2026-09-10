@@ -1,0 +1,144 @@
+[2026-09-09 21:53:46] START mode=both pairs=2 jobs=4 todo=4 already_done=0 epochs=5 smoke=True max_subjects=2 gpu=NVIDIA A100-PCIE-40GB
+[2026-09-09 21:53:46] [1/4] raw HOC/SPS
+[2026-09-09 21:54:35]       smoke ok: 2 subjects, mean 58.89% in 0.8 min (not saved)
+[2026-09-09 21:54:35] [2/4] raw SAA/SFE | ETA 0.0 h
+[2026-09-09 21:54:41]       smoke ok: 2 subjects, mean 51.67% in 0.1 min (not saved)
+[2026-09-09 21:54:41] [3/4] fbc HOC/SPS | ETA 0.0 h
+[2026-09-09 21:54:50]       smoke ok: 2 subjects, mean 56.39% in 0.2 min (not saved)
+[2026-09-09 21:54:50] [4/4] fbc SAA/SFE | ETA 0.0 h
+[2026-09-09 21:54:59]       smoke ok: 2 subjects, mean 48.12% in 0.1 min (not saved)
+[2026-09-09 21:54:59] SWEEP COMPLETE: 4/4 jobs in 0.02 h
+[2026-09-09 21:59:19] START mode=both pairs=1 jobs=2 todo=2 already_done=0 epochs=50 smoke=False max_subjects=None gpu=NVIDIA A100-PCIE-40GB
+[2026-09-09 21:59:19] [1/2] raw HOC/SPS
+[2026-09-09 22:01:55]       done in 2.6 min | mean 64.23% | sd 11.04
+[2026-09-09 22:01:55] 
+TIME PROBE: 2.6 min/pair for mode 'raw'
+[2026-09-09 22:01:55]   28 pairs, this mode : 1.2 h
+[2026-09-09 22:01:55]   56 jobs, both modes : ~2.4 h (upper bound; 'raw' is cheaper)
+[2026-09-09 22:21:01] START mode=both pairs=1 jobs=2 todo=1 already_done=1 epochs=50 smoke=False max_subjects=None gpu=NVIDIA A100-PCIE-40GB
+[2026-09-09 22:21:01] [1/1] fbc HOC/SPS
+[2026-09-09 22:27:41]       done in 6.7 min | mean 65.46% | sd 11.37
+[2026-09-09 22:27:41] 
+TIME PROBE: 6.7 min/pair for mode 'fbc'
+[2026-09-09 22:27:41]   28 pairs, this mode : 3.1 h
+[2026-09-09 22:27:41]   56 jobs, both modes : ~6.2 h (upper bound; 'raw' is cheaper)
+[2026-09-09 22:28:03] START mode=raw pairs=10 jobs=10 todo=10 already_done=0 epochs=50 smoke=False max_subjects=None gpu=NVIDIA A100-PCIE-40GB
+[2026-09-09 22:28:03] [1/10] raw HOC/WFE
+[2026-09-09 22:28:03] START mode=raw pairs=9 jobs=9 todo=9 already_done=0 epochs=50 smoke=False max_subjects=None gpu=NVIDIA A100-PCIE-40GB
+[2026-09-09 22:28:03] [1/9] raw HOC/EPS
+[2026-09-09 22:28:03] START mode=raw pairs=9 jobs=9 todo=8 already_done=1 epochs=50 smoke=False max_subjects=None gpu=NVIDIA A100-PCIE-40GB
+[2026-09-09 22:28:03] [1/8] raw HOC/WAA
+[2026-09-09 22:30:39]       done in 2.6 min | mean 58.72% | sd 4.12
+[2026-09-09 22:30:39] [2/8] raw WFE/WAA | ETA 0.3 h
+[2026-09-09 22:30:54]       done in 2.8 min | mean 55.71% | sd 6.62
+[2026-09-09 22:30:54] [2/10] raw HOC/EFE | ETA 0.4 h
+[2026-09-09 22:30:54]       done in 2.8 min | mean 57.11% | sd 9.17
+[2026-09-09 22:30:54] [2/9] raw HOC/SAA | ETA 0.4 h
+[2026-09-09 22:32:48]       done in 2.2 min | mean 59.65% | sd 6.27
+[2026-09-09 22:32:48] [3/8] raw WFE/SPS | ETA 0.2 h
+[2026-09-09 22:33:31]       done in 2.6 min | mean 65.98% | sd 11.09
+[2026-09-09 22:33:31] [3/9] raw WFE/EPS | ETA 0.3 h
+[2026-09-09 22:33:32]       done in 2.6 min | mean 59.92% | sd 8.30
+[2026-09-09 22:33:32] [3/10] raw HOC/SFE | ETA 0.4 h
+[2026-09-09 22:35:09]       done in 2.4 min | mean 61.50% | sd 9.28
+[2026-09-09 22:35:09] [4/8] raw WAA/EPS | ETA 0.2 h
+[2026-09-09 22:36:04]       done in 2.5 min | mean 63.64% | sd 11.38
+[2026-09-09 22:36:04] [4/10] raw WFE/EFE | ETA 0.3 h
+[2026-09-09 22:36:08]       done in 2.6 min | mean 53.82% | sd 7.04
+[2026-09-09 22:36:08] [4/9] raw WFE/SAA | ETA 0.3 h
+[2026-09-09 22:37:23]       done in 2.2 min | mean 53.94% | sd 8.63
+[2026-09-09 22:37:23] [5/8] raw WAA/SAA | ETA 0.2 h
+[2026-09-09 22:38:35]       done in 2.5 min | mean 55.47% | sd 7.27
+[2026-09-09 22:38:35] [5/10] raw WFE/SFE | ETA 0.3 h
+[2026-09-09 22:38:43]       done in 2.6 min | mean 60.52% | sd 11.01
+[2026-09-09 22:38:43] [5/9] raw WAA/EFE | ETA 0.2 h
+[2026-09-09 22:39:42]       done in 2.3 min | mean 60.94% | sd 14.42
+[2026-09-09 22:39:42] [6/8] raw EPS/SPS | ETA 0.1 h
+[2026-09-09 22:41:11]       done in 2.6 min | mean 60.52% | sd 9.10
+[2026-09-09 22:41:11] [6/10] raw WAA/SPS | ETA 0.2 h
+[2026-09-09 22:41:22]       done in 2.6 min | mean 57.92% | sd 8.83
+[2026-09-09 22:41:22] [6/9] raw WAA/SFE | ETA 0.2 h
+[2026-09-09 22:42:06]       done in 2.4 min | mean 57.99% | sd 7.84
+[2026-09-09 22:42:06] [7/8] raw EFE/SPS | ETA 0.1 h
+[2026-09-09 22:43:48]       done in 2.6 min | mean 61.64% | sd 8.87
+[2026-09-09 22:43:48] [7/10] raw EPS/EFE | ETA 0.2 h
+[2026-09-09 22:44:00]       done in 2.6 min | mean 61.71% | sd 11.14
+[2026-09-09 22:44:00] [7/9] raw EPS/SAA | ETA 0.1 h
+[2026-09-09 22:44:20]       done in 2.2 min | mean 57.55% | sd 7.65
+[2026-09-09 22:44:20] [8/8] raw SPS/SAA | ETA 0.0 h
+[2026-09-09 22:46:18]       done in 2.5 min | mean 54.34% | sd 8.00
+[2026-09-09 22:46:18] [8/10] raw EPS/SFE | ETA 0.1 h
+[2026-09-09 22:46:31]       done in 2.5 min | mean 60.42% | sd 12.45
+[2026-09-09 22:46:31] [8/9] raw EFE/SAA | ETA 0.1 h
+[2026-09-09 22:46:44]       done in 2.4 min | mean 55.76% | sd 10.80
+[2026-09-09 22:46:44] SWEEP COMPLETE: 8/8 jobs in 0.31 h
+[2026-09-09 22:48:46]       done in 2.5 min | mean 58.10% | sd 9.56
+[2026-09-09 22:48:46] [9/10] raw EFE/SFE | ETA 0.1 h
+[2026-09-09 22:49:05]       done in 2.6 min | mean 54.78% | sd 13.12
+[2026-09-09 22:49:05] [9/9] raw SPS/SFE | ETA 0.0 h
+[2026-09-09 22:51:14]       done in 2.5 min | mean 54.00% | sd 10.55
+[2026-09-09 22:51:14] [10/10] raw SAA/SFE | ETA 0.0 h
+[2026-09-09 22:51:40]       done in 2.6 min | mean 55.60% | sd 9.48
+[2026-09-09 22:51:40] SWEEP COMPLETE: 9/9 jobs in 0.39 h
+[2026-09-09 22:53:41]       done in 2.5 min | mean 53.77% | sd 8.77
+[2026-09-09 22:53:41] SWEEP COMPLETE: 10/10 jobs in 0.43 h
+[2026-09-09 22:56:18] START mode=fbc pairs=9 jobs=9 todo=9 already_done=0 epochs=50 smoke=False max_subjects=None gpu=NVIDIA A100-PCIE-40GB
+[2026-09-09 22:56:18] [1/9] fbc HOC/EPS
+[2026-09-09 22:56:18] START mode=fbc pairs=10 jobs=10 todo=10 already_done=0 epochs=50 smoke=False max_subjects=None gpu=NVIDIA A100-PCIE-40GB
+[2026-09-09 22:56:18] START mode=fbc pairs=9 jobs=9 todo=8 already_done=1 epochs=50 smoke=False max_subjects=None gpu=NVIDIA A100-PCIE-40GB
+[2026-09-09 22:56:18] [1/8] fbc HOC/WAA
+[2026-09-09 22:56:18] [1/10] fbc HOC/WFE
+[2026-09-09 23:03:13]       done in 6.9 min | mean 54.98% | sd 8.45
+[2026-09-09 23:03:13] [2/9] fbc HOC/SAA | ETA 0.9 h
+[2026-09-09 23:03:19]       done in 7.0 min | mean 57.08% | sd 6.64
+[2026-09-09 23:03:19] [2/8] fbc WFE/WAA | ETA 0.8 h
+[2026-09-09 23:03:35]       done in 7.3 min | mean 53.51% | sd 6.01
+[2026-09-09 23:03:35] [2/10] fbc HOC/EFE | ETA 1.1 h
+[2026-09-09 23:09:07]       done in 5.9 min | mean 62.09% | sd 14.02
+[2026-09-09 23:09:07] [3/9] fbc WFE/EPS | ETA 0.7 h
+[2026-09-09 23:09:43]       done in 6.4 min | mean 57.89% | sd 4.25
+[2026-09-09 23:09:43] [3/8] fbc WFE/SPS | ETA 0.7 h
+[2026-09-09 23:10:03]       done in 6.5 min | mean 57.56% | sd 9.15
+[2026-09-09 23:10:03] [3/10] fbc HOC/SFE | ETA 0.9 h
+[2026-09-09 23:15:40]       done in 6.5 min | mean 53.25% | sd 4.60
+[2026-09-09 23:15:40] [4/9] fbc WFE/SAA | ETA 0.6 h
+[2026-09-09 23:16:14]       done in 6.5 min | mean 59.94% | sd 8.80
+[2026-09-09 23:16:14] [4/8] fbc WAA/EPS | ETA 0.6 h
+[2026-09-09 23:16:46]       done in 6.7 min | mean 62.18% | sd 12.17
+[2026-09-09 23:16:46] [4/10] fbc WFE/EFE | ETA 0.8 h
+[2026-09-09 23:21:30]       done in 5.8 min | mean 58.50% | sd 9.27
+[2026-09-09 23:21:30] [5/9] fbc WAA/EFE | ETA 0.5 h
+[2026-09-09 23:22:07]       done in 5.9 min | mean 50.46% | sd 6.84
+[2026-09-09 23:22:07] [5/8] fbc WAA/SAA | ETA 0.4 h
+[2026-09-09 23:22:47]       done in 6.0 min | mean 52.90% | sd 6.48
+[2026-09-09 23:22:47] [5/10] fbc WFE/SFE | ETA 0.7 h
+[2026-09-09 23:27:22]       done in 5.9 min | mean 55.98% | sd 7.69
+[2026-09-09 23:27:22] [6/9] fbc WAA/SFE | ETA 0.4 h
+[2026-09-09 23:27:55]       done in 5.8 min | mean 61.05% | sd 12.53
+[2026-09-09 23:27:55] [6/8] fbc EPS/SPS | ETA 0.3 h
+[2026-09-09 23:28:44]       done in 6.0 min | mean 58.14% | sd 8.26
+[2026-09-09 23:28:44] [6/10] fbc WAA/SPS | ETA 0.5 h
+[2026-09-09 23:33:14]       done in 5.8 min | mean 60.09% | sd 10.38
+[2026-09-09 23:33:14] [7/9] fbc EPS/SAA | ETA 0.3 h
+[2026-09-09 23:33:37]       done in 5.7 min | mean 58.90% | sd 8.88
+[2026-09-09 23:33:37] [7/8] fbc EFE/SPS | ETA 0.2 h
+[2026-09-09 23:34:48]       done in 6.0 min | mean 59.91% | sd 9.10
+[2026-09-09 23:34:48] [7/10] fbc EPS/EFE | ETA 0.4 h
+[2026-09-09 23:39:04]       done in 5.8 min | mean 61.04% | sd 11.23
+[2026-09-09 23:39:04] [8/9] fbc EFE/SAA | ETA 0.2 h
+[2026-09-09 23:39:30]       done in 5.9 min | mean 56.37% | sd 7.94
+[2026-09-09 23:39:30] [8/8] fbc SPS/SAA | ETA 0.1 h
+[2026-09-09 23:40:52]       done in 6.1 min | mean 54.89% | sd 6.95
+[2026-09-09 23:40:52] [8/10] fbc EPS/SFE | ETA 0.3 h
+[2026-09-09 23:44:50]       done in 5.8 min | mean 54.98% | sd 10.25
+[2026-09-09 23:44:50] [9/9] fbc SPS/SFE | ETA 0.1 h
+[2026-09-09 23:45:22]       done in 5.9 min | mean 56.00% | sd 11.70
+[2026-09-09 23:45:22] SWEEP COMPLETE: 8/8 jobs in 0.82 h
+[2026-09-09 23:46:57]       done in 6.1 min | mean 57.94% | sd 10.18
+[2026-09-09 23:46:57] [9/10] fbc EFE/SFE | ETA 0.2 h
+[2026-09-09 23:50:30]       done in 5.7 min | mean 55.11% | sd 7.94
+[2026-09-09 23:50:30] SWEEP COMPLETE: 9/9 jobs in 0.90 h
+[2026-09-09 23:53:07]       done in 6.2 min | mean 55.40% | sd 9.06
+[2026-09-09 23:53:07] [10/10] fbc SAA/SFE | ETA 0.1 h
+[2026-09-09 23:59:18]       done in 6.2 min | mean 50.65% | sd 7.19
+[2026-09-09 23:59:18] SWEEP COMPLETE: 10/10 jobs in 1.05 h
