@@ -1,0 +1,21 @@
+{
+  "pair": "HOC/WFE",
+  "class_a": 0,
+  "class_b": 1,
+  "windows": [
+    800
+  ],
+  "seed": 42,
+  "gpu": "NVIDIA GeForce RTX 5070 Laptop GPU",
+  "torch": "2.11.0+cu128",
+  "model": "conformer_a",
+  "mode": "smoke",
+  "subjects": [
+    1
+  ],
+  "matrix": [
+    [
+      55.55555555555556
+    ]
+  ]
+}
