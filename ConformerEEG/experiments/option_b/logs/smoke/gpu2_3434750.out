@@ -1,0 +1,54 @@
+run_pairs_range: model=conformer_b mode=smoke range=[19, 28) -> pairs [19]
+  dataset_root=/scratch/11862/rmaahin/finemi-dataset/FineMI
+  results_root=/work/11862/rmaahin/ls6/FineMI-enhancements/ConformerEEG/experiments/option_b/results/smoke
+  config=/work/11862/rmaahin/ls6/FineMI-enhancements/ConformerEEG/experiments/option_b/config_smoke.json
+
+##### pair_idx=19 (EPS_SPS) #####
+
+Using device: cuda | gpu=NVIDIA A100-PCIE-40GB | torch=2.8.0+cu128
+NOTE: determinism holds per-GPU-model. Record this GPU name.
+
+PAIR: EPS/SPS  (classes 3 vs 5)  model=conformer_b  mode=smoke
+Test time windows: [800] ms
+Test time windows (samples): [200]
+
+Found 0 subject folders
+No subject folders; found 18 subject .npz files
+
+BINARY CLASSIFICATION: Class 3 vs Class 5  (EPS/SPS)
+  Class 0 (original 3): 725 trials
+  Class 1 (original 5): 725 trials
+
+Extracted time windows:
+  800ms (200 samples): shape (1450, 62, 200)
+
+Model configuration:
+  Model: conformer_b
+  Channels: 62
+  Subjects: [1]
+  Time windows: [800] ms
+  Classes: 2 (Binary: Class 3 vs Class 5)
+  Folds: 1
+  Batch size: 32
+  Epochs per subject per time window: 2
+    S1 800ms fold1 ep  1/2: train_loss=0.7112 train_acc= 51.85% val_loss=0.6910 val_acc= 55.56% lr=1.00e-03
+    S1 800ms fold1 ep  2/2: train_loss=0.6703 train_acc= 57.41% val_loss=0.6915 val_acc= 50.00% lr=1.00e-03
+  S1 800ms fold1/1: best_val= 55.56% (ep1) test= 44.44%
+S 1: 800ms= 44.44%   (6s)
+
+ALL SUBJECTS COMPLETED — EPS/SPS  (6s)
+
+====================================================================
+SAVED EPS/SPS -> /work/11862/rmaahin/ls6/FineMI-enhancements/ConformerEEG/experiments/option_b/results/smoke/EPS_SPS
+gpu=NVIDIA A100-PCIE-40GB | torch=2.8.0+cu128 | seed=42 | model=conformer_b | mode=smoke
+====================================================================
+window_ms    800
+subject         
+1          44.44
+
+mean: {800: 44.44}
+sd  : {800: nan}
+
+Pairs saved so far in /work/11862/rmaahin/ls6/FineMI-enhancements/ConformerEEG/experiments/option_b/results/smoke: 3/28
+
+Done: pairs [19]

@@ -1,0 +1,11 @@
+Job:        3434746
+Node:       c310-004.ls6.tacc.utexas.edu
+Model:      conformer_b
+Experiment: option_b
+Mode:       full
+GPUs:
+GPU 0: NVIDIA A100-PCIE-40GB (UUID: GPU-40957628-9f80-295e-3588-64e3f6523f05)
+GPU 1: NVIDIA A100-PCIE-40GB (UUID: GPU-8726efbe-3c80-1585-4345-02b6e1c88357)
+GPU 2: NVIDIA A100-PCIE-40GB (UUID: GPU-ddbffc36-c276-122f-55c8-24f1933abf46)
+Workers launched: PIDs 828564 828565 828566
+All pairs completed for conformer_b / full

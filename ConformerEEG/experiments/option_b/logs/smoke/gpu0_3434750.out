@@ -1,0 +1,54 @@
+run_pairs_range: model=conformer_b mode=smoke range=[0, 10) -> pairs [0]
+  dataset_root=/scratch/11862/rmaahin/finemi-dataset/FineMI
+  results_root=/work/11862/rmaahin/ls6/FineMI-enhancements/ConformerEEG/experiments/option_b/results/smoke
+  config=/work/11862/rmaahin/ls6/FineMI-enhancements/ConformerEEG/experiments/option_b/config_smoke.json
+
+##### pair_idx=0 (HOC_WFE) #####
+
+Using device: cuda | gpu=NVIDIA A100-PCIE-40GB | torch=2.8.0+cu128
+NOTE: determinism holds per-GPU-model. Record this GPU name.
+
+PAIR: HOC/WFE  (classes 0 vs 1)  model=conformer_b  mode=smoke
+Test time windows: [800] ms
+Test time windows (samples): [200]
+
+Found 0 subject folders
+No subject folders; found 18 subject .npz files
+
+BINARY CLASSIFICATION: Class 0 vs Class 1  (HOC/WFE)
+  Class 0 (original 0): 725 trials
+  Class 1 (original 1): 725 trials
+
+Extracted time windows:
+  800ms (200 samples): shape (1450, 62, 200)
+
+Model configuration:
+  Model: conformer_b
+  Channels: 62
+  Subjects: [1]
+  Time windows: [800] ms
+  Classes: 2 (Binary: Class 0 vs Class 1)
+  Folds: 1
+  Batch size: 32
+  Epochs per subject per time window: 2
+    S1 800ms fold1 ep  1/2: train_loss=0.7063 train_acc= 56.48% val_loss=0.6949 val_acc= 38.89% lr=1.00e-03
+    S1 800ms fold1 ep  2/2: train_loss=0.6720 train_acc= 58.33% val_loss=0.6988 val_acc= 50.00% lr=1.00e-03
+  S1 800ms fold1/1: best_val= 50.00% (ep2) test= 50.00%
+S 1: 800ms= 50.00%   (9s)
+
+ALL SUBJECTS COMPLETED — HOC/WFE  (9s)
+
+====================================================================
+SAVED HOC/WFE -> /work/11862/rmaahin/ls6/FineMI-enhancements/ConformerEEG/experiments/option_b/results/smoke/HOC_WFE
+gpu=NVIDIA A100-PCIE-40GB | torch=2.8.0+cu128 | seed=42 | model=conformer_b | mode=smoke
+====================================================================
+window_ms   800
+subject        
+1          50.0
+
+mean: {800: 50.0}
+sd  : {800: nan}
+
+Pairs saved so far in /work/11862/rmaahin/ls6/FineMI-enhancements/ConformerEEG/experiments/option_b/results/smoke: 3/28
+
+Done: pairs [0]

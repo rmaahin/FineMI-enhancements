@@ -1,0 +1,21 @@
+{
+  "pair": "WFE/SPS",
+  "class_a": 1,
+  "class_b": 5,
+  "windows": [
+    800
+  ],
+  "seed": 42,
+  "gpu": "NVIDIA A100-PCIE-40GB",
+  "torch": "2.8.0+cu128",
+  "model": "conformer_b",
+  "mode": "smoke",
+  "subjects": [
+    1
+  ],
+  "matrix": [
+    [
+      61.111111111111114
+    ]
+  ]
+}
