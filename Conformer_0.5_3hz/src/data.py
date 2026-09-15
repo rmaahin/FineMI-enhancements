@@ -1,10 +1,10 @@
 """Data loading, binary filtering, time windowing, normalization, augmentation.
 
 Ported from FineMI-enhancements/EMBC_deterministic-3.ipynb (via ConformerEEG/src/data.py).
-Only change: load_pair() applies the binary class filter per subject while
-loading, instead of concatenating all 18 subjects first. Row order (subjects
+Only change: load_pair() applies the binary class filter per subject and then
+concatenates, instead of concatenating all 18 subjects first. Row order (subjects
 ascending, trials in file order) and dtype are unchanged, so the resulting
-arrays are identical to the notebook's; peak memory is ~1/4.
+arrays are identical to the notebook's.
 """
 import glob
 import os
@@ -36,10 +36,32 @@ def discover_subject_files(dataset_root: str, band_tag: str) -> list[str]:
     return files
 
 
+# (dataset_root, band_tag) -> [(sid, data, labels), ...] for every subject. The .npz
+# files are compressed, so decompressing all 18 for every pair of a 28-pair sweep
+# is slow; the raw arrays (~3.6 GB float64) are kept per process instead.
+_RAW_CACHE = {}
+
 # (dataset_root, band_tag, class_a, class_b) -> (X, y, subject_ids). Holds only the
-# most recent pair, so running several models on one pair loads the data once.
+# most recent pair, so running several models on one pair filters the data once.
 # Callers must not modify the returned arrays in place.
 _PAIR_CACHE = {}
+
+
+def load_subjects(dataset_root: str, band_tag: str):
+    """[(subject_id, data, labels), ...] for every subject file, sorted by subject number."""
+    key = (os.path.abspath(dataset_root), band_tag)
+    if key in _RAW_CACHE:
+        return _RAW_CACHE[key]
+
+    files = discover_subject_files(dataset_root, band_tag)
+    print(f"\nFound {len(files)} subject .npz files ({band_tag}) in {dataset_root}", flush=True)
+    subjects = []
+    for path in files:
+        with np.load(path, allow_pickle=True) as z:
+            subjects.append((get_subject_number(path), z["data"], z["labels"]))
+
+    _RAW_CACHE[key] = subjects
+    return subjects
 
 
 def load_pair(dataset_root: str, band_tag: str, class_a: int, class_b: int):
@@ -52,17 +74,11 @@ def load_pair(dataset_root: str, band_tag: str, class_a: int, class_b: int):
         return _PAIR_CACHE[key]
     _PAIR_CACHE.clear()
 
-    files = discover_subject_files(dataset_root, band_tag)
-    print(f"\nFound {len(files)} subject .npz files ({band_tag}) in {dataset_root}", flush=True)
-
     X_parts, y_parts, sid_parts = [], [], []
-    for path in files:
-        sid = get_subject_number(path)
-        with np.load(path, allow_pickle=True) as z:
-            labels = z["labels"]
-            mask = (labels == class_a) | (labels == class_b)
-            X_parts.append(z["data"][mask])
-            y_parts.append(labels[mask])
+    for sid, data, labels in load_subjects(dataset_root, band_tag):
+        mask = (labels == class_a) | (labels == class_b)
+        X_parts.append(data[mask])
+        y_parts.append(labels[mask])
         sid_parts.append(np.full(int(mask.sum()), sid))
 
     X = np.concatenate(X_parts, axis=0)

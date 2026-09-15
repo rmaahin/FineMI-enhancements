@@ -4,7 +4,7 @@ Same hyperparameters as ConformerEEG/src/config.py; differences:
   - three models ('fine' is the EMBC_deterministic-3.ipynb baseline)
   - data defaults to <Fine MI>/FineMI_0.5_3hz (files subject{N}_eeg_epochs_0.5_3hz_*.npz)
   - results go to Conformer_0.5_3hz/results/<mode>/<model>/<PAIR_SLUG>/
-  - pairs are chosen explicitly (parse_pair), not by index range
+  - pairs are chosen explicitly (parse_pair / parse_pairs, "all" = 28), not by index range
 """
 from __future__ import annotations   # `int | None` field annotations on Python < 3.10
 
@@ -25,7 +25,7 @@ MODEL_LABELS = {
 }
 
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))   # Conformer_0.5_3hz/
-# Local layout (Fine MI/FineMI_0.5_3hz). On TACC, submit_ls6_dev.slurm passes
+# Local layout (Fine MI/FineMI_0.5_3hz). On TACC, submit_ls6.slurm passes
 # --dataset-root $SCRATCH/finemi-dataset/FineMI_0.5_3hz instead.
 DATASET_ROOT_DEFAULT = os.path.normpath(
     os.path.join(PROJECT_ROOT, '..', '..', 'FineMI_0.5_3hz'))
@@ -174,3 +174,18 @@ def parse_pair(token: str, joint_names=JOINT_NAMES) -> tuple[int, int]:
     if a == b:
         raise ValueError(f"pair {token!r} uses the same class twice")
     return a, b
+
+
+def parse_pairs(tokens) -> list[tuple[int, int]]:
+    """Parse --pairs entries into a de-duplicated list, in the order given.
+
+    The token 'all' (case-insensitive) expands to all 28 pairs in PAIRS order.
+    Raises ValueError on a bad token.
+    """
+    pairs = []
+    for token in tokens:
+        expanded = PAIRS if token.strip().lower() == 'all' else [parse_pair(token)]
+        for pair in expanded:
+            if pair not in pairs:
+                pairs.append(pair)
+    return pairs

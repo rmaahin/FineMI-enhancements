@@ -6,11 +6,16 @@ selected (pair, model) and writes to <mode_root>/comparison/:
   comparison_long.csv        pair, model, window, mean_acc, sd_acc, n_subjects
   comparison_mean.csv        rows pair x model, columns windows + 'avg' (mean accuracy)
   comparison_sd.csv          same layout, across-subject SD
-  comparison_table.md        mean (SD) per cell; best architecture per pair/window in bold
+  comparison_pooled.csv      model x window pooled over pairs (see below), plus how many
+                             pairs each model is best on
+  comparison_table.md        pooled table + per-pair mean (SD); best architecture in bold
   all_subjects_long.csv      every per-subject accuracy with a model column (for stats later)
 
 Stats are across subjects (ddof=1), matching the per-pair "mean"/"sd" printout.
 'avg' is each subject's mean over windows, then mean/SD across subjects.
+Pooled = each subject's mean over the pairs that ALL selected models have completed,
+then mean/SD across subjects (subjects are not independent across pairs, so they
+are averaged rather than treated as extra samples).
 """
 from __future__ import annotations   # `X | None` annotations on Python < 3.10
 
@@ -51,6 +56,7 @@ def build_comparison(mode_root: str, pairs, models=MODELS) -> pd.DataFrame | Non
     """Write the comparison files; returns the mean table (or None if nothing is done)."""
     rows, subj_frames, missing = [], [], []
     windows = []
+    wides = {}   # (slug, model) -> subjects x [windows..., avg], str columns
 
     for a, b in pairs:
         slug = pair_slug(a, b)
@@ -64,6 +70,7 @@ def build_comparison(mode_root: str, pairs, models=MODELS) -> pd.DataFrame | Non
 
             per_window = {w: wide[w] for w in wide.columns}
             per_window[AVG_COL] = wide.mean(axis=1)
+            wides[(slug, m)] = pd.DataFrame({str(w): col for w, col in per_window.items()})
             for w, col in per_window.items():
                 # str keys: int windows + 'avg' in one column would break pivot's sort
                 rows.append(dict(pair=slug, model=m, window=str(w),
@@ -103,6 +110,26 @@ def build_comparison(mode_root: str, pairs, models=MODELS) -> pd.DataFrame | Non
     pd.concat(subj_frames, ignore_index=True).to_csv(
         os.path.join(out_dir, 'all_subjects_long.csv'), index=False)
 
+    # ---- Pooled over pairs that every model has completed ------------------
+    complete = [s for s in pair_order if all((s, m) in wides for m in models)]
+    pooled = None
+    if len(complete) >= 2:
+        prow = []
+        for m in models:
+            # subject x column, averaged over the complete pairs
+            subj_mean = pd.concat([wides[(s, m)] for s in complete]).groupby(level=0).mean()
+            for c in columns:
+                col = subj_mean[c]
+                best_on = sum(
+                    1 for s in complete
+                    if mean_tbl.loc[(s, m), c] == max(mean_tbl.loc[(s, mm), c] for mm in models))
+                prow.append(dict(model=m, window=c, mean_acc=float(col.mean()),
+                                 sd_acc=float(col.std(ddof=1)) if col.count() > 1 else np.nan,
+                                 n_subjects=int(col.count()), n_pairs=len(complete),
+                                 n_pairs_best=best_on))
+        pooled = pd.DataFrame(prow)
+        pooled.to_csv(os.path.join(out_dir, 'comparison_pooled.csv'), index=False)
+
     # ---- Markdown table ---------------------------------------------------
     header_cells = ['Pair', 'Architecture'] + [f"{w} ms" for w in windows] + ['Avg']
     lines = [
@@ -111,6 +138,40 @@ def build_comparison(mode_root: str, pairs, models=MODELS) -> pd.DataFrame | Non
         "Within-subject CV test accuracy (%), mean (SD) across subjects. "
         "Bold = best architecture for that pair and window.",
         "",
+    ]
+    if pooled is not None:
+        pm = pooled.set_index(['model', 'window'])
+        lines += [
+            f"## Pooled over {len(complete)} pairs",
+            "",
+            "Each subject's accuracy averaged over the pairs first; "
+            "'pairs best' = number of pairs on which the architecture has the highest mean "
+            "(ties count for each tied architecture).",
+            "",
+            "| Architecture | " + " | ".join(header_cells[2:]) + " |",
+            "|" + "|".join(['---'] + ['---:'] * len(columns)) + "|",
+        ]
+        best_pooled = {c: max(pm.loc[(m, c), 'mean_acc'] for m in models) for c in columns}
+        for m in models:
+            cells = [MODEL_LABELS.get(m, m)]
+            for c in columns:
+                txt = _fmt(pm.loc[(m, c), 'mean_acc'], pm.loc[(m, c), 'sd_acc'])
+                if len(models) > 1 and pm.loc[(m, c), 'mean_acc'] == best_pooled[c]:
+                    txt = f"**{txt}**"
+                cells.append(txt)
+            lines.append("| " + " | ".join(cells) + " |")
+        lines += [
+            "",
+            "| Pairs best | " + " | ".join(header_cells[2:]) + " |",
+            "|" + "|".join(['---'] + ['---:'] * len(columns)) + "|",
+        ]
+        for m in models:
+            lines.append("| " + " | ".join(
+                [MODEL_LABELS.get(m, m)]
+                + [f"{int(pm.loc[(m, c), 'n_pairs_best'])}/{len(complete)}" for c in columns]) + " |")
+        lines += ["", "## Per pair", ""]
+
+    lines += [
         "| " + " | ".join(header_cells) + " |",
         "|" + "|".join(['---', '---'] + ['---:'] * len(columns)) + "|",
     ]
@@ -139,4 +200,8 @@ def build_comparison(mode_root: str, pairs, models=MODELS) -> pd.DataFrame | Non
 
     print(f"\ncomparison written to {out_dir}", flush=True)
     print(mean_tbl.round(2).to_string(), flush=True)
+    if pooled is not None:
+        print(f"\npooled over {len(complete)} pairs (mean accuracy):", flush=True)
+        print(pooled.pivot(index='model', columns='window', values='mean_acc')
+              .reindex(index=list(models), columns=columns).round(2).to_string(), flush=True)
     return mean_tbl

@@ -9,9 +9,11 @@ import src.determinism  # noqa: F401 — must be first (sets CUBLAS env before t
 #   python -m scripts.run_selected_pairs --pairs WAA_SAA HOC_WFE EPS_SPS
 #   python -m scripts.run_selected_pairs --pairs 2_6 0_1 3_5 --mode smoke
 #   python -m scripts.run_selected_pairs --pairs WAA_SAA --models fine conformer_b
+#   python -m scripts.run_selected_pairs --pairs all            # full 28-pair sweep
 #
-# Pairs: joint names (WAA_SAA, WAA/SAA), class ids (2_6) or pair indices (0-27).
+# Pairs: joint names (WAA_SAA, WAA/SAA), class ids (2_6), pair indices (0-27), or all.
 # Joints: 0 HOC, 1 WFE, 2 WAA, 3 EPS, 4 EFE, 5 SPS, 6 SAA, 7 SFE.
+# On TACC use submit_ls6.slurm, which splits the pairs across the node's 3 GPUs.
 #
 # Output (all inside this folder):
 #   results/<mode>/<model>/<PAIR>/   per_subject.csv, per_fold.csv,
@@ -32,7 +34,7 @@ import time
 import traceback
 
 from src.config import (DATASET_ROOT_DEFAULT, RESULTS_ROOT_DEFAULT, JOINT_NAMES, MODELS,
-                        MODE_OVERRIDES, make_config, mode_root, pair_slug, parse_pair)
+                        MODE_OVERRIDES, make_config, mode_root, pair_slug, parse_pairs)
 
 
 class _Tee:
@@ -57,7 +59,8 @@ def main():
     p = argparse.ArgumentParser(
         description="Train FINE / Conformer A / Conformer B on selected pairs (0.5-3 Hz data).")
     p.add_argument('--pairs', required=True, nargs='+', metavar='PAIR',
-                   help="pairs to run, e.g. WAA_SAA HOC_WFE EPS_SPS (or 2_6, or pair index 0-27)")
+                   help="pairs to run, e.g. WAA_SAA HOC_WFE EPS_SPS (or 2_6, pair index 0-27, "
+                        "or all)")
     p.add_argument('--models', nargs='+', choices=MODELS, default=list(MODELS),
                    help=f"architectures to run (default: all of {' '.join(MODELS)})")
     p.add_argument('--mode', choices=list(MODE_OVERRIDES), default='full',
@@ -76,26 +79,31 @@ def main():
                         "each worker's output to its own log instead)")
     p.add_argument('--list-pairs', action='store_true',
                    help="print the normalized, de-duplicated pair names and exit (no training)")
+    p.add_argument('--pending', action='store_true',
+                   help="with --list-pairs: only list pairs where at least one of --models has no "
+                        "results.json yet for --mode (ignored with --overwrite)")
     args = p.parse_args()
 
-    pairs = []
-    for token in args.pairs:
-        try:
-            pair = parse_pair(token)
-        except ValueError as e:
-            p.error(str(e))
-        if pair not in pairs:
-            pairs.append(pair)
-    slugs = [pair_slug(a, b) for a, b in pairs]
+    try:
+        pairs = parse_pairs(args.pairs)
+    except ValueError as e:
+        p.error(str(e))
+    models = list(dict.fromkeys(args.models))
+    root = mode_root(args.results_root, args.mode)
+
     if args.list_pairs:
-        print(' '.join(slugs))
+        if args.pending and not args.overwrite:
+            from src.utils import is_pair_done
+            pairs = [(a, b) for a, b in pairs
+                     if not all(is_pair_done(os.path.join(root, m, pair_slug(a, b)))
+                                for m in models)]
+        print(' '.join(pair_slug(a, b) for a, b in pairs))
         return 0
 
-    models = list(dict.fromkeys(args.models))
+    slugs = [pair_slug(a, b) for a, b in pairs]
     if not os.path.isdir(args.dataset_root):
         p.error(f"--dataset-root does not exist: {args.dataset_root}")
 
-    root = mode_root(args.results_root, args.mode)
     if args.no_log_file:
         log_path = '(stdout only)'
     else:
