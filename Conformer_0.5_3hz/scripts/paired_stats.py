@@ -58,10 +58,12 @@ def paired_test(x, y):
     n = len(d)
     sd = d.std(ddof=1) if n > 1 else np.nan
     t, p_t = stats.ttest_rel(x.loc[d.index], y.loc[d.index]) if n > 1 else (np.nan, np.nan)
-    try:
-        p_w = stats.wilcoxon(d).pvalue
-    except ValueError:   # all differences zero, or too few samples
-        p_w = np.nan
+    p_w = np.nan
+    if n > 1:
+        try:
+            p_w = stats.wilcoxon(d).pvalue
+        except Exception:   # all differences zero, too few samples, scipy version quirks
+            p_w = np.nan
     return dict(n_subjects=n, mean_x=x.loc[d.index].mean(), mean_y=y.loc[d.index].mean(),
                 diff=d.mean(), sd_diff=sd, t=t, p_ttest=p_t, p_wilcoxon=p_w,
                 cohen_dz=d.mean() / sd if sd and sd > 0 else np.nan,
