@@ -1,0 +1,2 @@
+pair,subject,window_ms,fold,accuracy,val_accuracy,n_test
+WAA/SAA,1,800,1,33.333333333333336,55.55555555555556,18

@@ -1,0 +1,10 @@
+pair,model,800,avg
+WAA_SAA,fine,,
+WAA_SAA,conformer_a,,
+WAA_SAA,conformer_b,,
+HOC_WFE,fine,,
+HOC_WFE,conformer_a,,
+HOC_WFE,conformer_b,,
+EPS_SPS,fine,,
+EPS_SPS,conformer_a,,
+EPS_SPS,conformer_b,,

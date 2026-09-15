@@ -1,0 +1,2 @@
+pair,subject,window_ms,fold,accuracy,val_accuracy,n_test
+EPS/SPS,1,800,1,38.888888888888886,66.66666666666667,18
