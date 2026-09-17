@@ -1,0 +1,2 @@
+pair,subject,window_ms,fold,accuracy,val_accuracy,n_test
+WFE/EPS,1,800,1,44.44444444444444,50.0,18

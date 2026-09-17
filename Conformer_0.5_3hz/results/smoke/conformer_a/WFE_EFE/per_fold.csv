@@ -1,0 +1,2 @@
+pair,subject,window_ms,fold,accuracy,val_accuracy,n_test
+WFE/EFE,1,800,1,38.888888888888886,61.111111111111114,18

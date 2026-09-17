@@ -1,0 +1,138 @@
+Job:          3440230
+Node:         c316-012.ls6.tacc.utexas.edu
+Partition:    gpu-a100
+Started:      Wed Sep 16 09:10:57 CDT 2026
+Mode:         full
+Models:       fine conformer_a conformer_b
+Pairs:        28 selected, 28 with runs still to do
+Pending:      HOC_WFE HOC_WAA HOC_EPS HOC_EFE HOC_SPS HOC_SAA HOC_SFE WFE_WAA WFE_EPS WFE_EFE WFE_SPS WFE_SAA WFE_SFE WAA_EPS WAA_EFE WAA_SPS WAA_SAA WAA_SFE EPS_EFE EPS_SPS EPS_SAA EPS_SFE EFE_SPS EFE_SAA EFE_SFE SPS_SAA SPS_SFE SAA_SFE
+Dataset:      /scratch/11862/rmaahin/finemi-dataset/FineMI_0.5_3hz (18 files)
+Results:      /work/11862/rmaahin/ls6/FineMI-enhancements/Conformer_0.5_3hz/results/full
+GPUs:
+GPU 0: NVIDIA A100-PCIE-40GB (UUID: GPU-abb60328-3f39-eb87-72f2-09c0973bc3ea)
+GPU 1: NVIDIA A100-PCIE-40GB (UUID: GPU-1237f177-79f4-6fbc-a5a5-fc40a8ecd857)
+GPU 2: NVIDIA A100-PCIE-40GB (UUID: GPU-94e0352b-b43c-7896-0837-3429ef950585)
+Estimate:     ~8 h (10 pairs on the busiest GPU x ~50 min)
+GPU 0: pairs=[HOC_WFE HOC_EFE HOC_SFE WFE_EFE WFE_SFE WAA_SPS EPS_EFE EPS_SFE EFE_SFE SAA_SFE] models=[fine conformer_a conformer_b] -> results/full/logs/gpu0_3440230.log
+GPU 1: pairs=[HOC_WAA HOC_SPS WFE_WAA WFE_SPS WAA_EPS WAA_SAA EPS_SPS EFE_SPS SPS_SAA] models=[fine conformer_a conformer_b] -> results/full/logs/gpu1_3440230.log
+GPU 2: pairs=[HOC_EPS HOC_SAA WFE_EPS WFE_SAA WAA_EFE WAA_SFE EPS_SAA EFE_SAA SPS_SFE] models=[fine conformer_a conformer_b] -> results/full/logs/gpu2_3440230.log
+Workers launched: PIDs 12271 12272 12273
+Workers finished: Wed Sep 16 17:11:33 CDT 2026
+
+Building comparison table...
+
+comparison written to /work/11862/rmaahin/ls6/FineMI-enhancements/Conformer_0.5_3hz/results/full/comparison
+window                 800   1500   3000   4000    avg
+pair    model                                         
+HOC_WFE fine         61.25  60.04  58.75  58.60  59.66
+        conformer_a  60.81  61.00  62.12  62.43  61.59
+        conformer_b  63.22  63.50  57.46  59.84  61.00
+HOC_WAA fine         60.62  62.71  66.11  65.36  63.70
+        conformer_a  61.15  60.74  65.07  64.94  62.97
+        conformer_b  59.75  64.50  64.75  65.31  63.57
+HOC_EPS fine         61.66  62.96  61.89  59.81  61.58
+        conformer_a  58.40  61.35  62.48  61.40  60.91
+        conformer_b  62.11  61.37  63.20  62.92  62.40
+HOC_EFE fine         64.34  65.93  65.62  66.23  65.53
+        conformer_a  59.31  64.42  65.29  65.75  63.69
+        conformer_b  63.40  64.26  66.24  67.77  65.42
+HOC_SPS fine         68.94  70.02  71.25  71.53  70.43
+        conformer_a  64.72  70.84  70.79  71.68  69.51
+        conformer_b  67.55  71.88  72.37  70.62  70.61
+HOC_SAA fine         71.40  73.19  71.79  71.60  71.99
+        conformer_a  64.99  74.47  73.76  74.81  72.01
+        conformer_b  68.89  75.49  74.05  73.00  72.86
+HOC_SFE fine         67.60  68.18  68.60  68.75  68.28
+        conformer_a  68.16  69.76  71.17  71.49  70.15
+        conformer_b  68.51  68.89  69.62  70.28  69.32
+WFE_WAA fine         59.67  60.93  62.96  63.90  61.86
+        conformer_a  60.69  61.17  63.60  60.90  61.59
+        conformer_b  58.46  64.16  62.71  64.81  62.53
+WFE_EPS fine         62.54  62.16  59.17  59.53  60.85
+        conformer_a  61.03  60.90  62.30  61.80  61.51
+        conformer_b  62.27  63.95  60.08  61.47  61.94
+WFE_EFE fine         61.23  58.36  60.95  61.27  60.45
+        conformer_a  61.51  61.06  62.31  63.63  62.13
+        conformer_b  60.86  62.04  60.98  62.08  61.49
+WFE_SPS fine         68.83  68.17  67.64  68.25  68.22
+        conformer_a  65.66  70.54  71.37  71.44  69.75
+        conformer_b  64.61  69.85  69.74  69.78  68.49
+WFE_SAA fine         63.67  67.38  66.32  66.30  65.92
+        conformer_a  61.98  69.49  68.85  67.72  67.01
+        conformer_b  63.12  68.97  68.61  68.06  67.19
+WFE_SFE fine         61.16  62.24  62.68  62.74  62.20
+        conformer_a  60.38  63.77  66.35  65.46  63.99
+        conformer_b  61.11  63.71  64.92  64.14  63.47
+WAA_EPS fine         59.15  59.96  61.30  60.09  60.13
+        conformer_a  61.18  60.55  62.05  61.34  61.28
+        conformer_b  58.08  57.33  60.58  60.12  59.03
+WAA_EFE fine         60.90  60.84  62.18  63.82  61.93
+        conformer_a  58.70  61.89  64.48  67.69  63.19
+        conformer_b  57.55  60.01  62.69  65.36  61.40
+WAA_SPS fine         64.54  66.73  67.15  66.90  66.33
+        conformer_a  61.63  65.86  68.53  69.78  66.45
+        conformer_b  62.58  68.36  66.77  67.58  66.32
+WAA_SAA fine         65.79  71.23  68.78  69.12  68.73
+        conformer_a  63.47  72.65  73.60  73.15  70.72
+        conformer_b  65.61  70.73  69.44  70.14  68.98
+WAA_SFE fine         64.83  67.71  67.80  66.63  66.74
+        conformer_a  61.53  68.73  72.23  70.69  68.29
+        conformer_b  62.25  67.26  67.60  66.09  65.80
+EPS_EFE fine         56.18  58.08  59.59  58.27  58.03
+        conformer_a  54.68  58.32  60.07  62.78  58.96
+        conformer_b  55.82  60.14  61.46  61.62  59.76
+EPS_SPS fine         66.05  67.62  65.40  65.15  66.06
+        conformer_a  63.18  68.83  70.29  70.46  68.19
+        conformer_b  65.93  68.93  67.19  67.39  67.36
+EPS_SAA fine         64.65  68.49  66.15  65.15  66.11
+        conformer_a  63.12  68.36  68.87  68.65  67.25
+        conformer_b  63.56  70.73  66.88  65.41  66.64
+EPS_SFE fine         64.16  67.79  66.26  63.10  65.33
+        conformer_a  62.62  70.48  69.49  69.80  68.10
+        conformer_b  65.21  65.90  65.96  64.22  65.32
+EFE_SPS fine         66.47  66.85  66.86  67.20  66.84
+        conformer_a  63.51  66.57  69.96  69.31  67.34
+        conformer_b  64.99  67.20  68.12  68.80  67.28
+EFE_SAA fine         65.35  68.23  66.70  67.64  66.98
+        conformer_a  64.17  70.18  68.98  68.16  67.87
+        conformer_b  66.53  70.11  67.90  68.48  68.25
+EFE_SFE fine         64.61  64.56  66.31  66.33  65.45
+        conformer_a  65.02  67.72  70.43  71.75  68.73
+        conformer_b  63.72  64.81  67.06  67.93  65.88
+SPS_SAA fine         63.83  66.48  63.90  66.09  65.08
+        conformer_a  60.93  66.64  70.15  71.38  67.27
+        conformer_b  63.09  65.80  66.37  68.24  65.88
+SPS_SFE fine         63.83  66.34  66.99  66.97  66.03
+        conformer_a  66.22  65.23  70.43  68.61  67.62
+        conformer_b  62.55  62.58  65.44  68.91  64.87
+SAA_SFE fine         58.54  62.02  60.87  59.95  60.35
+        conformer_a  60.02  65.61  65.76  65.40  64.20
+        conformer_b  59.36  62.14  60.97  60.01  60.62
+
+pooled over 28 pairs (mean accuracy):
+window         800   1500   3000   4000    avg
+model                                         
+fine         63.64  65.19  65.00  64.87  64.67
+conformer_a  62.10  65.97  67.53  67.58  65.79
+conformer_b  62.88  65.88  65.68  66.08  65.13
+
+Computing paired statistics...
+paired_stats written to /work/11862/rmaahin/ls6/FineMI-enhancements/Conformer_0.5_3hz/results/full/comparison
+                   diff  p_ttest  p_holm  n_x_better  n_y_better
+contrast window                                                 
+A - FINE 800    -1.5378   0.0260  0.1560           6          12
+         1500    0.7823   0.0775  0.3098          10           7
+         3000    2.5288   0.0001  0.0008          17           1
+         4000    2.7175   0.0000  0.0007          17           1
+         avg     1.1227   0.0020  0.0220          16           2
+B - FINE 800    -0.7555   0.1143  0.3428           8          10
+         1500    0.6920   0.0136  0.0949          12           5
+         3000    0.6851   0.0109  0.0870          12           6
+         4000    1.2179   0.0002  0.0022          15           2
+         avg     0.4599   0.0030  0.0299          16           2
+A - B    800    -0.7823   0.1231  0.3428           7          11
+         1500    0.0904   0.8400  0.8400          10           8
+         3000    1.8437   0.0002  0.0022          17           1
+         4000    1.4996   0.0036  0.0320          16           2
+         avg     0.6628   0.0352  0.1759          14           4
+All runs completed: results/full/comparison/comparison_table.md and paired_stats.md

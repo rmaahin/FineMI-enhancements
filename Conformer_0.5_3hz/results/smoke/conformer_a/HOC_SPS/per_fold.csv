@@ -1,0 +1,2 @@
+pair,subject,window_ms,fold,accuracy,val_accuracy,n_test
+HOC/SPS,1,800,1,77.77777777777777,44.44444444444444,18

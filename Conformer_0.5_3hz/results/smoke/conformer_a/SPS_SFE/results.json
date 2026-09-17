@@ -1,0 +1,23 @@
+{
+  "pair": "SPS/SFE",
+  "class_a": 5,
+  "class_b": 7,
+  "windows": [
+    800
+  ],
+  "seed": 42,
+  "gpu": "NVIDIA A100-PCIE-40GB",
+  "torch": "2.8.0+cu128",
+  "model": "conformer_a",
+  "mode": "smoke",
+  "band": "0.5_3hz",
+  "dataset_root": "/scratch/11862/rmaahin/finemi-dataset/FineMI_0.5_3hz",
+  "subjects": [
+    1
+  ],
+  "matrix": [
+    [
+      61.111111111111114
+    ]
+  ]
+}

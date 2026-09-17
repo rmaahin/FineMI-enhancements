@@ -1,0 +1,7 @@
+model,window,mean_acc,sd_acc,n_subjects,n_pairs,n_pairs_best
+fine,800,53.57142857142857,,1,28,12
+fine,avg,53.57142857142857,,1,28,12
+conformer_a,800,53.57142857142857,,1,28,13
+conformer_a,avg,53.57142857142857,,1,28,13
+conformer_b,800,53.769841269841265,,1,28,10
+conformer_b,avg,53.769841269841265,,1,28,10

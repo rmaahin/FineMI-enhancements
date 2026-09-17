@@ -1,0 +1,2 @@
+pair,subject,window_ms,fold,accuracy,val_accuracy,n_test
+EFE/SAA,1,800,1,72.22222222222223,44.44444444444444,18

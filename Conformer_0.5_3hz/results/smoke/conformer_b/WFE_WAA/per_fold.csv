@@ -1,0 +1,2 @@
+pair,subject,window_ms,fold,accuracy,val_accuracy,n_test
+WFE/WAA,1,800,1,72.22222222222223,50.0,18
