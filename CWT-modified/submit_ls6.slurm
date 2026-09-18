@@ -29,7 +29,16 @@
 #   VENV          default $SCRATCH/venvs/fine
 #   SHARDS        workers per arm, default = number of GPUs on the node (3)
 #   REDO          1 = re-train pairs that already have results (default 0 = skip them)
+#   FINE_DECIM    5 (default, 50 Hz, results/) or 1 (vanilla 250 Hz, results_decim1/)
 #   FINE_BEST_CKPT  1 = deepcopy best-val checkpoint; default 0 = original final-epoch rule
+#
+# Decimation A/B on the dev queue, vanilla first then decimated, chained with a
+# dependency so they run back to back:
+#
+#   export PAIRS="HOC_SPS WAA_SAA EPS_SPS" ARMS=cwt
+#   J1=$(FINE_DECIM=1 sbatch --parsable -J cwt_vanilla -p gpu-a100-dev -t 02:00:00 submit_ls6.slurm)
+#   FINE_DECIM=5 sbatch -J cwt_decim5 -p gpu-a100-dev -t 02:00:00 --dependency=afterany:$J1 submit_ls6.slurm
+#   ... then: python compare_runs.py --a results_decim1 --b results --mode cwt
 #
 # Resume: finished pairs (results.json with matching pipeline stamp) are skipped, so if
 # the job times out just resubmit the same command.
@@ -70,7 +79,13 @@ if [ ${#DATA_FILES[@]} -eq 0 ]; then
 fi
 
 export FINE_DATASET_ROOT="$DATASET_ROOT"
-export FINE_RESULTS_ROOT="$REPO_ROOT/results"
+# FINE_DECIM=5 (default) -> results/ ; FINE_DECIM=1 (vanilla 250 Hz) -> results_decim1/
+export FINE_DECIM="${FINE_DECIM:-5}"
+if [ "$FINE_DECIM" = "5" ]; then
+    export FINE_RESULTS_ROOT="$REPO_ROOT/results"
+else
+    export FINE_RESULTS_ROOT="$REPO_ROOT/results_decim${FINE_DECIM}"
+fi
 LOGDIR="$FINE_RESULTS_ROOT/logs"
 mkdir -p "$LOGDIR"
 
@@ -99,6 +114,7 @@ echo "Pairs:        $PAIRS"
 echo "Shards:       $SHARDS (on $NGPU GPUs)"
 echo "Dataset:      $DATASET_ROOT (${#DATA_FILES[@]} files)"
 echo "Results:      $FINE_RESULTS_ROOT"
+echo "Decimation:   D=$FINE_DECIM ($(( 250 / FINE_DECIM )) Hz)"
 echo "Best ckpt:    ${FINE_BEST_CKPT:-0}"
 echo "GPUs:"
 nvidia-smi -L
