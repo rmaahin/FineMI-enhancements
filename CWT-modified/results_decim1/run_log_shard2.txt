@@ -1,0 +1,4 @@
+[2026-09-18 01:07:00] START mode=cwt shard=2/3 pairs=1 jobs=1 todo=1 already_done=0 epochs=50 smoke=False decim=1 best_ckpt=0 gpu=NVIDIA A100-PCIE-40GB
+[2026-09-18 01:07:00] [1/1] cwt WAA/SAA
+[2026-09-18 01:26:13]       done in 19.2 min | mean 62.95% | sd 9.64
+[2026-09-18 01:26:13] SWEEP COMPLETE: 1/1 jobs in 0.32 h

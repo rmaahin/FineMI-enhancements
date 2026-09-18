@@ -1,0 +1,4 @@
+pair,proximity,shallow,fine_paper,cwt_acc,cwt_accM,cwt_kappa,cwt_f1,cwt_sens,cwt_spec,cwt_sd,n_subj
+HOC/SPS,distant,65.49,68.51,66.7978,66.7978,0.336,66.6638,66.5741,67.0216,10.53,18
+WAA/SAA,distant,60.56,63.06,62.9475,62.9475,0.259,62.8451,64.0895,61.8056,9.64,18
+EPS/SPS,adjacent,59.24,62.25,62.8395,62.8395,0.2568,62.7612,62.4537,63.2253,9.13,18

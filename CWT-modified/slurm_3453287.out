@@ -1,0 +1,98 @@
+Job:          3453287
+Node:         c301-003.ls6.tacc.utexas.edu
+Partition:    gpu-a100-dev
+Started:      Fri Sep 18 01:28:59 CDT 2026
+Mode:         full
+Arms:         cwt
+Pairs:        HOC_SPS WAA_SAA EPS_SPS
+Shards:       3 (on 3 GPUs)
+Dataset:      /scratch/11862/rmaahin/finemi-dataset/FineMI_0.5_3hz (18 files)
+Results:      /work/11862/rmaahin/ls6/FineMI-enhancements/CWT-modified/results
+Decimation:   D=5 (50 Hz)
+Best ckpt:    0
+GPUs:
+GPU 0: NVIDIA A100-PCIE-40GB (UUID: GPU-68905ce7-c192-4b9d-e032-d852548f0dbb)
+GPU 1: NVIDIA A100-PCIE-40GB (UUID: GPU-ee7a93a5-58ed-433a-3598-298621b998fb)
+GPU 2: NVIDIA A100-PCIE-40GB (UUID: GPU-43b27998-c1c8-c792-1e65-d52af0825309)
+
+Self-test...
+device=cuda | gpu=NVIDIA A100-PCIE-40GB | torch=2.8.0+cu128
+VRAM=42.4 GB | sm_80 | cuda=12.8
+CWT_CHUNK=64
+band=0.5_3hz | decim=5 (250 -> 50 Hz) | window=200 samples | cue=0 | best_ckpt=0 | pipeline_version=4
+NOTE: determinism holds per-GPU-model. Run BOTH arms on this same GPU model (NVIDIA A100-PCIE-40GB); results from a different card are not bit-comparable.
+dataset: /scratch/11862/rmaahin/finemi-dataset/FineMI_0.5_3hz
+results: /work/11862/rmaahin/ls6/FineMI-enhancements/CWT-modified/results
+
+====================================================================
+SELF-TESTS
+====================================================================
+band 0.5_3hz | decim 5: 250 -> 50 Hz | window 200 samples = 4000 ms
+kernel K=479 (9.6 s), pad=239
+freqs 0.50-3.00 Hz x24 | sigma_t 0.37-0.95 s | per-row half-support 93-239 samples
+context [0:200] = 200 -> (C, 24, 200) @ 50 Hz
+[ok] FINE-1D receptive field 42 samples = 168 ms @ 250 Hz, 840 ms @ 50 Hz
+[ok] 24 kernels zero-mean and L1-normalised
+[ok] kernel bank:  0.7 Hz -> peak row  0.68 Hz (response 0.995)
+[ok] kernel bank:  1.0 Hz -> peak row  1.01 Hz (response 0.999)
+[ok] kernel bank:  2.0 Hz -> peak row  2.03 Hz (response 0.995)
+[ok] kernel bank:  3.0 Hz -> peak row  3.00 Hz (response 1.000)
+[ok]  1.0 Hz sine (4 s, edge-affected) -> peak row  1.01 Hz
+[ok]  2.0 Hz sine (4 s, edge-affected) -> peak row  2.03 Hz
+[ok] decimated context loads as (8, 62, 200) (C=62, T=200)
+[ok] causal + local (3.0 Hz row): sample t=100 moves cols 34..167 (support 7..193); off-support leakage 2.4e-04 = round-off
+[ok] result independent of CWT chunk size
+[ok] scale invariance: 1000x gain -> constant log offset 6.9077+-1.6e-05; post-z-score p99.99=4.2e-05, max=2.3e-03
+[ok] raw: (8, 62, 200) -> (4, 2) | 155,714 params | 0.05 MB/trial | fwd+bwd deterministic
+     peak VRAM 0.50 GB
+[ok] cwt: (8, 62, 24, 200) -> (4, 2) | 193,218 params | 1.19 MB/trial | fwd+bwd deterministic
+     peak VRAM 0.57 GB
+
+ALL SELF-TESTS PASSED
+
+ARM 'cwt' starting Fri Sep 18 01:29:21 CDT 2026 (3 shard(s))
+  shard 1/3 -> GPU 0 -> /work/11862/rmaahin/ls6/FineMI-enhancements/CWT-modified/results/logs/cwt_shard1_3453287.log
+  shard 2/3 -> GPU 1 -> /work/11862/rmaahin/ls6/FineMI-enhancements/CWT-modified/results/logs/cwt_shard2_3453287.log
+  shard 3/3 -> GPU 2 -> /work/11862/rmaahin/ls6/FineMI-enhancements/CWT-modified/results/logs/cwt_shard3_3453287.log
+ARM 'cwt' finished Fri Sep 18 01:34:44 CDT 2026
+
+Aggregating...
+loaded raw=0 pairs, cwt=3 pairs
+
+=== PER-PAIR (accuracy %, pooled over folds; raw = decimated 0.5-3 Hz, cwt = Morlet 0.5-3 Hz) ===
+   pair proximity  n_subj  shallow  fine_paper  cwt_acc
+HOC/SPS   distant      18    65.49       68.51   67.971
+WAA/SAA   distant      18    60.56       63.06   64.321
+EPS/SPS  adjacent      18    59.24       62.25   63.904
+
+=== EXTRA METRICS ===
+   pair  cwt_acc  cwt_kappa  cwt_f1  cwt_sens  cwt_spec
+HOC/SPS   67.971      0.359  67.840    66.451    69.491
+WAA/SAA   64.321      0.286  64.246    64.506    64.136
+EPS/SPS   63.904      0.278  63.863    63.488    64.321
+cwt vs ShallowConvNet (8-30 Hz paper): better on 3/3 pairs (mean +3.64 pp) [reference only]
+cwt vs FINE (8-30 Hz paper)          : better on 2/3 pairs (mean +0.79 pp) [reference only]
+
+=== PER-SUBJECT across task pairs (the paper's Fig. 3) ===
+mode  subject  mean    sd  n_pairs
+ cwt        1 55.93  3.21        3
+ cwt        2 68.75  6.61        3
+ cwt        3 55.42  3.15        3
+ cwt        4 71.25  9.44        3
+ cwt        5 72.08  4.73        3
+ cwt        6 64.17  5.05        3
+ cwt        7 71.67  3.15        3
+ cwt        8 57.92  7.53        3
+ cwt        9 49.58  7.53        3
+ cwt       10 67.50  7.50        3
+ cwt       11 70.83  4.02        3
+ cwt       12 62.92  7.53        3
+ cwt       13 64.17  1.91        3
+ cwt       14 62.92  6.29        3
+ cwt       15 73.33  1.44        3
+ cwt       16 67.08 16.31        3
+ cwt       17 60.00  2.50        3
+ cwt       18 81.67  5.20        3
+
+wrote comparison_table.csv, per_pair_summary.csv, per_subject_summary.csv, metrics_long.csv -> /work/11862/rmaahin/ls6/FineMI-enhancements/CWT-modified/results
+All done Fri Sep 18 01:34:46 CDT 2026: results/comparison_table.csv, per_pair_summary.csv, per_subject_summary.csv

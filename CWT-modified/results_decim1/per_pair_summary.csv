@@ -1,0 +1,4 @@
+mode,pair,proximity,mean,sd,n
+cwt,HOC/SPS,distant,66.798,10.534,18
+cwt,WAA/SAA,distant,62.948,9.638,18
+cwt,EPS/SPS,adjacent,62.84,9.135,18
