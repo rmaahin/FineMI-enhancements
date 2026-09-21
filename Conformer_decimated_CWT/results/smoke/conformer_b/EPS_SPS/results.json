@@ -1,0 +1,71 @@
+{
+  "pair": "EPS/SPS",
+  "class_a": 3,
+  "class_b": 5,
+  "windows": [
+    800,
+    1500,
+    3000,
+    4000
+  ],
+  "seed": 42,
+  "gpu": "NVIDIA A100-PCIE-40GB",
+  "torch": "2.8.0+cu128",
+  "model": "conformer_b",
+  "mode": "smoke",
+  "band": "0.5_3hz",
+  "dataset_root": "/scratch/11862/rmaahin/finemi-dataset/FineMI_0.5_3hz",
+  "pipeline_version": 1,
+  "decim": 5,
+  "orig_sampling_rate": 250,
+  "sampling_rate": 50,
+  "window_samples": [
+    40,
+    75,
+    150,
+    200
+  ],
+  "n_folds": 2,
+  "n_epochs": 2,
+  "model_cfg": {
+    "mtc_kernels": [
+      7,
+      15,
+      31
+    ],
+    "mtc_filters": 32,
+    "spatial_filters": 64,
+    "spatial_kernel": 3,
+    "pre_att_pool_kernel": 3,
+    "pre_att_pool_stride": 3,
+    "n_layers": 2,
+    "n_heads": 8,
+    "d_ff": 256,
+    "p_att": 0.3,
+    "norm_first": true,
+    "fusion_kernel": 5,
+    "eca_reduction": 4,
+    "embedding_dim": 128,
+    "p_head": 0.4
+  },
+  "cwt": null,
+  "seconds": 2.1,
+  "subjects": [
+    1,
+    2
+  ],
+  "matrix": [
+    [
+      47.77777777777778,
+      47.77777777777778,
+      48.888888888888886,
+      46.666666666666664
+    ],
+    [
+      52.5,
+      52.5,
+      56.25,
+      60.0
+    ]
+  ]
+}

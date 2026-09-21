@@ -1,0 +1,204 @@
+Job:          3455723
+Node:         c315-003.ls6.tacc.utexas.edu
+Partition:    gpu-a100
+Started:      Sun Sep 20 16:57:59 CDT 2026
+Mode:         full
+Models:       conformer_a conformer_b conformer_b_cwt
+Pairs:        28 selected, 28 with runs still to do
+Pending:      HOC_WFE HOC_WAA HOC_EPS HOC_EFE HOC_SPS HOC_SAA HOC_SFE WFE_WAA WFE_EPS WFE_EFE WFE_SPS WFE_SAA WFE_SFE WAA_EPS WAA_EFE WAA_SPS WAA_SAA WAA_SFE EPS_EFE EPS_SPS EPS_SAA EPS_SFE EFE_SPS EFE_SAA EFE_SFE SPS_SAA SPS_SFE SAA_SFE
+Overwrite:    0
+Dataset:      /scratch/11862/rmaahin/finemi-dataset/FineMI_0.5_3hz (18 files)
+Decimation:   D=5 (250 -> 50 Hz)
+Results:      /work/11862/rmaahin/ls6/FineMI-enhancements/Conformer_decimated_CWT/results/full
+Venv:         /scratch/11862/rmaahin/venvs/fine
+GPUs:
+GPU 0: NVIDIA A100-PCIE-40GB (UUID: GPU-e3facd8d-4646-dc4d-12df-e5c2ca1a500a)
+GPU 1: NVIDIA A100-PCIE-40GB (UUID: GPU-a413b1bc-5161-31bc-dc48-6080afe5357d)
+GPU 2: NVIDIA A100-PCIE-40GB (UUID: GPU-675f2fcc-2e2d-ab46-4f5d-4c496a73933c)
+
+Step 1: preflight Sun Sep 20 16:57:59 CDT 2026
+========================================================================
+PREFLIGHT  models=['conformer_a', 'conformer_b', 'conformer_b_cwt']  dataset=/scratch/11862/rmaahin/finemi-dataset/FineMI_0.5_3hz
+  decim 5: 250 -> 50 Hz | windows [800, 1500, 3000, 4000] ms = [40, 75, 150, 200] samples | full: 5 folds x 50 epochs
+========================================================================
+
+--- packages ---
+[ok]   packages: python 3.9.7, torch 2.8.0+cu128, numpy 2.0.2, scipy 1.13.1, sklearn 1.6.1, pandas 2.3.3  (38.4s)
+
+--- cuda ---
+[ok]   cuda: NVIDIA A100-PCIE-40GB, 42.4 GB, cuda 12.8, visible devices 1  (0.4s)
+
+--- results folder writable ---
+[ok]   results folder writable: /work/11862/rmaahin/ls6/FineMI-enhancements/Conformer_decimated_CWT/results/full  (0.0s)
+
+--- pairs ---
+[ok]   pairs: 28 pairs, HOC_WFE ... SAA_SFE  (0.0s)
+
+--- data (all subjects) ---
+
+Found 18 subject .npz files (0.5_3hz) in /scratch/11862/rmaahin/finemi-dataset/FineMI_0.5_3hz; decimating by 5
+[ok]   data (all subjects): 18 subjects, (C=62, T=226 @ 50 Hz, was 1126), trials/class 40-45  (23.5s)
+
+--- cwt front-end ---
+bank 0.50-3.00 Hz x24 @ 50 Hz | kernel K=479 (9.6 s), pad=239
+[ok]   cwt front-end: 24 kernels ok, peaks ok, windows [40, 75, 150, 200] -> (C, 24, T) finite  (2.0s)
+
+--- models x windows (full config) ---
+  conformer_a        800 ms  T= 40  input (62, 40)  tokens   9  params   153,978  peak 0.12 GB
+  conformer_a       1500 ms  T= 75  input (62, 75)  tokens  21  params   169,338  peak 0.18 GB
+  conformer_a       3000 ms  T=150  input (62, 150)  tokens  46  params   201,338  peak 0.28 GB
+  conformer_a       4000 ms  T=200  input (62, 200)  tokens  62  params   221,818  peak 0.34 GB
+  conformer_b        800 ms  T= 40  input (62, 40)  tokens  13  params   260,034  peak 0.08 GB
+  conformer_b       1500 ms  T= 75  input (62, 75)  tokens  25  params   260,034  peak 0.09 GB
+  conformer_b       3000 ms  T=150  input (62, 150)  tokens  50  params   260,034  peak 0.11 GB
+  conformer_b       4000 ms  T=200  input (62, 200)  tokens  66  params   260,034  peak 0.13 GB
+  conformer_b_cwt    800 ms  T= 40  input (62, 24, 40)  tokens  13  params   395,330  peak 1.06 GB
+  conformer_b_cwt   1500 ms  T= 75  input (62, 24, 75)  tokens  25  params   395,330  peak 2.04 GB
+  conformer_b_cwt   3000 ms  T=150  input (62, 24, 150)  tokens  50  params   395,330  peak 2.04 GB
+  conformer_b_cwt   4000 ms  T=200  input (62, 24, 200)  tokens  66  params   395,330  peak 2.04 GB
+[ok]   models x windows (full config): 12 model x window combinations build, train and evaluate  (46.8s)
+
+--- determinism ---
+[ok]   determinism: bit-identical weights after 3 steps for conformer_a, conformer_b, conformer_b_cwt  (0.5s)
+
+========================================================================
+  [ok  ] packages: python 3.9.7, torch 2.8.0+cu128, numpy 2.0.2, scipy 1.13.1, sklearn 1.6.1, pandas 2.3.3
+  [ok  ] cuda: NVIDIA A100-PCIE-40GB, 42.4 GB, cuda 12.8, visible devices 1
+  [ok  ] results folder writable: /work/11862/rmaahin/ls6/FineMI-enhancements/Conformer_decimated_CWT/results/full
+  [ok  ] pairs: 28 pairs, HOC_WFE ... SAA_SFE
+  [ok  ] data (all subjects): 18 subjects, (C=62, T=226 @ 50 Hz, was 1126), trials/class 40-45
+  [ok  ] cwt front-end: 24 kernels ok, peaks ok, windows [40, 75, 150, 200] -> (C, 24, T) finite
+  [ok  ] models x windows (full config): 12 model x window combinations build, train and evaluate
+  [ok  ] determinism: bit-identical weights after 3 steps for conformer_a, conformer_b, conformer_b_cwt
+========================================================================
+PREFLIGHT PASSED
+
+Step 2: training Sun Sep 20 17:00:58 CDT 2026
+GPU 0: pairs=[HOC_WFE HOC_EFE HOC_SFE WFE_EFE WFE_SFE WAA_SPS EPS_EFE EPS_SFE EFE_SFE SAA_SFE] models=[conformer_a conformer_b conformer_b_cwt] -> results/full/logs/gpu0_3455723.log
+GPU 1: pairs=[HOC_WAA HOC_SPS WFE_WAA WFE_SPS WAA_EPS WAA_SAA EPS_SPS EFE_SPS SPS_SAA] models=[conformer_a conformer_b conformer_b_cwt] -> results/full/logs/gpu1_3455723.log
+GPU 2: pairs=[HOC_EPS HOC_SAA WFE_EPS WFE_SAA WAA_EFE WAA_SFE EPS_SAA EFE_SAA SPS_SFE] models=[conformer_a conformer_b conformer_b_cwt] -> results/full/logs/gpu2_3455723.log
+Workers launched: PIDs 1717574 1717575 1717576
+Workers finished: Mon Sep 21 00:21:52 CDT 2026
+
+Step 3: comparison table Mon Sep 21 00:21:52 CDT 2026
+
+comparison written to /work/11862/rmaahin/ls6/FineMI-enhancements/Conformer_decimated_CWT/results/full/comparison
+window                     800   1500   3000   4000    avg
+pair    model                                             
+HOC_WFE conformer_a      60.96  60.78  61.50  61.17  61.10
+        conformer_b      61.82  62.73  57.15  58.97  60.17
+        conformer_b_cwt  58.23  58.91  58.48  56.02  57.91
+HOC_WAA conformer_a      61.46  61.92  65.65  66.86  63.97
+        conformer_b      61.98  64.46  67.02  66.33  64.95
+        conformer_b_cwt  57.99  58.10  61.79  62.38  60.07
+HOC_EPS conformer_a      60.72  63.21  63.77  62.96  62.66
+        conformer_b      62.25  62.89  63.07  62.06  62.57
+        conformer_b_cwt  59.70  58.87  57.25  55.94  57.94
+HOC_EFE conformer_a      61.96  63.49  66.88  66.23  64.64
+        conformer_b      64.31  67.80  66.67  68.12  66.73
+        conformer_b_cwt  59.92  60.14  59.27  57.65  59.24
+HOC_SPS conformer_a      65.22  70.90  72.19  70.86  69.79
+        conformer_b      66.95  70.62  70.56  69.84  69.49
+        conformer_b_cwt  63.97  66.38  62.11  60.81  63.32
+HOC_SAA conformer_a      66.62  74.92  75.12  74.30  72.74
+        conformer_b      69.10  73.38  74.85  72.61  72.48
+        conformer_b_cwt  64.17  67.62  66.19  65.72  65.93
+HOC_SFE conformer_a      67.98  70.19  69.74  70.46  69.59
+        conformer_b      70.05  71.23  70.49  69.60  70.34
+        conformer_b_cwt  60.45  59.28  59.04  61.21  59.99
+WFE_WAA conformer_a      60.55  60.66  63.39  63.18  61.94
+        conformer_b      59.63  63.86  63.19  63.12  62.45
+        conformer_b_cwt  55.83  55.99  63.03  60.77  58.90
+WFE_EPS conformer_a      63.20  62.56  61.00  60.68  61.86
+        conformer_b      60.71  62.04  61.20  60.90  61.22
+        conformer_b_cwt  58.53  57.44  58.16  55.56  57.42
+WFE_EFE conformer_a      63.41  59.33  63.64  64.48  62.71
+        conformer_b      62.82  62.19  61.79  62.18  62.25
+        conformer_b_cwt  56.71  58.12  57.08  56.04  56.99
+WFE_SPS conformer_a      67.69  69.52  69.12  70.92  69.31
+        conformer_b      67.28  69.34  70.79  68.77  69.05
+        conformer_b_cwt  60.96  67.49  61.80  61.61  62.96
+WFE_SAA conformer_a      64.71  72.03  70.79  69.52  69.26
+        conformer_b      64.46  68.45  68.08  69.02  67.50
+        conformer_b_cwt  58.78  62.28  62.54  64.07  61.92
+WFE_SFE conformer_a      61.69  64.76  67.99  66.91  65.34
+        conformer_b      61.42  65.62  65.08  64.93  64.26
+        conformer_b_cwt  53.56  54.90  57.71  57.27  55.86
+WAA_EPS conformer_a      60.26  63.47  61.42  61.02  61.54
+        conformer_b      58.40  59.98  61.47  61.64  60.37
+        conformer_b_cwt  55.88  57.84  53.88  56.53  56.03
+WAA_EFE conformer_a      60.99  62.64  65.64  65.34  63.65
+        conformer_b      60.44  63.12  64.96  64.59  63.28
+        conformer_b_cwt  57.58  57.82  57.71  60.84  58.49
+WAA_SPS conformer_a      63.45  66.73  68.77  70.11  67.26
+        conformer_b      64.07  68.60  67.32  68.90  67.22
+        conformer_b_cwt  60.03  62.81  57.61  59.20  59.91
+WAA_SAA conformer_a      64.19  71.94  72.70  72.95  70.44
+        conformer_b      67.58  71.61  69.98  70.34  69.88
+        conformer_b_cwt  60.33  60.95  60.76  58.33  60.09
+WAA_SFE conformer_a      63.66  69.90  69.53  70.52  68.40
+        conformer_b      66.14  68.15  69.13  67.16  67.64
+        conformer_b_cwt  58.93  59.92  59.83  59.49  59.54
+EPS_EFE conformer_a      53.33  58.22  61.21  60.25  58.25
+        conformer_b      56.45  60.98  61.47  60.50  59.85
+        conformer_b_cwt  55.72  56.13  54.30  54.80  55.24
+EPS_SPS conformer_a      64.11  70.19  72.31  69.99  69.15
+        conformer_b      66.09  69.31  68.34  67.79  67.88
+        conformer_b_cwt  60.59  65.00  58.35  58.83  60.69
+EPS_SAA conformer_a      62.71  69.62  70.06  69.33  67.93
+        conformer_b      64.33  69.72  67.02  65.62  66.67
+        conformer_b_cwt  58.60  63.19  59.20  59.94  60.23
+EPS_SFE conformer_a      64.20  69.86  70.69  71.23  68.99
+        conformer_b      65.18  69.36  66.25  66.27  66.77
+        conformer_b_cwt  59.59  62.72  58.96  58.43  59.92
+EFE_SPS conformer_a      64.07  68.87  71.24  71.67  68.96
+        conformer_b      65.35  69.00  69.88  67.96  68.05
+        conformer_b_cwt  60.22  63.87  60.79  59.00  60.97
+EFE_SAA conformer_a      65.64  69.36  69.45  69.68  68.53
+        conformer_b      65.25  69.01  69.71  69.22  68.30
+        conformer_b_cwt  59.02  58.80  60.33  60.88  59.76
+EFE_SFE conformer_a      65.39  69.30  70.30  71.01  69.00
+        conformer_b      63.99  66.01  68.71  68.20  66.73
+        conformer_b_cwt  58.36  59.49  57.43  57.17  58.11
+SPS_SAA conformer_a      62.27  68.13  71.54  71.40  68.34
+        conformer_b      63.53  68.74  68.97  67.11  67.09
+        conformer_b_cwt  56.10  58.83  57.90  57.03  57.46
+SPS_SFE conformer_a      65.00  67.46  71.70  69.06  68.31
+        conformer_b      66.79  65.95  66.68  66.93  66.59
+        conformer_b_cwt  56.67  61.14  58.59  60.59  59.25
+SAA_SFE conformer_a      59.84  65.21  65.40  66.28  64.18
+        conformer_b      60.92  62.81  61.12  62.27  61.78
+        conformer_b_cwt  54.09  56.97  56.08  57.62  56.19
+
+pooled over 28 pairs (mean accuracy):
+window             800   1500   3000   4000    avg
+model                                             
+conformer_a      63.05  66.61  67.96  67.80  66.35
+conformer_b      63.83  66.68  66.46  66.11  65.77
+conformer_b_cwt  58.59  60.39  59.15  59.06  59.30
+
+Computing paired statistics...
+paired_stats written to /work/11862/rmaahin/ls6/FineMI-enhancements/Conformer_decimated_CWT/results/full/comparison
+                    diff  p_ttest  p_holm  n_x_better  n_y_better
+contrast  window                                                 
+A - B     800    -0.7866   0.0259  0.0778           6          11
+          1500   -0.0647   0.8553  0.8553           7          11
+          3000    1.4932   0.0053  0.0266          15           3
+          4000    1.6919   0.0105  0.0420          13           5
+          avg     0.5835   0.0630  0.1260          11           7
+B+CWT - B 800    -5.2430   0.0000  0.0000           0          18
+          1500   -6.2841   0.0000  0.0000           0          18
+          3000   -7.3146   0.0000  0.0000           1          17
+          4000   -7.0448   0.0000  0.0001           1          17
+          avg    -6.4716   0.0000  0.0000           1          17
+B+CWT - A 800    -4.4564   0.0001  0.0004           2          16
+          1500   -6.2194   0.0000  0.0000           1          17
+          3000   -8.8079   0.0000  0.0000           1          17
+          4000   -8.7367   0.0000  0.0000           1          17
+          avg    -7.0551   0.0000  0.0000           0          18
+
+Step 4: checking outputs Mon Sep 21 00:22:29 CDT 2026
+check_results (full): 84/84 pair x model runs present, expecting 18 subjects each
+CHECK PASSED: every run and table is complete
+
+All runs completed Mon Sep 21 00:22:31 CDT 2026: results/full/comparison/comparison_table.md and paired_stats.md

@@ -1,0 +1,102 @@
+{
+  "model": "conformer_b_cwt",
+  "dataset_root": "/scratch/11862/rmaahin/finemi-dataset/FineMI_0.5_3hz",
+  "band_tag": "0.5_3hz",
+  "orig_sampling_rate": 250,
+  "decim": 5,
+  "sampling_rate": 50,
+  "n_channels": 62,
+  "test_time_windows_ms": [
+    800,
+    1500,
+    3000,
+    4000
+  ],
+  "joint_names": [
+    "HOC",
+    "WFE",
+    "WAA",
+    "EPS",
+    "EFE",
+    "SPS",
+    "SAA",
+    "SFE"
+  ],
+  "n_folds": 5,
+  "val_size_of_train": 0.25,
+  "batch_size": 32,
+  "n_epochs": 50,
+  "lr": 0.001,
+  "weight_decay": 0.0001,
+  "noise_level": 0.15,
+  "seed": 42,
+  "conformer_a": {
+    "F1": 40,
+    "temporal_kernel": 25,
+    "pool_kernel": 15,
+    "pool_stride": 3,
+    "p_conv": 0.5,
+    "n_layers": 2,
+    "n_heads": 10,
+    "d_ff": 160,
+    "p_att": 0.5,
+    "norm_first": true,
+    "proj_dim": 32,
+    "p_head": 0.3
+  },
+  "conformer_b": {
+    "mtc_kernels": [
+      7,
+      15,
+      31
+    ],
+    "mtc_filters": 32,
+    "spatial_filters": 64,
+    "spatial_kernel": 3,
+    "pre_att_pool_kernel": 3,
+    "pre_att_pool_stride": 3,
+    "n_layers": 2,
+    "n_heads": 8,
+    "d_ff": 256,
+    "p_att": 0.3,
+    "norm_first": true,
+    "fusion_kernel": 5,
+    "eca_reduction": 4,
+    "embedding_dim": 128,
+    "p_head": 0.4
+  },
+  "conformer_b_cwt": {
+    "mtc_kernels": [
+      7,
+      15,
+      31
+    ],
+    "mtc_filters": 32,
+    "spatial_filters": 64,
+    "spatial_kernel": 3,
+    "pre_att_pool_kernel": 3,
+    "pre_att_pool_stride": 3,
+    "n_layers": 2,
+    "n_heads": 8,
+    "d_ff": 256,
+    "p_att": 0.3,
+    "norm_first": true,
+    "fusion_kernel": 5,
+    "eca_reduction": 4,
+    "embedding_dim": 128,
+    "p_head": 0.4
+  },
+  "cwt": {
+    "fmin": 0.5,
+    "fmax": 3.0,
+    "n_freqs": 24,
+    "n_cycles_min": 3.0,
+    "n_cycles_max": 7.0,
+    "trunc": 5.0,
+    "log_eps": 1e-10,
+    "chunk": 64
+  },
+  "results_root": "/work/11862/rmaahin/ls6/FineMI-enhancements/Conformer_decimated_CWT/results/full/conformer_b_cwt",
+  "_max_subjects": null,
+  "_mode": "full"
+}

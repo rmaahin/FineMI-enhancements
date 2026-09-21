@@ -1,0 +1,59 @@
+Job:          3455706
+Node:         c301-002.ls6.tacc.utexas.edu
+Partition:    gpu-a100-dev
+Started:      Sat Sep 19 10:01:47 CDT 2026
+Mode:         smoke
+Models:       conformer_a conformer_b conformer_b_cwt
+Pairs:        3 selected, 3 with runs still to do
+Pending:      HOC_WFE WAA_SAA EPS_SPS
+Overwrite:    1
+Dataset:      /scratch/11862/rmaahin/finemi-dataset/FineMI_0.5_3hz (18 files)
+Decimation:   D=5 (250 -> 50 Hz)
+Results:      /work/11862/rmaahin/ls6/FineMI-enhancements/Conformer_decimated_CWT/results/smoke
+Venv:         /scratch/11862/rmaahin/venvs/fine
+GPUs:
+GPU 0: NVIDIA A100-PCIE-40GB (UUID: GPU-f16cb56f-aaa7-fa33-ecca-fed0c2b1c2b5)
+GPU 1: NVIDIA A100-PCIE-40GB (UUID: GPU-ddd9cd58-554e-7987-93ff-b66ca982d2de)
+
+Step 1: preflight Sat Sep 19 10:01:47 CDT 2026
+========================================================================
+PREFLIGHT  models=['conformer_a', 'conformer_b', 'conformer_b_cwt']  dataset=/scratch/11862/rmaahin/finemi-dataset/FineMI_0.5_3hz
+  decim 5: 250 -> 50 Hz | windows [800, 1500, 3000, 4000] ms = [40, 75, 150, 200] samples | full: 5 folds x 50 epochs
+========================================================================
+
+--- packages ---
+[ok]   packages: python 3.9.7, torch 2.8.0+cu128, numpy 2.0.2, scipy 1.13.1, sklearn 1.6.1, pandas 2.3.3  (39.6s)
+
+--- cuda ---
+/scratch/11862/rmaahin/venvs/fine/lib/python3.9/site-packages/torch/cuda/__init__.py:182: UserWarning: CUDA initialization: CUDA unknown error - this may be due to an incorrectly set up environment, e.g. changing env variable CUDA_VISIBLE_DEVICES after program start. Setting the available devices to be zero. (Triggered internally at /pytorch/c10/cuda/CUDAFunctions.cpp:109.)
+  return torch._C._cuda_getDeviceCount() > 0
+Traceback (most recent call last):
+  File "/work/11862/rmaahin/ls6/FineMI-enhancements/Conformer_decimated_CWT/scripts/preflight.py", line 52, in run_check
+    detail = fn(*args, **kwargs)
+  File "/work/11862/rmaahin/ls6/FineMI-enhancements/Conformer_decimated_CWT/scripts/preflight.py", line 82, in check_cuda
+    raise RuntimeError("CUDA is not available (is this a GPU node, and is the venv's "
+RuntimeError: CUDA is not available (is this a GPU node, and is the venv's torch a CUDA build?)
+[FAIL] cuda: RuntimeError: CUDA is not available (is this a GPU node, and is the venv's torch a CUDA build?)
+
+--- results folder writable ---
+[ok]   results folder writable: /work/11862/rmaahin/ls6/FineMI-enhancements/Conformer_decimated_CWT/results/smoke  (0.0s)
+
+--- pairs ---
+[ok]   pairs: 28 pairs, HOC_WFE ... SAA_SFE  (0.0s)
+
+--- data (all subjects) ---
+
+Found 18 subject .npz files (0.5_3hz) in /scratch/11862/rmaahin/finemi-dataset/FineMI_0.5_3hz; decimating by 5
+[ok]   data (all subjects): 18 subjects, (C=62, T=226 @ 50 Hz, was 1126), trials/class 40-45  (24.2s)
+
+Skipping GPU checks (cwt, models, determinism, timing): no CUDA.
+
+========================================================================
+  [ok  ] packages: python 3.9.7, torch 2.8.0+cu128, numpy 2.0.2, scipy 1.13.1, sklearn 1.6.1, pandas 2.3.3
+  [FAIL] cuda: RuntimeError: CUDA is not available (is this a GPU node, and is the venv's torch a CUDA build?)
+  [ok  ] results folder writable: /work/11862/rmaahin/ls6/FineMI-enhancements/Conformer_decimated_CWT/results/smoke
+  [ok  ] pairs: 28 pairs, HOC_WFE ... SAA_SFE
+  [ok  ] data (all subjects): 18 subjects, (C=62, T=226 @ 50 Hz, was 1126), trials/class 40-45
+  [FAIL] gpu checks: skipped because CUDA is unavailable
+========================================================================
+PREFLIGHT FAILED: 2 check(s) - fix these before the full sweep.
