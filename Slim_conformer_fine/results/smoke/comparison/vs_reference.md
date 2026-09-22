@@ -1,6 +1,6 @@
 # Slim Conformer B vs Conformer A and B (smoke mode, 3 pairs)
 
-Pairs: WAA vs SAA, HOC vs WFE, EPS vs SPS. Reference results: `C:\Users\rmaah\Documents\Summer 2026\Fine MI\FineMI-enhancements\Conformer_decimated_CWT\results\smoke`.
+Pairs: WAA vs SAA, HOC vs WFE, EPS vs SPS. Reference results: `/workspace/FineMI-enhancements/Conformer_decimated_CWT/results/smoke`.
 Paired over 2 subjects. Differences in points, Slim minus reference. 95% CI, paired t-test p and Holm-corrected p within each scope; W = subjects Slim better / reference better.
 
 ## Parameters
@@ -15,7 +15,7 @@ Paired over 2 subjects. Differences in points, Slim minus reference. 95% CI, pai
 
 | Model | 800 ms | 1500 ms | 3000 ms | 4000 ms | Avg |
 |---|---:|---:|---:|---:|---:|
-| Slim Conformer B | 50.67 | 51.00 | 53.08 | 47.85 | 50.65 |
+| Slim Conformer B | 50.49 | 52.55 | 50.93 | 53.26 | 51.81 |
 | Conformer A | 54.63 | 61.60 | 56.92 | 57.96 | 57.78 |
 | Conformer B | 52.15 | 51.55 | 50.21 | 50.69 | 51.15 |
 
@@ -23,24 +23,24 @@ Paired over 2 subjects. Differences in points, Slim minus reference. 95% CI, pai
 
 | Contrast | 800 ms | 1500 ms | 3000 ms | 4000 ms | Avg |
 |---|---:|---:|---:|---:|---:|
-| Slim - Conformer A | -3.96 [-54.25, +46.34] (holm=1.000, W 0-1) | -10.60 [-13.54, -7.66] (holm=.139, W 0-2) | -3.84 [-29.14, +21.45] (holm=1.000, W 0-2) | -10.12 [-77.47, +57.24] (holm=1.000, W 0-2) | -7.13 [-43.60, +29.34] (holm=1.000, W 0-2) |
-| Slim - Conformer B | -1.48 [-20.31, +17.34] (holm=1.000, W 0-1) | -0.56 [-35.85, +34.74] (holm=1.000, W 1-1) | +2.87 [-12.42, +18.16] (holm=1.000, W 2-0) | -2.85 [-67.26, +61.57] (holm=1.000, W 1-1) | -0.50 [-24.55, +23.54] (holm=1.000, W 1-1) |
+| Slim - Conformer A | -4.14 [-52.09, +43.80] (holm=1.000, W 0-2) | -9.05 [-15.82, -2.29] (holm=.374, W 0-2) | -6.00 [-23.94, +11.95] (holm=1.000, W 0-2) | -4.70 [-45.58, +36.18] (holm=1.000, W 0-2) | -5.97 [-25.38, +13.44] (holm=1.000, W 0-2) |
+| Slim - Conformer B | -1.67 [-22.84, +19.51] (holm=1.000, W 0-1) | +1.00 [-38.12, +40.11] (holm=1.000, W 1-1) | +0.72 [-27.22, +28.66] (holm=1.000, W 1-1) | +2.57 [-35.37, +40.51] (holm=1.000, W 1-1) | +0.65 [-6.33, +7.64] (holm=1.000, W 2-0) |
 
 ## Per pair, window average
 
 | Pair | Contrast | Diff | 95% CI | p | Holm p | W |
 |---|---|---:|---:|---:|---:|---:|
-| WAA vs SAA | Slim - Conformer A | -9.69 | [-69.25, +49.87] | .287 | 1.000 | 0-2 |
-| WAA vs SAA | Slim - Conformer B | -2.05 | [-31.61, +27.51] | .540 | 1.000 | 1-1 |
-| HOC vs WFE | Slim - Conformer A | -4.48 | [-19.04, +10.08] | .159 | 1.000 | 0-2 |
-| HOC vs WFE | Slim - Conformer B | +0.47 | [-25.34, +26.28] | .856 | 1.000 | 1-1 |
-| EPS vs SPS | Slim - Conformer A | -7.22 | [-42.52, +28.07] | .234 | 1.000 | 0-2 |
-| EPS vs SPS | Slim - Conformer B | +0.07 | [-16.70, +16.83] | .967 | 1.000 | 1-1 |
+| WAA vs SAA | Slim - Conformer A | -9.90 | [-50.93, +31.13] | .201 | 1.000 | 0-2 |
+| WAA vs SAA | Slim - Conformer B | -2.26 | [-13.29, +8.77] | .234 | 1.000 | 0-2 |
+| HOC vs WFE | Slim - Conformer A | -2.38 | [-7.89, +3.14] | .115 | 1.000 | 0-2 |
+| HOC vs WFE | Slim - Conformer B | +2.57 | [-14.20, +19.33] | .302 | 1.000 | 2-0 |
+| EPS vs SPS | Slim - Conformer A | -5.64 | [-17.33, +6.05] | .103 | 1.000 | 0-2 |
+| EPS vs SPS | Slim - Conformer B | +1.65 | [-5.19, +8.49] | .201 | 1.000 | 2-0 |
 
 ## On par? (non-inferiority, margin 1 points, window average)
 
-- Slim vs Conformer A: NOT SHOWN: the interval [-43.60, +29.34] crosses -1; more pairs are needed to decide.
-- Slim vs Conformer B: NOT SHOWN: the interval [-24.55, +23.54] crosses -1; more pairs are needed to decide.
+- Slim vs Conformer A: NOT SHOWN: the interval [-25.38, +13.44] crosses -1; more pairs are needed to decide.
+- Slim vs Conformer B: NOT SHOWN: the interval [-6.33, +7.64] crosses -1; more pairs are needed to decide.
 
 Note: smoke-mode numbers only prove the pipeline runs; they say nothing about accuracy.
 

@@ -1,6 +1,6 @@
 {
   "model": "conformer_b_slim",
-  "dataset_root": "C:\\Users\\rmaah\\Documents\\Summer 2026\\Fine MI\\FineMI_0.5_3hz",
+  "dataset_root": "/workspace/FineMI_0.5_3hz",
   "band_tag": "0.5_3hz",
   "orig_sampling_rate": 250,
   "decim": 5,
@@ -53,7 +53,7 @@
     "classifier_hidden": 32,
     "p_head": 0.4
   },
-  "results_root": "C:\\Users\\rmaah\\Documents\\Summer 2026\\Fine MI\\FineMI-enhancements\\Slim_conformer_fine\\results\\smoke\\conformer_b_slim",
+  "results_root": "/workspace/FineMI-enhancements/Slim_conformer_fine/results/smoke/conformer_b_slim",
   "_max_subjects": 2,
   "_mode": "smoke"
 }

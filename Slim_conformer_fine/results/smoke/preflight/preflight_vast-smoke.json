@@ -1,6 +1,6 @@
 {
-  "packages": "python 3.13.5, torch 2.11.0+cu128, numpy 2.5.3, scipy 1.18.1, sklearn 1.9.1, pandas 3.0.6",
-  "device": "NVIDIA GeForce RTX 5070 Laptop GPU, 8.5 GB, cuda 12.8, visible devices 1",
+  "packages": "python 3.12.14, torch 2.8.0+cu128, numpy 2.0.2, scipy 1.13.1, sklearn 1.6.1, pandas 2.3.3",
+  "device": "NVIDIA A100-SXM4-40GB, 42.4 GB, cuda 12.8, visible devices 1",
   "data": {
     "n_subjects": 18,
     "shapes": [
@@ -196,24 +196,58 @@
   "model": [
     "conformer_b_slim   800 ms  T= 40  tokens  13  params 25,752  peak 0.07 GB",
     "conformer_b_slim  1500 ms  T= 75  tokens  25  params 25,752  peak 0.08 GB",
-    "conformer_b_slim  3000 ms  T=150  tokens  50  params 25,752  peak 0.09 GB",
+    "conformer_b_slim  3000 ms  T=150  tokens  50  params 25,752  peak 0.08 GB",
     "conformer_b_slim  4000 ms  T=200  tokens  66  params 25,752  peak 0.09 GB"
   ],
+  "timing": {
+    "rows": [
+      {
+        "window_ms": 800,
+        "T": 40,
+        "epoch_s": 0.0715,
+        "pair_min": 5.63
+      },
+      {
+        "window_ms": 1500,
+        "T": 75,
+        "epoch_s": 0.0665,
+        "pair_min": 5.24
+      },
+      {
+        "window_ms": 3000,
+        "T": 150,
+        "epoch_s": 0.0669,
+        "pair_min": 5.27
+      },
+      {
+        "window_ms": 4000,
+        "T": 200,
+        "epoch_s": 0.066,
+        "pair_min": 5.2
+      }
+    ],
+    "per_pair_min": 21.3,
+    "n_pairs": 28,
+    "n_gpus": 2,
+    "pairs_per_gpu": 14,
+    "projected_hours": 5.51,
+    "walltime_hours": 6.0
+  },
   "checks": [
     {
       "status": "ok",
       "name": "packages",
-      "detail": "python 3.13.5, torch 2.11.0+cu128, numpy 2.5.3, scipy 1.18.1, sklearn 1.9.1, pandas 3.0.6"
+      "detail": "python 3.12.14, torch 2.8.0+cu128, numpy 2.0.2, scipy 1.13.1, sklearn 1.6.1, pandas 2.3.3"
     },
     {
       "status": "ok",
       "name": "device",
-      "detail": "NVIDIA GeForce RTX 5070 Laptop GPU, 8.5 GB, cuda 12.8, visible devices 1"
+      "detail": "NVIDIA A100-SXM4-40GB, 42.4 GB, cuda 12.8, visible devices 1"
     },
     {
       "status": "ok",
       "name": "results folder writable",
-      "detail": "C:\\Users\\rmaah\\Documents\\Summer 2026\\Fine MI\\FineMI-enhancements\\Slim_conformer_fine\\results\\full"
+      "detail": "/workspace/FineMI-enhancements/Slim_conformer_fine/results/smoke"
     },
     {
       "status": "ok",
@@ -228,7 +262,7 @@
     {
       "status": "ok",
       "name": "reference results (Conformer A / B)",
-      "detail": "Conformer A and B results found for 3 pair(s) in C:\\Users\\rmaah\\Documents\\Summer 2026\\Fine MI\\FineMI-enhancements\\Conformer_decimated_CWT\\results\\full"
+      "detail": "Conformer A and B results found for 3 pair(s) in /workspace/FineMI-enhancements/Conformer_decimated_CWT/results/full"
     },
     {
       "status": "ok",
@@ -239,6 +273,11 @@
       "status": "ok",
       "name": "determinism",
       "detail": "bit-identical weights after 3 training steps"
+    },
+    {
+      "status": "ok",
+      "name": "timing projection (full mode)",
+      "detail": "about 21 min per pair x 14 pair(s) per device -> about 5.5 h for a full-mode run of 28 pair(s) on 2 device(s)"
     }
   ]
 }

@@ -1,0 +1,111 @@
+Job:          vast-smoke
+Node:         2d4b4dc6e19e
+Partition:    ?
+Started:      Tue Sep 22 19:12:40 UTC 2026
+Mode:         smoke
+Model:        conformer_b_slim (25,752 parameters)
+Pairs:        3 selected, 3 still to do
+Pending:      WAA_SAA HOC_WFE EPS_SPS
+Overwrite:    1
+Dataset:      /workspace/FineMI_0.5_3hz (18 files)
+Results:      /workspace/FineMI-enhancements/Slim_conformer_fine/results/smoke
+GPUs:
+GPU 0: NVIDIA A100-SXM4-40GB (UUID: GPU-6e5f2688-3880-0553-7fb0-9223ecfb09a9)
+GPU 1: NVIDIA A100-SXM4-40GB (UUID: GPU-a7c01eb4-0c7f-0be1-a20d-d6141d0d4566)
+
+Step 1: preflight Tue Sep 22 19:12:40 UTC 2026
+========================================================================
+PREFLIGHT  model=conformer_b_slim  dataset=/workspace/FineMI_0.5_3hz
+  decim 5: 250 -> 50 Hz | windows [800, 1500, 3000, 4000] ms = [40, 75, 150, 200] samples | full: 5 folds x 50 epochs
+========================================================================
+
+--- packages ---
+[ok]   packages: python 3.12.14, torch 2.8.0+cu128, numpy 2.0.2, scipy 1.13.1, sklearn 1.6.1, pandas 2.3.3  (0.8s)
+
+--- device ---
+[ok]   device: NVIDIA A100-SXM4-40GB, 42.4 GB, cuda 12.8, visible devices 1  (0.2s)
+
+--- results folder writable ---
+[ok]   results folder writable: /workspace/FineMI-enhancements/Slim_conformer_fine/results/smoke  (0.0s)
+
+--- pairs ---
+[ok]   pairs: 28 pairs, HOC_WFE ... SAA_SFE  (0.0s)
+
+--- data (all subjects) ---
+
+Found 18 subject .npz files (0.5_3hz) in /workspace/FineMI_0.5_3hz; decimating by 5
+[ok]   data (all subjects): 18 subjects, (C=62, T=226 @ 50 Hz, was 1126), trials/class 40-45  (19.0s)
+
+--- reference results (Conformer A / B) ---
+[ok]   reference results (Conformer A / B): Conformer A and B results found for 3 pair(s) in /workspace/FineMI-enhancements/Conformer_decimated_CWT/results/full  (0.0s)
+
+--- model: 25,752 parameters, every window ---
+  conformer_b_slim   800 ms  T= 40  tokens  13  params 25,752  peak 0.07 GB
+  conformer_b_slim  1500 ms  T= 75  tokens  25  params 25,752  peak 0.08 GB
+  conformer_b_slim  3000 ms  T=150  tokens  50  params 25,752  peak 0.08 GB
+  conformer_b_slim  4000 ms  T=200  tokens  66  params 25,752  peak 0.09 GB
+[ok]   model: 25,752 parameters, every window: 25,752 parameters at every window; forward, backward and Adam step ok  (1.9s)
+
+--- determinism ---
+[ok]   determinism: bit-identical weights after 3 training steps  (0.1s)
+  full-mode fold: train 108 (incl. augmentation), val 18, test 18; 18 subjects x 5 folds
+
+--- timing projection (full mode) ---
+    800 ms: epoch    71.5 ms ->   5.63 min per pair
+   1500 ms: epoch    66.5 ms ->   5.24 min per pair
+   3000 ms: epoch    66.9 ms ->   5.27 min per pair
+   4000 ms: epoch    66.0 ms ->   5.20 min per pair
+[ok]   timing projection (full mode): about 21 min per pair x 14 pair(s) per device -> about 5.5 h for a full-mode run of 28 pair(s) on 2 device(s)  (1.9s)
+
+========================================================================
+  [ok  ] packages: python 3.12.14, torch 2.8.0+cu128, numpy 2.0.2, scipy 1.13.1, sklearn 1.6.1, pandas 2.3.3
+  [ok  ] device: NVIDIA A100-SXM4-40GB, 42.4 GB, cuda 12.8, visible devices 1
+  [ok  ] results folder writable: /workspace/FineMI-enhancements/Slim_conformer_fine/results/smoke
+  [ok  ] pairs: 28 pairs, HOC_WFE ... SAA_SFE
+  [ok  ] data (all subjects): 18 subjects, (C=62, T=226 @ 50 Hz, was 1126), trials/class 40-45
+  [ok  ] reference results (Conformer A / B): Conformer A and B results found for 3 pair(s) in /workspace/FineMI-enhancements/Conformer_decimated_CWT/results/full
+  [ok  ] model: 25,752 parameters, every window: 25,752 parameters at every window; forward, backward and Adam step ok
+  [ok  ] determinism: bit-identical weights after 3 training steps
+  [ok  ] timing projection (full mode): about 21 min per pair x 14 pair(s) per device -> about 5.5 h for a full-mode run of 28 pair(s) on 2 device(s)
+========================================================================
+PREFLIGHT PASSED
+
+Step 2: training Tue Sep 22 19:13:06 UTC 2026
+GPU 0: pairs=[WAA_SAA EPS_SPS] -> results/smoke/logs/gpu0_vast-smoke.log
+GPU 1: pairs=[HOC_WFE] -> results/smoke/logs/gpu1_vast-smoke.log
+Workers launched: PIDs 11099 11100
+Workers finished: Tue Sep 22 19:13:37 UTC 2026
+
+Step 3: checking outputs Tue Sep 22 19:13:37 UTC 2026
+check_results (smoke): 3/3 pair runs present, expecting 2 subjects each
+CHECK PASSED: every run is complete
+
+Step 4: comparison with Conformer A and B Tue Sep 22 19:13:37 UTC 2026
+compare_to_reference: written /workspace/FineMI-enhancements/Slim_conformer_fine/results/smoke/comparison/vs_reference.md
+
+Mean accuracy pooled over the selected pairs:
+             800 ms  1500 ms  3000 ms  4000 ms    Avg
+Slim B        50.49    52.55    50.93    53.26  51.81
+Conformer A   54.63    61.60    56.92    57.96  57.78
+Conformer B   52.15    51.55    50.21    50.69  51.15
+
+Pooled differences (Slim minus reference):
+                            diff   ci_lo   ci_hi  p_holm  n_slim_better  n_ref_better
+contrast           window                                                            
+Slim - Conformer A 800    -4.144 -52.086  43.799   1.000              0             2
+                   1500   -9.051 -15.816  -2.286   0.374              0             2
+                   3000   -5.995 -23.937  11.946   1.000              0             2
+                   4000   -4.699 -45.582  36.184   1.000              0             2
+                   avg    -5.972 -25.384  13.440   1.000              0             2
+Slim - Conformer B 800    -1.667 -22.844  19.510   1.000              0             1
+                   1500    0.995 -38.123  40.114   1.000              1             1
+                   3000    0.718 -27.224  28.659   1.000              1             1
+                   4000    2.569 -35.373  40.512   1.000              1             1
+                   avg     0.654  -6.332   7.639   1.000              2             0
+
+- Slim vs Conformer A: NOT SHOWN: the interval [-25.38, +13.44] crosses -1; more pairs are needed to decide.
+- Slim vs Conformer B: NOT SHOWN: the interval [-6.33, +7.64] crosses -1; more pairs are needed to decide.
+Resume check passed: finished runs are recognized and would be skipped.
+
+SMOKE TEST PASSED Tue Sep 22 19:13:38 UTC 2026
+Next: sbatch submit_ls6.slurm   (from /workspace/FineMI-enhancements/Slim_conformer_fine, with MODE and PAIRS unset)

@@ -9,12 +9,12 @@
     4000
   ],
   "seed": 42,
-  "gpu": "NVIDIA GeForce RTX 5070 Laptop GPU",
-  "torch": "2.11.0+cu128",
+  "gpu": "NVIDIA A100-SXM4-40GB",
+  "torch": "2.8.0+cu128",
   "model": "conformer_b_slim",
   "mode": "smoke",
   "band": "0.5_3hz",
-  "dataset_root": "C:\\Users\\rmaah\\Documents\\Summer 2026\\Fine MI\\FineMI_0.5_3hz",
+  "dataset_root": "/workspace/FineMI_0.5_3hz",
   "pipeline_version": 1,
   "decim": 5,
   "orig_sampling_rate": 250,
@@ -51,23 +51,23 @@
     "classifier_hidden": 32,
     "p_head": 0.4
   },
-  "seconds": 3.4,
+  "seconds": 4.2,
   "subjects": [
     1,
     2
   ],
   "matrix": [
     [
-      48.888888888888886,
-      57.77777777777777,
-      55.55555555555556,
-      40.0
+      47.77777777777778,
+      56.666666666666664,
+      47.77777777777778,
+      43.333333333333336
     ],
     [
       51.24999999999999,
-      50.0,
-      58.75,
-      55.00000000000001
+      51.24999999999999,
+      52.5,
+      65.0
     ]
   ]
 }
