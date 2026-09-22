@@ -1,0 +1,86 @@
+{
+  "model": "fine_gru",
+  "dataset_root": "C:\\Users\\rmaah\\Documents\\Summer 2026\\Fine MI\\FineMI_0.5_3hz",
+  "band_tag": "0.5_3hz",
+  "orig_sampling_rate": 250,
+  "decim": 5,
+  "sampling_rate": 50,
+  "n_channels": 62,
+  "test_time_windows_ms": [
+    800,
+    1500,
+    3000,
+    4000
+  ],
+  "joint_names": [
+    "HOC",
+    "WFE",
+    "WAA",
+    "EPS",
+    "EFE",
+    "SPS",
+    "SAA",
+    "SFE"
+  ],
+  "n_folds": 5,
+  "val_size_of_train": 0.25,
+  "batch_size": 32,
+  "n_epochs": 50,
+  "lr": 0.001,
+  "weight_decay": 0.0001,
+  "noise_level": 0.15,
+  "seed": 42,
+  "fine_gru": {
+    "mtc_kernels": [
+      7,
+      15,
+      31
+    ],
+    "mtc_filters": 32,
+    "spatial_filters": 64,
+    "spatial_kernel": 3,
+    "pre_rnn_pool_kernel": 3,
+    "pre_rnn_pool_stride": 3,
+    "gru_hidden": 32,
+    "gru_layers": 2,
+    "gru_bidirectional": true,
+    "p_rnn": 0.3,
+    "fusion_kernel": 5,
+    "eca_reduction": 4,
+    "embedding_dim": 128,
+    "p_head": 0.4
+  },
+  "fine_gru_cwt": {
+    "mtc_kernels": [
+      7,
+      15,
+      31
+    ],
+    "mtc_filters": 32,
+    "spatial_filters": 64,
+    "spatial_kernel": 3,
+    "pre_rnn_pool_kernel": 3,
+    "pre_rnn_pool_stride": 3,
+    "gru_hidden": 32,
+    "gru_layers": 2,
+    "gru_bidirectional": true,
+    "p_rnn": 0.3,
+    "fusion_kernel": 5,
+    "eca_reduction": 4,
+    "embedding_dim": 128,
+    "p_head": 0.4
+  },
+  "cwt": {
+    "fmin": 0.5,
+    "fmax": 3.0,
+    "n_freqs": 24,
+    "n_cycles_min": 3.0,
+    "n_cycles_max": 7.0,
+    "trunc": 5.0,
+    "log_eps": 1e-10,
+    "chunk": 64
+  },
+  "results_root": "C:\\Users\\rmaah\\Documents\\Summer 2026\\Fine MI\\FineMI-enhancements\\GRU_FINE\\results\\full\\fine_gru",
+  "_max_subjects": null,
+  "_mode": "full"
+}

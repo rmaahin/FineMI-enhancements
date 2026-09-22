@@ -1,0 +1,244 @@
+{
+  "packages": "python 3.13.5, torch 2.11.0+cu128, numpy 2.5.3, scipy 1.18.1, sklearn 1.9.1, pandas 3.0.6",
+  "device": "NVIDIA GeForce RTX 5070 Laptop GPU, 8.5 GB, cuda 12.8, visible devices 1",
+  "data": {
+    "n_subjects": 18,
+    "shapes": [
+      [
+        62,
+        226,
+        1126
+      ]
+    ],
+    "class_counts": {
+      "1": {
+        "0": 45,
+        "1": 45,
+        "2": 45,
+        "3": 45,
+        "4": 45,
+        "5": 45,
+        "6": 45,
+        "7": 45
+      },
+      "2": {
+        "0": 40,
+        "1": 40,
+        "2": 40,
+        "3": 40,
+        "4": 40,
+        "5": 40,
+        "6": 40,
+        "7": 40
+      },
+      "3": {
+        "0": 40,
+        "1": 40,
+        "2": 40,
+        "3": 40,
+        "4": 40,
+        "5": 40,
+        "6": 40,
+        "7": 40
+      },
+      "4": {
+        "0": 40,
+        "1": 40,
+        "2": 40,
+        "3": 40,
+        "4": 40,
+        "5": 40,
+        "6": 40,
+        "7": 40
+      },
+      "5": {
+        "0": 40,
+        "1": 40,
+        "2": 40,
+        "3": 40,
+        "4": 40,
+        "5": 40,
+        "6": 40,
+        "7": 41
+      },
+      "6": {
+        "0": 40,
+        "1": 40,
+        "2": 40,
+        "3": 40,
+        "4": 40,
+        "5": 40,
+        "6": 40,
+        "7": 40
+      },
+      "7": {
+        "0": 40,
+        "1": 40,
+        "2": 40,
+        "3": 40,
+        "4": 40,
+        "5": 40,
+        "6": 40,
+        "7": 40
+      },
+      "8": {
+        "0": 40,
+        "1": 40,
+        "2": 40,
+        "3": 40,
+        "4": 40,
+        "5": 40,
+        "6": 40,
+        "7": 40
+      },
+      "9": {
+        "0": 40,
+        "1": 40,
+        "2": 40,
+        "3": 40,
+        "4": 40,
+        "5": 40,
+        "6": 40,
+        "7": 40
+      },
+      "10": {
+        "0": 40,
+        "1": 40,
+        "2": 40,
+        "3": 40,
+        "4": 40,
+        "5": 40,
+        "6": 40,
+        "7": 40
+      },
+      "11": {
+        "0": 40,
+        "1": 40,
+        "2": 40,
+        "3": 40,
+        "4": 40,
+        "5": 40,
+        "6": 40,
+        "7": 40
+      },
+      "12": {
+        "0": 40,
+        "1": 40,
+        "2": 40,
+        "3": 40,
+        "4": 40,
+        "5": 40,
+        "6": 40,
+        "7": 40
+      },
+      "13": {
+        "0": 40,
+        "1": 40,
+        "2": 40,
+        "3": 40,
+        "4": 40,
+        "5": 40,
+        "6": 40,
+        "7": 40
+      },
+      "14": {
+        "0": 40,
+        "1": 40,
+        "2": 40,
+        "3": 40,
+        "4": 40,
+        "5": 40,
+        "6": 40,
+        "7": 40
+      },
+      "15": {
+        "0": 40,
+        "1": 40,
+        "2": 40,
+        "3": 40,
+        "4": 40,
+        "5": 40,
+        "6": 40,
+        "7": 40
+      },
+      "16": {
+        "0": 40,
+        "1": 40,
+        "2": 40,
+        "3": 40,
+        "4": 40,
+        "5": 40,
+        "6": 40,
+        "7": 40
+      },
+      "17": {
+        "0": 40,
+        "1": 40,
+        "2": 40,
+        "3": 40,
+        "4": 40,
+        "5": 40,
+        "6": 40,
+        "7": 40
+      },
+      "18": {
+        "0": 40,
+        "1": 40,
+        "2": 40,
+        "3": 40,
+        "4": 40,
+        "5": 40,
+        "6": 40,
+        "7": 40
+      }
+    }
+  },
+  "model": [
+    "conformer_b_slim   800 ms  T= 40  tokens  13  params 25,752  peak 0.07 GB",
+    "conformer_b_slim  1500 ms  T= 75  tokens  25  params 25,752  peak 0.08 GB",
+    "conformer_b_slim  3000 ms  T=150  tokens  50  params 25,752  peak 0.09 GB",
+    "conformer_b_slim  4000 ms  T=200  tokens  66  params 25,752  peak 0.09 GB"
+  ],
+  "checks": [
+    {
+      "status": "ok",
+      "name": "packages",
+      "detail": "python 3.13.5, torch 2.11.0+cu128, numpy 2.5.3, scipy 1.18.1, sklearn 1.9.1, pandas 3.0.6"
+    },
+    {
+      "status": "ok",
+      "name": "device",
+      "detail": "NVIDIA GeForce RTX 5070 Laptop GPU, 8.5 GB, cuda 12.8, visible devices 1"
+    },
+    {
+      "status": "ok",
+      "name": "results folder writable",
+      "detail": "C:\\Users\\rmaah\\Documents\\Summer 2026\\Fine MI\\FineMI-enhancements\\Slim_conformer_fine\\results\\full"
+    },
+    {
+      "status": "ok",
+      "name": "pairs",
+      "detail": "28 pairs, HOC_WFE ... SAA_SFE"
+    },
+    {
+      "status": "ok",
+      "name": "data (all subjects)",
+      "detail": "18 subjects, (C=62, T=226 @ 50 Hz, was 1126), trials/class 40-45"
+    },
+    {
+      "status": "ok",
+      "name": "reference results (Conformer A / B)",
+      "detail": "Conformer A and B results found for 3 pair(s) in C:\\Users\\rmaah\\Documents\\Summer 2026\\Fine MI\\FineMI-enhancements\\Conformer_decimated_CWT\\results\\full"
+    },
+    {
+      "status": "ok",
+      "name": "model: 25,752 parameters, every window",
+      "detail": "25,752 parameters at every window; forward, backward and Adam step ok"
+    },
+    {
+      "status": "ok",
+      "name": "determinism",
+      "detail": "bit-identical weights after 3 training steps"
+    }
+  ]
+}

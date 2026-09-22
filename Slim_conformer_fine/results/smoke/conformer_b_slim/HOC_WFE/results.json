@@ -1,0 +1,73 @@
+{
+  "pair": "HOC/WFE",
+  "class_a": 0,
+  "class_b": 1,
+  "windows": [
+    800,
+    1500,
+    3000,
+    4000
+  ],
+  "seed": 42,
+  "gpu": "NVIDIA GeForce RTX 5070 Laptop GPU",
+  "torch": "2.11.0+cu128",
+  "model": "conformer_b_slim",
+  "mode": "smoke",
+  "band": "0.5_3hz",
+  "dataset_root": "C:\\Users\\rmaah\\Documents\\Summer 2026\\Fine MI\\FineMI_0.5_3hz",
+  "pipeline_version": 1,
+  "decim": 5,
+  "orig_sampling_rate": 250,
+  "sampling_rate": 50,
+  "window_samples": [
+    40,
+    75,
+    150,
+    200
+  ],
+  "n_folds": 2,
+  "n_epochs": 2,
+  "n_params": 25752,
+  "model_cfg": {
+    "mtc_kernels": [
+      7,
+      15,
+      31
+    ],
+    "mtc_filters": 16,
+    "spatial_filters": 32,
+    "spatial_kernel": 3,
+    "pre_att_pool_kernel": 3,
+    "pre_att_pool_stride": 3,
+    "n_layers": 1,
+    "n_heads": 4,
+    "d_ff": 64,
+    "p_att": 0.3,
+    "norm_first": true,
+    "fusion_kernel": 5,
+    "eca_reduction": 4,
+    "embedding_dim": 32,
+    "p_proj": 0.3,
+    "classifier_hidden": 32,
+    "p_head": 0.4
+  },
+  "seconds": 1.7,
+  "subjects": [
+    1,
+    2
+  ],
+  "matrix": [
+    [
+      46.666666666666664,
+      48.888888888888886,
+      48.888888888888886,
+      42.22222222222222
+    ],
+    [
+      50.0,
+      46.25,
+      52.5,
+      50.0
+    ]
+  ]
+}

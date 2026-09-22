@@ -1,0 +1,327 @@
+{
+  "packages": "python 3.13.5, torch 2.11.0+cu128, numpy 2.5.3, scipy 1.18.1, sklearn 1.9.1, pandas 3.0.6",
+  "gpu": "NVIDIA GeForce RTX 5070 Laptop GPU, 8.5 GB, cuda 12.8, visible devices 1",
+  "data": {
+    "n_subjects": 18,
+    "shapes": [
+      [
+        62,
+        226,
+        1126
+      ]
+    ],
+    "class_counts": {
+      "1": {
+        "0": 45,
+        "1": 45,
+        "2": 45,
+        "3": 45,
+        "4": 45,
+        "5": 45,
+        "6": 45,
+        "7": 45
+      },
+      "2": {
+        "0": 40,
+        "1": 40,
+        "2": 40,
+        "3": 40,
+        "4": 40,
+        "5": 40,
+        "6": 40,
+        "7": 40
+      },
+      "3": {
+        "0": 40,
+        "1": 40,
+        "2": 40,
+        "3": 40,
+        "4": 40,
+        "5": 40,
+        "6": 40,
+        "7": 40
+      },
+      "4": {
+        "0": 40,
+        "1": 40,
+        "2": 40,
+        "3": 40,
+        "4": 40,
+        "5": 40,
+        "6": 40,
+        "7": 40
+      },
+      "5": {
+        "0": 40,
+        "1": 40,
+        "2": 40,
+        "3": 40,
+        "4": 40,
+        "5": 40,
+        "6": 40,
+        "7": 41
+      },
+      "6": {
+        "0": 40,
+        "1": 40,
+        "2": 40,
+        "3": 40,
+        "4": 40,
+        "5": 40,
+        "6": 40,
+        "7": 40
+      },
+      "7": {
+        "0": 40,
+        "1": 40,
+        "2": 40,
+        "3": 40,
+        "4": 40,
+        "5": 40,
+        "6": 40,
+        "7": 40
+      },
+      "8": {
+        "0": 40,
+        "1": 40,
+        "2": 40,
+        "3": 40,
+        "4": 40,
+        "5": 40,
+        "6": 40,
+        "7": 40
+      },
+      "9": {
+        "0": 40,
+        "1": 40,
+        "2": 40,
+        "3": 40,
+        "4": 40,
+        "5": 40,
+        "6": 40,
+        "7": 40
+      },
+      "10": {
+        "0": 40,
+        "1": 40,
+        "2": 40,
+        "3": 40,
+        "4": 40,
+        "5": 40,
+        "6": 40,
+        "7": 40
+      },
+      "11": {
+        "0": 40,
+        "1": 40,
+        "2": 40,
+        "3": 40,
+        "4": 40,
+        "5": 40,
+        "6": 40,
+        "7": 40
+      },
+      "12": {
+        "0": 40,
+        "1": 40,
+        "2": 40,
+        "3": 40,
+        "4": 40,
+        "5": 40,
+        "6": 40,
+        "7": 40
+      },
+      "13": {
+        "0": 40,
+        "1": 40,
+        "2": 40,
+        "3": 40,
+        "4": 40,
+        "5": 40,
+        "6": 40,
+        "7": 40
+      },
+      "14": {
+        "0": 40,
+        "1": 40,
+        "2": 40,
+        "3": 40,
+        "4": 40,
+        "5": 40,
+        "6": 40,
+        "7": 40
+      },
+      "15": {
+        "0": 40,
+        "1": 40,
+        "2": 40,
+        "3": 40,
+        "4": 40,
+        "5": 40,
+        "6": 40,
+        "7": 40
+      },
+      "16": {
+        "0": 40,
+        "1": 40,
+        "2": 40,
+        "3": 40,
+        "4": 40,
+        "5": 40,
+        "6": 40,
+        "7": 40
+      },
+      "17": {
+        "0": 40,
+        "1": 40,
+        "2": 40,
+        "3": 40,
+        "4": 40,
+        "5": 40,
+        "6": 40,
+        "7": 40
+      },
+      "18": {
+        "0": 40,
+        "1": 40,
+        "2": 40,
+        "3": 40,
+        "4": 40,
+        "5": 40,
+        "6": 40,
+        "7": 40
+      }
+    }
+  },
+  "models": [
+    "fine_gru           800 ms  T= 40  input (62, 40)  tokens  13  params   193,474  peak 0.09 GB",
+    "fine_gru          1500 ms  T= 75  input (62, 75)  tokens  25  params   193,474  peak 0.10 GB",
+    "fine_gru          3000 ms  T=150  input (62, 150)  tokens  50  params   193,474  peak 0.11 GB",
+    "fine_gru          4000 ms  T=200  input (62, 200)  tokens  66  params   193,474  peak 0.12 GB",
+    "fine_gru_cwt       800 ms  T= 40  input (62, 24, 40)  tokens  13  params   328,770  peak 1.06 GB",
+    "fine_gru_cwt      1500 ms  T= 75  input (62, 24, 75)  tokens  25  params   328,770  peak 2.04 GB",
+    "fine_gru_cwt      3000 ms  T=150  input (62, 24, 150)  tokens  50  params   328,770  peak 2.04 GB",
+    "fine_gru_cwt      4000 ms  T=200  input (62, 24, 200)  tokens  66  params   328,770  peak 2.04 GB"
+  ],
+  "timing": {
+    "rows": [
+      {
+        "model": "fine_gru",
+        "window_ms": 800,
+        "T": 40,
+        "epoch_s": 0.0271,
+        "frontend_s": 0.0,
+        "pair_min": 2.13
+      },
+      {
+        "model": "fine_gru",
+        "window_ms": 1500,
+        "T": 75,
+        "epoch_s": 0.0385,
+        "frontend_s": 0.0,
+        "pair_min": 3.03
+      },
+      {
+        "model": "fine_gru",
+        "window_ms": 3000,
+        "T": 150,
+        "epoch_s": 0.0383,
+        "frontend_s": 0.0,
+        "pair_min": 3.01
+      },
+      {
+        "model": "fine_gru",
+        "window_ms": 4000,
+        "T": 200,
+        "epoch_s": 0.0401,
+        "frontend_s": 0.0,
+        "pair_min": 3.16
+      },
+      {
+        "model": "fine_gru_cwt",
+        "window_ms": 800,
+        "T": 40,
+        "epoch_s": 0.0592,
+        "frontend_s": 0.216,
+        "pair_min": 4.98
+      },
+      {
+        "model": "fine_gru_cwt",
+        "window_ms": 1500,
+        "T": 75,
+        "epoch_s": 0.079,
+        "frontend_s": 0.369,
+        "pair_min": 6.77
+      },
+      {
+        "model": "fine_gru_cwt",
+        "window_ms": 3000,
+        "T": 150,
+        "epoch_s": 0.1004,
+        "frontend_s": 0.397,
+        "pair_min": 8.5
+      },
+      {
+        "model": "fine_gru_cwt",
+        "window_ms": 4000,
+        "T": 200,
+        "epoch_s": 0.1219,
+        "frontend_s": 0.49,
+        "pair_min": 10.33
+      }
+    ],
+    "per_pair_min": 41.9,
+    "n_pairs": 3,
+    "n_gpus": 1,
+    "pairs_per_gpu": 3,
+    "projected_hours": 2.4,
+    "walltime_hours": 48.0
+  },
+  "checks": [
+    {
+      "status": "ok",
+      "name": "packages",
+      "detail": "python 3.13.5, torch 2.11.0+cu128, numpy 2.5.3, scipy 1.18.1, sklearn 1.9.1, pandas 3.0.6"
+    },
+    {
+      "status": "ok",
+      "name": "cuda",
+      "detail": "NVIDIA GeForce RTX 5070 Laptop GPU, 8.5 GB, cuda 12.8, visible devices 1"
+    },
+    {
+      "status": "ok",
+      "name": "results folder writable",
+      "detail": "C:\\Users\\rmaah\\Documents\\Summer 2026\\Fine MI\\FineMI-enhancements\\GRU_FINE\\results\\smoke"
+    },
+    {
+      "status": "ok",
+      "name": "pairs",
+      "detail": "28 pairs, HOC_WFE ... SAA_SFE"
+    },
+    {
+      "status": "ok",
+      "name": "data (all subjects)",
+      "detail": "18 subjects, (C=62, T=226 @ 50 Hz, was 1126), trials/class 40-45"
+    },
+    {
+      "status": "ok",
+      "name": "cwt front-end",
+      "detail": "24 kernels ok, peaks ok, windows [40, 75, 150, 200] -> (C, 24, T) finite"
+    },
+    {
+      "status": "ok",
+      "name": "models x windows (full config)",
+      "detail": "8 model x window combinations build, train and evaluate"
+    },
+    {
+      "status": "ok",
+      "name": "determinism",
+      "detail": "bit-identical weights after 3 steps for fine_gru, fine_gru_cwt"
+    },
+    {
+      "status": "ok",
+      "name": "timing projection (full sweep)",
+      "detail": "42 min per pair (all models) x 3 pairs on the busiest of 1 GPUs -> ~2.4 h projected, walltime 48 h"
+    }
+  ]
+}
