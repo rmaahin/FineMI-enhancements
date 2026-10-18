@@ -1,0 +1,101 @@
+Run:          full_20261017_221506
+Host:         6f0d254add3a
+Started:      Sat Oct 17 22:15:07 UTC 2026
+Mode:         full
+Models:       conformer_b_slim conformer_a
+Pairs:        28 selected, 28 with runs still to do
+Pending:      HOC_WFE HOC_WAA HOC_EPS HOC_EFE HOC_SPS HOC_SAA HOC_SFE WFE_WAA WFE_EPS WFE_EFE WFE_SPS WFE_SAA WFE_SFE WAA_EPS WAA_EFE WAA_SPS WAA_SAA WAA_SFE EPS_EFE EPS_SPS EPS_SAA EPS_SFE EFE_SPS EFE_SAA EFE_SFE SPS_SAA SPS_SFE SAA_SFE
+Overwrite:    0
+Dataset:      /workspace/fixationcrossbaseline_0.5_3hz_MIonly (18 files)
+Results:      /workspace/FineMI-enhancements/Fine Conformer Fixation Cross Fix/results/full
+GPUs:
+GPU 0: NVIDIA A100-SXM4-40GB (UUID: GPU-5acafb9b-aa53-f522-f582-3f73e5489156)
+GPU 1: NVIDIA A100-SXM4-40GB (UUID: GPU-99977fec-61c2-960d-a2a6-6a11dde34831)
+
+Step 1: preflight Sat Oct 17 22:15:07 UTC 2026
+========================================================================
+PREFLIGHT  models=conformer_b_slim (LEAN), conformer_a (EEG Conformer)
+  dataset=/workspace/fixationcrossbaseline_0.5_3hz_MIonly
+  decim 5: 250 -> 50 Hz | windows [800, 1500, 3000, 4000] ms = [40, 75, 150, 200] samples from imagery onset | full: 5 folds x 50 epochs
+========================================================================
+
+--- packages ---
+[ok]   packages: python 3.12.15, torch 2.14.1+cu132, numpy 2.0.2, scipy 1.13.1, sklearn 1.6.1, pandas 2.3.3  (0.8s)
+
+--- device ---
+[ok]   device: NVIDIA A100-SXM4-40GB, 42.4 GB, cuda 13.2, visible devices 1  (1.4s)
+
+--- results folder writable ---
+[ok]   results folder writable: /workspace/FineMI-enhancements/Fine Conformer Fixation Cross Fix/results/full  (0.0s)
+
+--- pairs ---
+[ok]   pairs: 28 pairs, HOC_WFE ... SAA_SFE  (0.0s)
+
+--- data (all subjects) ---
+
+Found 18 subject .npz files (0.5_3hz) in /workspace/fixationcrossbaseline_0.5_3hz_MIonly; decimating by 5
+  WARNING: subject 1: 360 trials (the dataset paper has 320)
+  WARNING: subject 5: 321 trials (the dataset paper has 320)
+[ok]   data (all subjects): 18 subjects, (C=62, T=200 @ 50 Hz, was 1000), trials/class 40-45, 2 warning(s)  (29.3s)
+
+--- model conformer_b_slim (LEAN): parameters, every window ---
+  conformer_b_slim   800 ms  T= 40  tokens  13  params 25,752  peak 0.07 GB
+  conformer_b_slim  1500 ms  T= 75  tokens  25  params 25,752  peak 0.08 GB
+  conformer_b_slim  3000 ms  T=150  tokens  50  params 25,752  peak 0.08 GB
+  conformer_b_slim  4000 ms  T=200  tokens  66  params 25,752  peak 0.09 GB
+[ok]   model conformer_b_slim (LEAN): parameters, every window: 25,752 parameters as expected; forward, backward and Adam step ok at every window  (1.1s)
+
+--- determinism conformer_b_slim ---
+[ok]   determinism conformer_b_slim: bit-identical weights after 3 training steps  (0.1s)
+
+--- model conformer_a (EEG Conformer): parameters, every window ---
+  conformer_a   800 ms  T= 40  tokens   9  params 153,978  peak 0.13 GB
+  conformer_a  1500 ms  T= 75  tokens  21  params 169,338  peak 0.17 GB
+  conformer_a  3000 ms  T=150  tokens  46  params 201,338  peak 0.27 GB
+  conformer_a  4000 ms  T=200  tokens  62  params 221,818  peak 0.33 GB
+[ok]   model conformer_a (EEG Conformer): parameters, every window: 153,978 / 169,338 / 201,338 / 221,818 parameters as expected; forward, backward and Adam step ok at every window  (0.3s)
+
+--- determinism conformer_a ---
+[ok]   determinism conformer_a: bit-identical weights after 3 training steps  (0.2s)
+
+========================================================================
+  [ok  ] packages: python 3.12.15, torch 2.14.1+cu132, numpy 2.0.2, scipy 1.13.1, sklearn 1.6.1, pandas 2.3.3
+  [ok  ] device: NVIDIA A100-SXM4-40GB, 42.4 GB, cuda 13.2, visible devices 1
+  [ok  ] results folder writable: /workspace/FineMI-enhancements/Fine Conformer Fixation Cross Fix/results/full
+  [ok  ] pairs: 28 pairs, HOC_WFE ... SAA_SFE
+  [ok  ] data (all subjects): 18 subjects, (C=62, T=200 @ 50 Hz, was 1000), trials/class 40-45, 2 warning(s)
+  [ok  ] model conformer_b_slim (LEAN): parameters, every window: 25,752 parameters as expected; forward, backward and Adam step ok at every window
+  [ok  ] determinism conformer_b_slim: bit-identical weights after 3 training steps
+  [ok  ] model conformer_a (EEG Conformer): parameters, every window: 153,978 / 169,338 / 201,338 / 221,818 parameters as expected; forward, backward and Adam step ok at every window
+  [ok  ] determinism conformer_a: bit-identical weights after 3 training steps
+========================================================================
+PREFLIGHT PASSED
+
+Step 2: training Sat Oct 17 22:15:43 UTC 2026
+GPU 0: pairs=[HOC_WFE HOC_EPS HOC_SPS HOC_SFE WFE_EPS WFE_SPS WFE_SFE WAA_EFE WAA_SAA EPS_EFE EPS_SAA EFE_SPS EFE_SFE SPS_SFE] -> results/full/logs/gpu0_full_20261017_221506.log
+GPU 1: pairs=[HOC_WAA HOC_EFE HOC_SAA WFE_WAA WFE_EFE WFE_SAA WAA_EPS WAA_SPS WAA_SFE EPS_SPS EPS_SFE EFE_SAA SPS_SAA SAA_SFE] -> results/full/logs/gpu1_full_20261017_221506.log
+Workers launched: PIDs 3854 3855  (follow one with: tail -f results/full/logs/gpu0_full_20261017_221506.log)
+Workers finished: Sun Oct 18 05:07:46 UTC 2026
+
+Step 3: checking outputs Sun Oct 18 05:07:46 UTC 2026
+check_results (full): 56/56 pair runs present, expecting 18 subjects each
+CHECK PASSED: every run is complete
+
+Step 4: LEAN vs EEG Conformer Sun Oct 18 05:07:47 UTC 2026
+compare_models: written /workspace/FineMI-enhancements/Fine Conformer Fixation Cross Fix/results/full/comparison/paper_numbers.md
+
+Mean accuracy over the selected pairs:
+               800 ms  1500 ms  3000 ms  4000 ms    Avg
+LEAN            60.06    58.29    55.67    55.17  57.30
+EEG Conformer   62.19    61.59    60.99    60.86  61.41
+
+LEAN minus EEG Conformer (pooled, paired over subjects):
+         diff  ci_lo  ci_hi  p_holm  n_lean_better  n_conf_better
+window                                                           
+800    -2.127 -3.005 -1.249   0.000              2             16
+1500   -3.298 -4.527 -2.070   0.000              1             17
+3000   -5.316 -7.967 -2.665   0.001              2             16
+4000   -5.694 -7.951 -3.437   0.000              1             17
+avg    -4.109 -5.658 -2.560   0.000              1             17
+
+All runs completed Sun Oct 18 05:07:48 UTC 2026: results/full/comparison/paper_numbers.md

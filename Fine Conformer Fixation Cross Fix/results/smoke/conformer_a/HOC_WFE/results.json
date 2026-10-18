@@ -1,0 +1,69 @@
+{
+  "pair": "HOC/WFE",
+  "class_a": 0,
+  "class_b": 1,
+  "windows": [
+    800,
+    1500,
+    3000,
+    4000
+  ],
+  "seed": 42,
+  "gpu": "NVIDIA A100-SXM4-40GB",
+  "torch": "2.14.1+cu132",
+  "model": "conformer_a",
+  "mode": "smoke",
+  "band": "0.5_3hz",
+  "dataset_root": "/workspace/fixationcrossbaseline_0.5_3hz_MIonly",
+  "pipeline_version": 1,
+  "decim": 5,
+  "orig_sampling_rate": 250,
+  "sampling_rate": 50,
+  "window_samples": [
+    40,
+    75,
+    150,
+    200
+  ],
+  "n_folds": 2,
+  "n_epochs": 2,
+  "n_params": {
+    "800": 153978,
+    "1500": 169338,
+    "3000": 201338,
+    "4000": 221818
+  },
+  "model_cfg": {
+    "F1": 40,
+    "temporal_kernel": 25,
+    "pool_kernel": 15,
+    "pool_stride": 3,
+    "p_conv": 0.5,
+    "n_layers": 2,
+    "n_heads": 10,
+    "d_ff": 160,
+    "p_att": 0.5,
+    "norm_first": true,
+    "proj_dim": 32,
+    "p_head": 0.3
+  },
+  "seconds": 2.5,
+  "subjects": [
+    1,
+    2
+  ],
+  "matrix": [
+    [
+      54.44444444444444,
+      52.22222222222223,
+      53.333333333333336,
+      46.666666666666664
+    ],
+    [
+      61.25000000000001,
+      51.24999999999999,
+      57.49999999999999,
+      55.00000000000001
+    ]
+  ]
+}
