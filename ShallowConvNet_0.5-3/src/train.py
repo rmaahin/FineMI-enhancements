@@ -268,6 +268,8 @@ def train_pair(class_a: int, class_b: int, cfg: ExperimentConfig, overwrite: boo
                                     n_classes=n_classes).to(device)
                 model.apply(init_weights)
 
+                # the model outputs softmax probabilities; CrossEntropyLoss on them repeats
+                # the FineMI authors' double softmax on purpose (src/models/shallowconvnet.py)
                 criterion = nn.CrossEntropyLoss()
                 optimizer = optim.Adam(model.parameters(), lr=cfg.lr, weight_decay=cfg.weight_decay)
                 scheduler = optim.lr_scheduler.ReduceLROnPlateau(

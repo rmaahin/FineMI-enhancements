@@ -9,13 +9,15 @@ FineMI data, **0.5-3 Hz**, at the full 250 Hz (no decimation). The sister folder
 |---|---|
 | Data | `fixationcrossbaseline_0.5_3hz_MIonly`: 0 to 4 s after "Start Imagining", 1000 samples, baseline -4 to -2 s |
 | Windows | first 800 / 1500 / 3000 / 4000 ms after imagery onset = 200 / 375 / 750 / 1000 samples |
-| Model | temporal conv 40 x 25 (100 ms), spatial conv 40 x 62, BN, square, mean pool 75 / stride 15, log, dropout 0.5, conv classifier |
+| Model | the FineMI authors' ShallowConvNet (Yi et al. 2025, `EEG_decoding.py`): temporal conv 40 x 25 (100 ms), spatial conv 40 x 62, BN, square, mean pool 75 / stride 15, log, dropout 0.5, linear classifier, softmax; max-norm 2.0 / 2.0 / 0.5 on the temporal conv / spatial conv / classifier |
 | Parameters | 100,882 / 101,842 / 103,842 / 105,202 at the four windows (the classifier grows with the window) |
 | Training | the same loop as LEAN / EEG Conformer in `Fine Conformer Fixation Cross Fix`: 5-fold CV per subject with the same seeded splits, z-score, noise augmentation, Adam 1e-3, 50 epochs, best-validation checkpoint |
 
-The training is the same as LEAN's and EEG Conformer's, not Schirrmeister's
-original recipe (cropped training, AdamW, cosine schedule). That keeps the results
-paired fold by fold with theirs. `summarize.py` then compares ShallowConvNet with both
+The model matches the authors' code layer for layer. That includes their softmax
+output, which is fed to CrossEntropyLoss, so the softmax is applied twice as in their
+code. The training, though, is LEAN's and EEG Conformer's, not the authors' (800
+epochs, early stopping, batch 64, 6x noise augmentation, 4-40 Hz, 60 channels). That
+keeps the results paired fold by fold with LEAN and EEG Conformer. `summarize.py` then compares ShallowConvNet with both
 of them, paired over subjects, using the full-mode results committed in
 `Fine Conformer Fixation Cross Fix/results/full/`.
 

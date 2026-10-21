@@ -100,14 +100,16 @@ class ExperimentConfig:
     noise_level:  float = 0.15
     seed:         int   = 42
 
-    # ShallowConvNet as published (braindecode ShallowFBCSPNet defaults at 250 Hz):
+    # ShallowConvNet as in the FineMI authors' EEG_decoding.py (Yi et al. 2025) at 250 Hz:
     # 25-sample (100 ms) temporal conv, full-scalp spatial conv, square, 75-sample
-    # (300 ms) mean pool every 15 samples (60 ms), log, dropout, dense classifier.
+    # (300 ms) mean pool every 15 samples (60 ms), log, dropout, linear classifier,
+    # softmax; max-norm 2.0 / 2.0 / 0.5 on the temporal conv / spatial conv / classifier.
     shallowconvnet: dict = field(default_factory=lambda: dict(
         n_filters_time=40, filter_time_length=25,
         n_filters_spat=40,
         pool_time_length=75, pool_time_stride=15,
-        bn_momentum=0.1, drop_prob=0.5))
+        bn_momentum=0.1, drop_prob=0.5,
+        max_norm_temporal_conv=2.0, max_norm_spatial_conv=2.0, max_norm_linear=0.5))
 
     # Output: <results_root>/<PAIR_SLUG>/ (already namespaced by mode and model)
     results_root: str = ""

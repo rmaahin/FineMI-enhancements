@@ -1,14 +1,19 @@
-"""ShallowConvNet (Schirrmeister et al. 2017, "Deep learning with convolutional neural
-networks for EEG decoding and visualization"), at 250 Hz.
+"""ShallowConvNet (Schirrmeister et al. 2017) as implemented by the FineMI dataset
+authors (Yi et al. 2025, EEG_decoding.py in github.com/Bill-Chen-BJ/FJMI_EEG_fNIRS),
+at 250 Hz.
 
-Follows braindecode's ShallowFBCSPNet with its defaults: split first layer (temporal
-conv with bias, then a bias-free full-scalp spatial conv), BatchNorm, square, mean
-pool, safe log, dropout, and a conv classifier spanning the whole pooled length. The
-classifier returns logits (no LogSoftmax), because training uses CrossEntropyLoss.
+Layer for layer the same as the authors' model: temporal conv (with bias), bias-free
+full-scalp spatial conv, BatchNorm, square, mean pool, log(clip(x, 1e-6)), dropout,
+linear classifier, softmax. As in their code:
+  - max-norm constraints: before every forward pass each output filter's weights are
+    renormalized to an L2 norm of at most 2.0 (temporal and spatial conv) or 0.5
+    (classifier), via torch.renorm on weight.data.
+  - the output is a SOFTMAX, and training feeds it to nn.CrossEntropyLoss (which applies
+    log-softmax again). This double softmax is kept on purpose to match the authors.
 
 Shapes for a window of T samples (C = 62 channels):
   (B, C, T) -> (B, 1, C, T) -> temporal (B, 40, C, T-24) -> spatial (B, 40, 1, T-24)
-  -> BN, square -> pool (B, 40, 1, n_pool_out) -> log, dropout -> classifier (B, 2)
+  -> BN, square -> pool (B, 40, 1, n_pool_out) -> log, dropout -> flatten -> linear (B, 2)
   n_pool_out = (T - 24 - 75) // 15 + 1 = 7 / 19 / 44 / 61 at 200 / 375 / 750 / 1000.
 """
 from __future__ import annotations   # `int | None` annotations on Python < 3.10
@@ -23,8 +28,28 @@ def _default_cfg() -> dict:
     return dict(ExperimentConfig(model='shallowconvnet', dataset_root='').shallowconvnet)
 
 
-def safe_log(x, eps: float = 1e-6):
-    return torch.log(torch.clamp(x, min=eps))
+class Conv2dWithConstraint(nn.Conv2d):
+    """Conv2d whose output filters are renormalized to L2 norm <= max_norm before use."""
+
+    def __init__(self, *args, max_norm: float = 1.0, **kwargs):
+        self.max_norm = max_norm
+        super().__init__(*args, **kwargs)
+
+    def forward(self, x):
+        self.weight.data = torch.renorm(self.weight.data, p=2, dim=0, maxnorm=self.max_norm)
+        return super().forward(x)
+
+
+class LinearWithConstraint(nn.Linear):
+    """Linear whose output rows are renormalized to L2 norm <= max_norm before use."""
+
+    def __init__(self, *args, max_norm: float = 1.0, **kwargs):
+        self.max_norm = max_norm
+        super().__init__(*args, **kwargs)
+
+    def forward(self, x):
+        self.weight.data = torch.renorm(self.weight.data, p=2, dim=0, maxnorm=self.max_norm)
+        return super().forward(x)
 
 
 class ShallowConvNet(nn.Module):
@@ -45,12 +70,16 @@ class ShallowConvNet(nn.Module):
                              f"{K_t}-sample conv followed by a {pool_k}-sample pool")
         self.n_pool_out = (conv_len - pool_k) // pool_s + 1
 
-        self.conv_time = nn.Conv2d(1, F_t, kernel_size=(1, K_t), bias=True)
-        self.conv_spat = nn.Conv2d(F_t, F_s, kernel_size=(n_channels, 1), bias=False)
+        self.conv_time = Conv2dWithConstraint(1, F_t, kernel_size=(1, K_t), bias=True,
+                                              max_norm=c['max_norm_temporal_conv'])
+        self.conv_spat = Conv2dWithConstraint(F_t, F_s, kernel_size=(n_channels, 1), bias=False,
+                                              max_norm=c['max_norm_spatial_conv'])
         self.bnorm = nn.BatchNorm2d(F_s, momentum=c['bn_momentum'], affine=True)
         self.pool = nn.AvgPool2d(kernel_size=(1, pool_k), stride=(1, pool_s))
         self.drop = nn.Dropout(c['drop_prob'])
-        self.classifier = nn.Conv2d(F_s, n_classes, kernel_size=(1, self.n_pool_out), bias=True)
+        self.classifier = LinearWithConstraint(F_s * self.n_pool_out, n_classes,
+                                               max_norm=c['max_norm_linear'])
+        self.softmax = nn.Softmax(dim=1)
 
     def forward(self, x):
         # x: (B, C, T)
@@ -60,7 +89,7 @@ class ShallowConvNet(nn.Module):
         x = self.bnorm(x)
         x = x * x                                # square
         x = self.pool(x)                         # (B, F_s, 1, n_pool_out)
-        x = safe_log(x)
+        x = torch.log(torch.clamp(x, min=1e-6))
         x = self.drop(x)
-        x = self.classifier(x)                   # (B, n_classes, 1, 1)
-        return x.flatten(1)
+        x = self.classifier(x.flatten(1))        # (B, n_classes)
+        return self.softmax(x)                   # probabilities, as in the authors' code
