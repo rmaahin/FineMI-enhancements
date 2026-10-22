@@ -1,0 +1,96 @@
+Run:          smoke_20261022_001352
+Host:         7598e62c15d2
+Started:      Thu Oct 22 00:13:52 UTC 2026
+Mode:         smoke
+Model:        ShallowConvNet, 8-30 Hz, 250 Hz
+Pairs:        3 selected, 3 still to do
+Pending:      WAA_SAA HOC_WFE EPS_SPS
+Overwrite:    1
+Dataset:      /workspace/fixationcrossbaseline_8_30hz_MIonly (18 files)
+Results:      /workspace/FineMI-enhancements/ShallowConvNet_8-30/results/smoke
+GPUs:
+GPU 0: NVIDIA A100-PCIE-40GB (UUID: GPU-b32bc717-f609-e8e2-1441-8c538c51d7fe)
+GPU 1: NVIDIA A100-PCIE-40GB (UUID: GPU-078f2702-d0ac-9948-b88c-419ac02df471)
+
+Step 1: preflight Thu Oct 22 00:13:52 UTC 2026
+========================================================================
+PREFLIGHT  models=shallowconvnet (ShallowConvNet)  band=8-30 Hz (8_30hz)
+  dataset=/workspace/fixationcrossbaseline_8_30hz_MIonly
+  250 Hz (decim 1) | windows [800, 1500, 3000, 4000] ms = [200, 375, 750, 1000] samples from imagery onset | full: 5 folds x 50 epochs
+========================================================================
+
+--- packages ---
+[ok]   packages: python 3.12.15, torch 2.11.0+cu128, numpy 2.0.2, scipy 1.13.1, sklearn 1.6.1, pandas 2.3.3  (0.7s)
+
+--- device ---
+[ok]   device: NVIDIA A100-PCIE-40GB, 42.4 GB, cuda 12.8, visible devices 1  (1.2s)
+
+--- results folder writable ---
+[ok]   results folder writable: /workspace/FineMI-enhancements/ShallowConvNet_8-30/results/smoke  (0.0s)
+
+--- pairs ---
+[ok]   pairs: 28 pairs, HOC_WFE ... SAA_SFE  (0.0s)
+
+--- data (all subjects) ---
+
+Found 18 subject .npz files (8_30hz) in /workspace/fixationcrossbaseline_8_30hz_MIonly; decimating by 1
+  WARNING: subject 1: 360 trials (the dataset paper has 320)
+  WARNING: subject 5: 321 trials (the dataset paper has 320)
+[ok]   data (all subjects): 18 subjects, (C=62, T=1000 @ 250 Hz), trials/class 40-45, 2 warning(s)  (14.9s)
+
+--- band (8-30 Hz) ---
+[ok]   band (8-30 Hz): 84-98% of the power lies in 8-30 Hz  (8.5s)
+
+--- model shallowconvnet (ShallowConvNet): parameters, every window ---
+  shallowconvnet   800 ms  T= 200  pooled steps   7  params 100,882  peak 0.25 GB
+  shallowconvnet  1500 ms  T= 375  pooled steps  19  params 101,842  peak 0.42 GB
+  shallowconvnet  3000 ms  T= 750  pooled steps  44  params 103,842  peak 0.78 GB
+  shallowconvnet  4000 ms  T=1000  pooled steps  61  params 105,202  peak 1.04 GB
+[ok]   model shallowconvnet (ShallowConvNet): parameters, every window: 100,882 / 101,842 / 103,842 / 105,202 parameters as expected; forward, backward and Adam step ok at every window  (1.0s)
+
+--- determinism shallowconvnet ---
+[ok]   determinism shallowconvnet: bit-identical weights after 3 training steps  (0.2s)
+  full-mode fold: train 108 (incl. augmentation), val 18, test 18; 18 subjects x 5 folds
+
+--- timing projection (full mode) ---
+  shallowconvnet    800 ms: epoch    24.2 ms ->   1.90 min per pair
+  shallowconvnet   1500 ms: epoch    36.6 ms ->   2.88 min per pair
+  shallowconvnet   3000 ms: epoch    66.5 ms ->   5.24 min per pair
+  shallowconvnet   4000 ms: epoch    85.3 ms ->   6.72 min per pair
+[ok]   timing projection (full mode): about 17 min per pair x 14 pair(s) per device -> about 4.4 h for a full-mode run of 28 pair(s) on 2 device(s)  (1.7s)
+
+========================================================================
+  [ok  ] packages: python 3.12.15, torch 2.11.0+cu128, numpy 2.0.2, scipy 1.13.1, sklearn 1.6.1, pandas 2.3.3
+  [ok  ] device: NVIDIA A100-PCIE-40GB, 42.4 GB, cuda 12.8, visible devices 1
+  [ok  ] results folder writable: /workspace/FineMI-enhancements/ShallowConvNet_8-30/results/smoke
+  [ok  ] pairs: 28 pairs, HOC_WFE ... SAA_SFE
+  [ok  ] data (all subjects): 18 subjects, (C=62, T=1000 @ 250 Hz), trials/class 40-45, 2 warning(s)
+  [ok  ] band (8-30 Hz): 84-98% of the power lies in 8-30 Hz
+  [ok  ] model shallowconvnet (ShallowConvNet): parameters, every window: 100,882 / 101,842 / 103,842 / 105,202 parameters as expected; forward, backward and Adam step ok at every window
+  [ok  ] determinism shallowconvnet: bit-identical weights after 3 training steps
+  [ok  ] timing projection (full mode): about 17 min per pair x 14 pair(s) per device -> about 4.4 h for a full-mode run of 28 pair(s) on 2 device(s)
+========================================================================
+PREFLIGHT PASSED
+
+Step 2: training Thu Oct 22 00:14:23 UTC 2026
+GPU 0: pairs=[WAA_SAA EPS_SPS] -> results/smoke/logs/gpu0_smoke_20261022_001352.log
+GPU 1: pairs=[HOC_WFE] -> results/smoke/logs/gpu1_smoke_20261022_001352.log
+Workers launched: PIDs 4026 4027  (follow one with: tail -f results/smoke/logs/gpu0_smoke_20261022_001352.log)
+Workers finished: Thu Oct 22 00:14:50 UTC 2026
+
+Step 3: checking outputs Thu Oct 22 00:14:50 UTC 2026
+check_results (smoke): 3/3 pair runs present, expecting 2 subjects each
+CHECK PASSED: every run is complete
+
+Step 4: summary Thu Oct 22 00:14:50 UTC 2026
+summarize: written /workspace/FineMI-enhancements/ShallowConvNet_8-30/results/smoke/summary/summary.md
+
+Mean accuracy over the pairs:
+                         800 ms  1500 ms  3000 ms  4000 ms    Avg
+ShallowConvNet            49.47    50.21    50.93    51.67  50.57
+ShallowConvNet 0.5-3 Hz   50.95    49.17    51.85    51.53  50.87
+Resume check passed: finished runs are recognized and would be skipped.
+
+SMOKE TEST PASSED Thu Oct 22 00:14:52 UTC 2026
+Full-run projection: see 'timing projection' in results/smoke/logs/preflight_smoke_20261022_001352.log
+Next: bash run_vast.sh full
