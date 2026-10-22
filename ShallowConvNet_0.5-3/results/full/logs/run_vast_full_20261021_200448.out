@@ -1,0 +1,85 @@
+Run:          full_20261021_200448
+Host:         7598e62c15d2
+Started:      Wed Oct 21 20:04:49 UTC 2026
+Mode:         full
+Model:        ShallowConvNet, 0.5-3 Hz, 250 Hz
+Pairs:        28 selected, 28 still to do
+Pending:      HOC_WFE HOC_WAA HOC_EPS HOC_EFE HOC_SPS HOC_SAA HOC_SFE WFE_WAA WFE_EPS WFE_EFE WFE_SPS WFE_SAA WFE_SFE WAA_EPS WAA_EFE WAA_SPS WAA_SAA WAA_SFE EPS_EFE EPS_SPS EPS_SAA EPS_SFE EFE_SPS EFE_SAA EFE_SFE SPS_SAA SPS_SFE SAA_SFE
+Overwrite:    0
+Dataset:      /workspace/fixationcrossbaseline_0.5_3hz_MIonly (18 files)
+Results:      /workspace/FineMI-enhancements/ShallowConvNet_0.5-3/results/full
+GPUs:
+GPU 0: NVIDIA A100-PCIE-40GB (UUID: GPU-b32bc717-f609-e8e2-1441-8c538c51d7fe)
+GPU 1: NVIDIA A100-PCIE-40GB (UUID: GPU-078f2702-d0ac-9948-b88c-419ac02df471)
+
+Step 1: preflight Wed Oct 21 20:04:49 UTC 2026
+========================================================================
+PREFLIGHT  models=shallowconvnet (ShallowConvNet)  band=0.5-3 Hz (0.5_3hz)
+  dataset=/workspace/fixationcrossbaseline_0.5_3hz_MIonly
+  250 Hz (decim 1) | windows [800, 1500, 3000, 4000] ms = [200, 375, 750, 1000] samples from imagery onset | full: 5 folds x 50 epochs
+========================================================================
+
+--- packages ---
+[ok]   packages: python 3.12.15, torch 2.11.0+cu128, numpy 2.0.2, scipy 1.13.1, sklearn 1.6.1, pandas 2.3.3  (0.8s)
+
+--- device ---
+[ok]   device: NVIDIA A100-PCIE-40GB, 42.4 GB, cuda 12.8, visible devices 1  (1.3s)
+
+--- results folder writable ---
+[ok]   results folder writable: /workspace/FineMI-enhancements/ShallowConvNet_0.5-3/results/full  (0.0s)
+
+--- pairs ---
+[ok]   pairs: 28 pairs, HOC_WFE ... SAA_SFE  (0.0s)
+
+--- data (all subjects) ---
+
+Found 18 subject .npz files (0.5_3hz) in /workspace/fixationcrossbaseline_0.5_3hz_MIonly; decimating by 1
+  WARNING: subject 1: 360 trials (the dataset paper has 320)
+  WARNING: subject 5: 321 trials (the dataset paper has 320)
+[ok]   data (all subjects): 18 subjects, (C=62, T=1000 @ 250 Hz), trials/class 40-45, 2 warning(s)  (15.0s)
+
+--- band (0.5-3 Hz) ---
+[ok]   band (0.5-3 Hz): 68-89% of the power lies in 0.5-3 Hz  (8.4s)
+
+--- model shallowconvnet (ShallowConvNet): parameters, every window ---
+  shallowconvnet   800 ms  T= 200  pooled steps   7  params 100,882  peak 0.25 GB
+  shallowconvnet  1500 ms  T= 375  pooled steps  19  params 101,842  peak 0.42 GB
+  shallowconvnet  3000 ms  T= 750  pooled steps  44  params 103,842  peak 0.78 GB
+  shallowconvnet  4000 ms  T=1000  pooled steps  61  params 105,202  peak 1.04 GB
+[ok]   model shallowconvnet (ShallowConvNet): parameters, every window: 100,882 / 101,842 / 103,842 / 105,202 parameters as expected; forward, backward and Adam step ok at every window  (0.9s)
+
+--- determinism shallowconvnet ---
+[ok]   determinism shallowconvnet: bit-identical weights after 3 training steps  (0.2s)
+
+========================================================================
+  [ok  ] packages: python 3.12.15, torch 2.11.0+cu128, numpy 2.0.2, scipy 1.13.1, sklearn 1.6.1, pandas 2.3.3
+  [ok  ] device: NVIDIA A100-PCIE-40GB, 42.4 GB, cuda 12.8, visible devices 1
+  [ok  ] results folder writable: /workspace/FineMI-enhancements/ShallowConvNet_0.5-3/results/full
+  [ok  ] pairs: 28 pairs, HOC_WFE ... SAA_SFE
+  [ok  ] data (all subjects): 18 subjects, (C=62, T=1000 @ 250 Hz), trials/class 40-45, 2 warning(s)
+  [ok  ] band (0.5-3 Hz): 68-89% of the power lies in 0.5-3 Hz
+  [ok  ] model shallowconvnet (ShallowConvNet): parameters, every window: 100,882 / 101,842 / 103,842 / 105,202 parameters as expected; forward, backward and Adam step ok at every window
+  [ok  ] determinism shallowconvnet: bit-identical weights after 3 training steps
+========================================================================
+PREFLIGHT PASSED
+
+Step 2: training Wed Oct 21 20:05:18 UTC 2026
+GPU 0: pairs=[HOC_WFE HOC_EPS HOC_SPS HOC_SFE WFE_EPS WFE_SPS WFE_SFE WAA_EFE WAA_SAA EPS_EFE EPS_SAA EFE_SPS EFE_SFE SPS_SFE] -> results/full/logs/gpu0_full_20261021_200448.log
+GPU 1: pairs=[HOC_WAA HOC_EFE HOC_SAA WFE_WAA WFE_EFE WFE_SAA WAA_EPS WAA_SPS WAA_SFE EPS_SPS EPS_SFE EFE_SAA SPS_SAA SAA_SFE] -> results/full/logs/gpu1_full_20261021_200448.log
+Workers launched: PIDs 3100 3101  (follow one with: tail -f results/full/logs/gpu0_full_20261021_200448.log)
+Workers finished: Wed Oct 21 23:56:06 UTC 2026
+
+Step 3: checking outputs Wed Oct 21 23:56:06 UTC 2026
+check_results (full): 28/28 pair runs present, expecting 18 subjects each
+CHECK PASSED: every run is complete
+
+Step 4: summary Wed Oct 21 23:56:07 UTC 2026
+summarize: written /workspace/FineMI-enhancements/ShallowConvNet_0.5-3/results/full/summary/summary.md
+
+Mean accuracy over the pairs:
+                800 ms  1500 ms  3000 ms  4000 ms    Avg
+ShallowConvNet   58.01    59.53    59.29    58.66  58.87
+LEAN             60.06    58.29    55.67    55.17  57.30
+EEG Conformer    62.19    61.59    60.99    60.86  61.41
+
+All runs completed Wed Oct 21 23:56:09 UTC 2026: results/full/summary/summary.md
