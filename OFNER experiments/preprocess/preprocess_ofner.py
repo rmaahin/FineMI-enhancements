@@ -434,11 +434,17 @@ def save_epochs_numpy(epochs, labels, out_path):
 
 
 def band_power_fraction(data, sfreq, l_freq, h_freq):
-    """Fraction of the epochs' power (Welch, channel-averaged) inside [l_freq, h_freq]."""
+    """Fraction of the epochs' power (Welch, channel-averaged, DC bin excluded) inside
+    the filter's -6 dB band. MNE's default FIR transitions are wide at low cutoffs
+    (0.5 Hz -> 0.25 Hz at -6 dB, 3 Hz -> 4 Hz), and EEG's 1/f spectrum piles power
+    at the lower edge, so counting only [l_freq, h_freq] flags a correct 0.5-3 Hz filter."""
     from scipy.signal import welch
+    l_trans = min(max(0.25 * l_freq, 2.0), l_freq)              # MNE 'auto' widths
+    h_trans = min(max(0.25 * h_freq, 2.0), sfreq / 2.0 - h_freq)
     f, p = welch(data, fs=sfreq, nperseg=data.shape[-1], axis=-1)
-    p = p.mean(axis=(0, 1))
-    inside = (f >= l_freq) & (f <= h_freq)
+    p = p.mean(axis=(0, 1))[1:]
+    f = f[1:]
+    inside = (f >= l_freq - l_trans / 2) & (f <= h_freq + h_trans / 2)
     return float(p[inside].sum() / p.sum()), float(f[np.argmax(p)])
 
 
