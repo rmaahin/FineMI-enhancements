@@ -1,0 +1,99 @@
+Run:          full_8_30hz_20261030_001914
+Host:         77b12e62a21c
+Started:      Fri Oct 30 00:19:14 UTC 2026
+Mode:         full
+Band:         8_30hz
+Models:       conformer_b_slim conformer_a
+Pairs:        15 selected, 15 with runs still to do
+Pending:      EF_EE EF_SUP EF_PRO EF_HC EF_HO EE_SUP EE_PRO EE_HC EE_HO SUP_PRO SUP_HC SUP_HO PRO_HC PRO_HO HC_HO
+Overwrite:    0
+Dataset:      /workspace/ofner/ofner_mi_8_30hz (15 files)
+Results:      /workspace/FineMI-enhancements/OFNER experiments/results/8_30hz/full
+GPUs:
+GPU 0: NVIDIA GeForce RTX 4090 (UUID: GPU-a339f807-a740-285c-4f5a-e413232fa7e6)
+GPU 1: NVIDIA GeForce RTX 4090 (UUID: GPU-f81873b9-fc4a-88a4-15b4-45bdc4a9018b)
+
+Step 1: preflight Fri Oct 30 00:19:14 UTC 2026
+========================================================================
+PREFLIGHT  band=8_30hz  models=conformer_b_slim (LEAN), conformer_a (EEG Conformer)
+  dataset=/workspace/ofner/ofner_mi_8_30hz
+  decim 1: 250 -> 250 Hz | windows [800, 1500, 3000] ms = [200, 375, 750] samples from the cue | full: 5 folds x 50 epochs
+  LEAN at 250 Hz: temporal kernels (35, 75, 155), pool 15/15
+  EEG Conformer at 250 Hz: temporal kernel 25, pool 75/15
+========================================================================
+
+--- packages ---
+[ok]   packages: python 3.12.15, torch 2.14.1+cu130, numpy 2.5.4, scipy 1.18.1, sklearn 1.9.1, pandas 3.1.0  (0.7s)
+
+--- device ---
+[ok]   device: NVIDIA GeForce RTX 4090, 25.2 GB, cuda 13.0, visible devices 1  (1.0s)
+
+--- results folder writable ---
+[ok]   results folder writable: /workspace/FineMI-enhancements/OFNER experiments/results/8_30hz/full  (0.0s)
+
+--- pairs ---
+[ok]   pairs: 15 pairs, EF_EE ... HC_HO  (0.0s)
+
+--- data (all subjects) ---
+
+Found 15 subject .npz files (8_30hz) in /workspace/ofner/ofner_mi_8_30hz; decimating by 1
+[ok]   data (all subjects): 15 subjects, (C=61, T=750 @ 250 Hz, was 750), trials/class 60-60  (7.2s)
+
+--- model conformer_b_slim (LEAN): parameters, every window ---
+  conformer_b_slim   800 ms  T=200  tokens  13  params 38,071  peak 0.08 GB
+  conformer_b_slim  1500 ms  T=375  tokens  25  params 38,071  peak 0.09 GB
+  conformer_b_slim  3000 ms  T=750  tokens  50  params 38,071  peak 0.12 GB
+[ok]   model conformer_b_slim (LEAN): parameters, every window: 38,071 parameters as expected; forward, backward and Adam step ok at every window  (0.7s)
+
+--- determinism conformer_b_slim ---
+[ok]   determinism conformer_b_slim: bit-identical weights after 3 training steps  (0.1s)
+
+--- model conformer_a (EEG Conformer): parameters, every window ---
+  conformer_a   800 ms  T=200  tokens   9  params 151,738  peak 0.33 GB
+  conformer_a  1500 ms  T=375  tokens  21  params 167,098  peak 0.55 GB
+  conformer_a  3000 ms  T=750  tokens  46  params 199,098  peak 1.02 GB
+[ok]   model conformer_a (EEG Conformer): parameters, every window: 151,738 / 167,098 / 199,098 parameters as expected; forward, backward and Adam step ok at every window  (0.2s)
+
+--- determinism conformer_a ---
+[ok]   determinism conformer_a: bit-identical weights after 3 training steps  (0.2s)
+
+========================================================================
+  [ok  ] packages: python 3.12.15, torch 2.14.1+cu130, numpy 2.5.4, scipy 1.18.1, sklearn 1.9.1, pandas 3.1.0
+  [ok  ] device: NVIDIA GeForce RTX 4090, 25.2 GB, cuda 13.0, visible devices 1
+  [ok  ] results folder writable: /workspace/FineMI-enhancements/OFNER experiments/results/8_30hz/full
+  [ok  ] pairs: 15 pairs, EF_EE ... HC_HO
+  [ok  ] data (all subjects): 15 subjects, (C=61, T=750 @ 250 Hz, was 750), trials/class 60-60
+  [ok  ] model conformer_b_slim (LEAN): parameters, every window: 38,071 parameters as expected; forward, backward and Adam step ok at every window
+  [ok  ] determinism conformer_b_slim: bit-identical weights after 3 training steps
+  [ok  ] model conformer_a (EEG Conformer): parameters, every window: 151,738 / 167,098 / 199,098 parameters as expected; forward, backward and Adam step ok at every window
+  [ok  ] determinism conformer_a: bit-identical weights after 3 training steps
+========================================================================
+PREFLIGHT PASSED
+
+Step 2: training Fri Oct 30 00:19:26 UTC 2026
+GPU 0: pairs=[EF_EE EF_PRO EF_HO EE_PRO EE_HO SUP_HC PRO_HC HC_HO] -> results/8_30hz/full/logs/gpu0_full_8_30hz_20261030_001914.log
+GPU 1: pairs=[EF_SUP EF_HC EE_SUP EE_HC SUP_PRO SUP_HO PRO_HO] -> results/8_30hz/full/logs/gpu1_full_8_30hz_20261030_001914.log
+Workers launched: PIDs 4175 4176  (follow one with: tail -f "results/8_30hz/full/logs/gpu0_full_8_30hz_20261030_001914.log")
+Workers finished: Fri Oct 30 04:05:55 UTC 2026
+
+Step 3: checking outputs Fri Oct 30 04:05:55 UTC 2026
+check_results (8_30hz, full): 30/30 pair runs present, expecting 15 subjects each
+CHECK PASSED: every run is complete
+
+Step 4: LEAN vs EEG Conformer Fri Oct 30 04:05:55 UTC 2026
+compare_models: written /workspace/FineMI-enhancements/OFNER experiments/results/8_30hz/full/comparison/ofner_numbers.md
+
+Mean accuracy over the selected pairs:
+               800 ms  1500 ms  3000 ms    Avg
+LEAN            49.94    50.24    52.83  51.00
+EEG Conformer   50.34    50.76    52.24  51.11
+
+LEAN minus EEG Conformer (pooled, paired over subjects):
+         diff  ci_lo  ci_hi  p_holm  n_lean_better  n_conf_better
+window                                                           
+800    -0.396 -1.364  0.572   0.789              5             10
+1500   -0.519 -1.272  0.235   0.649              6              9
+3000    0.585 -0.465  1.635   0.756              9              6
+avg    -0.110 -0.732  0.512   0.789              8              7
+
+All runs completed (8_30hz) Fri Oct 30 04:05:56 UTC 2026: results/8_30hz/full/comparison/ofner_numbers.md

@@ -1,0 +1,64 @@
+{
+  "pair": "EF/EE",
+  "class_a": 0,
+  "class_b": 1,
+  "windows": [
+    800,
+    1500,
+    3000
+  ],
+  "seed": 42,
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "torch": "2.14.1+cu130",
+  "model": "conformer_a",
+  "mode": "smoke",
+  "band": "0.5_3hz",
+  "dataset_root": "/workspace/ofner/ofner_mi_0.5_3hz",
+  "pipeline_version": 1,
+  "decim": 5,
+  "orig_sampling_rate": 250,
+  "sampling_rate": 50,
+  "window_samples": [
+    40,
+    75,
+    150
+  ],
+  "n_folds": 2,
+  "n_epochs": 2,
+  "n_params": {
+    "800": 151738,
+    "1500": 167098,
+    "3000": 199098
+  },
+  "model_cfg": {
+    "F1": 40,
+    "temporal_kernel": 25,
+    "pool_kernel": 15,
+    "pool_stride": 3,
+    "p_conv": 0.5,
+    "n_layers": 2,
+    "n_heads": 10,
+    "d_ff": 160,
+    "p_att": 0.5,
+    "norm_first": true,
+    "proj_dim": 32,
+    "p_head": 0.3
+  },
+  "seconds": 1.2,
+  "subjects": [
+    1,
+    2
+  ],
+  "matrix": [
+    [
+      47.5,
+      53.333333333333336,
+      60.83333333333333
+    ],
+    [
+      47.5,
+      47.5,
+      45.0
+    ]
+  ]
+}

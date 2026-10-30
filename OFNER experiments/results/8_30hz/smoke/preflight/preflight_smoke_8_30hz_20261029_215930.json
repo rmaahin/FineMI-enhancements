@@ -1,0 +1,249 @@
+{
+  "packages": "python 3.12.15, torch 2.14.1+cu130, numpy 2.5.4, scipy 1.18.1, sklearn 1.9.1, pandas 3.1.0",
+  "device": "NVIDIA GeForce RTX 4090, 25.2 GB, cuda 13.0, visible devices 1",
+  "data": {
+    "n_subjects": 15,
+    "shapes": [
+      [
+        61,
+        750,
+        750
+      ]
+    ],
+    "class_counts": {
+      "1": {
+        "0": 60,
+        "1": 60,
+        "2": 60,
+        "3": 60,
+        "4": 60,
+        "5": 60
+      },
+      "2": {
+        "0": 60,
+        "1": 60,
+        "2": 60,
+        "3": 60,
+        "4": 60,
+        "5": 60
+      },
+      "3": {
+        "0": 60,
+        "1": 60,
+        "2": 60,
+        "3": 60,
+        "4": 60,
+        "5": 60
+      },
+      "4": {
+        "0": 60,
+        "1": 60,
+        "2": 60,
+        "3": 60,
+        "4": 60,
+        "5": 60
+      },
+      "5": {
+        "0": 60,
+        "1": 60,
+        "2": 60,
+        "3": 60,
+        "4": 60,
+        "5": 60
+      },
+      "6": {
+        "0": 60,
+        "1": 60,
+        "2": 60,
+        "3": 60,
+        "4": 60,
+        "5": 60
+      },
+      "7": {
+        "0": 60,
+        "1": 60,
+        "2": 60,
+        "3": 60,
+        "4": 60,
+        "5": 60
+      },
+      "8": {
+        "0": 60,
+        "1": 60,
+        "2": 60,
+        "3": 60,
+        "4": 60,
+        "5": 60
+      },
+      "9": {
+        "0": 60,
+        "1": 60,
+        "2": 60,
+        "3": 60,
+        "4": 60,
+        "5": 60
+      },
+      "10": {
+        "0": 60,
+        "1": 60,
+        "2": 60,
+        "3": 60,
+        "4": 60,
+        "5": 60
+      },
+      "11": {
+        "0": 60,
+        "1": 60,
+        "2": 60,
+        "3": 60,
+        "4": 60,
+        "5": 60
+      },
+      "12": {
+        "0": 60,
+        "1": 60,
+        "2": 60,
+        "3": 60,
+        "4": 60,
+        "5": 60
+      },
+      "13": {
+        "0": 60,
+        "1": 60,
+        "2": 60,
+        "3": 60,
+        "4": 60,
+        "5": 60
+      },
+      "14": {
+        "0": 60,
+        "1": 60,
+        "2": 60,
+        "3": 60,
+        "4": 60,
+        "5": 60
+      },
+      "15": {
+        "0": 60,
+        "1": 60,
+        "2": 60,
+        "3": 60,
+        "4": 60,
+        "5": 60
+      }
+    },
+    "warnings": []
+  },
+  "model": [
+    "conformer_b_slim   800 ms  T=200  tokens  13  params 38,071  peak 0.08 GB",
+    "conformer_b_slim  1500 ms  T=375  tokens  25  params 38,071  peak 0.09 GB",
+    "conformer_b_slim  3000 ms  T=750  tokens  50  params 38,071  peak 0.12 GB",
+    "conformer_a   800 ms  T=200  tokens   9  params 151,738  peak 0.33 GB",
+    "conformer_a  1500 ms  T=375  tokens  21  params 167,098  peak 0.55 GB",
+    "conformer_a  3000 ms  T=750  tokens  46  params 199,098  peak 1.02 GB"
+  ],
+  "timing": {
+    "rows": [
+      {
+        "model": "conformer_b_slim",
+        "window_ms": 800,
+        "T": 200,
+        "epoch_s": 0.0497,
+        "pair_min": 3.26
+      },
+      {
+        "model": "conformer_b_slim",
+        "window_ms": 1500,
+        "T": 375,
+        "epoch_s": 0.0514,
+        "pair_min": 3.37
+      },
+      {
+        "model": "conformer_b_slim",
+        "window_ms": 3000,
+        "T": 750,
+        "epoch_s": 0.0451,
+        "pair_min": 2.96
+      },
+      {
+        "model": "conformer_a",
+        "window_ms": 800,
+        "T": 200,
+        "epoch_s": 0.0588,
+        "pair_min": 3.86
+      },
+      {
+        "model": "conformer_a",
+        "window_ms": 1500,
+        "T": 375,
+        "epoch_s": 0.0819,
+        "pair_min": 5.37
+      },
+      {
+        "model": "conformer_a",
+        "window_ms": 3000,
+        "T": 750,
+        "epoch_s": 0.1649,
+        "pair_min": 10.82
+      }
+    ],
+    "per_pair_min": 29.6,
+    "n_pairs": 15,
+    "n_gpus": 2,
+    "pairs_per_gpu": 8,
+    "projected_hours": 4.38,
+    "walltime_hours": 0.0
+  },
+  "checks": [
+    {
+      "status": "ok",
+      "name": "packages",
+      "detail": "python 3.12.15, torch 2.14.1+cu130, numpy 2.5.4, scipy 1.18.1, sklearn 1.9.1, pandas 3.1.0"
+    },
+    {
+      "status": "ok",
+      "name": "device",
+      "detail": "NVIDIA GeForce RTX 4090, 25.2 GB, cuda 13.0, visible devices 1"
+    },
+    {
+      "status": "ok",
+      "name": "results folder writable",
+      "detail": "/workspace/FineMI-enhancements/OFNER experiments/results/8_30hz/smoke"
+    },
+    {
+      "status": "ok",
+      "name": "pairs",
+      "detail": "15 pairs, EF_EE ... HC_HO"
+    },
+    {
+      "status": "ok",
+      "name": "data (all subjects)",
+      "detail": "15 subjects, (C=61, T=750 @ 250 Hz, was 750), trials/class 60-60"
+    },
+    {
+      "status": "ok",
+      "name": "model conformer_b_slim (LEAN): parameters, every window",
+      "detail": "38,071 parameters as expected; forward, backward and Adam step ok at every window"
+    },
+    {
+      "status": "ok",
+      "name": "determinism conformer_b_slim",
+      "detail": "bit-identical weights after 3 training steps"
+    },
+    {
+      "status": "ok",
+      "name": "model conformer_a (EEG Conformer): parameters, every window",
+      "detail": "151,738 / 167,098 / 199,098 parameters as expected; forward, backward and Adam step ok at every window"
+    },
+    {
+      "status": "ok",
+      "name": "determinism conformer_a",
+      "detail": "bit-identical weights after 3 training steps"
+    },
+    {
+      "status": "ok",
+      "name": "timing projection (full mode)",
+      "detail": "about 30 min per pair (all models) x 8 pair(s) per device -> about 4.4 h for a full-mode run of 15 pair(s) on 2 device(s)"
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+Run:          smoke_0.5_3hz_20261029_215856
+Host:         77b12e62a21c
+Started:      Thu Oct 29 21:58:56 UTC 2026
+Mode:         smoke
+Band:         0.5_3hz
+Models:       conformer_b_slim conformer_a
+Pairs:        3 selected, 3 with runs still to do
+Pending:      EF_EE SUP_PRO HC_HO
+Overwrite:    1
+Dataset:      /workspace/ofner/ofner_mi_0.5_3hz (15 files)
+Results:      /workspace/FineMI-enhancements/OFNER experiments/results/0.5_3hz/smoke
+GPUs:
+GPU 0: NVIDIA GeForce RTX 4090 (UUID: GPU-a339f807-a740-285c-4f5a-e413232fa7e6)
+GPU 1: NVIDIA GeForce RTX 4090 (UUID: GPU-f81873b9-fc4a-88a4-15b4-45bdc4a9018b)
+
+Step 1: preflight Thu Oct 29 21:58:56 UTC 2026
+========================================================================
+PREFLIGHT  band=0.5_3hz  models=conformer_b_slim (LEAN), conformer_a (EEG Conformer)
+  dataset=/workspace/ofner/ofner_mi_0.5_3hz
+  decim 5: 250 -> 50 Hz | windows [800, 1500, 3000] ms = [40, 75, 150] samples from the cue | full: 5 folds x 50 epochs
+  LEAN at 50 Hz: temporal kernels (7, 15, 31), pool 3/3
+  EEG Conformer at 50 Hz: temporal kernel 25, pool 15/3
+========================================================================
+
+--- packages ---
+[ok]   packages: python 3.12.15, torch 2.14.1+cu130, numpy 2.5.4, scipy 1.18.1, sklearn 1.9.1, pandas 3.1.0  (0.7s)
+
+--- device ---
+[ok]   device: NVIDIA GeForce RTX 4090, 25.2 GB, cuda 13.0, visible devices 1  (2.9s)
+
+--- results folder writable ---
+[ok]   results folder writable: /workspace/FineMI-enhancements/OFNER experiments/results/0.5_3hz/smoke  (0.0s)
+
+--- pairs ---
+[ok]   pairs: 15 pairs, EF_EE ... HC_HO  (0.0s)
+
+--- data (all subjects) ---
+
+Found 15 subject .npz files (0.5_3hz) in /workspace/ofner/ofner_mi_0.5_3hz; decimating by 5
+[ok]   data (all subjects): 15 subjects, (C=61, T=150 @ 50 Hz, was 750), trials/class 60-60  (7.4s)
+
+--- model conformer_b_slim (LEAN): parameters, every window ---
+  conformer_b_slim   800 ms  T= 40  tokens  13  params 25,139  peak 0.07 GB
+  conformer_b_slim  1500 ms  T= 75  tokens  25  params 25,139  peak 0.08 GB
+  conformer_b_slim  3000 ms  T=150  tokens  50  params 25,139  peak 0.08 GB
+[ok]   model conformer_b_slim (LEAN): parameters, every window: 25,139 parameters as expected; forward, backward and Adam step ok at every window  (0.7s)
+
+--- determinism conformer_b_slim ---
+[ok]   determinism conformer_b_slim: bit-identical weights after 3 training steps  (0.1s)
+
+--- model conformer_a (EEG Conformer): parameters, every window ---
+  conformer_a   800 ms  T= 40  tokens   9  params 151,738  peak 0.12 GB
+  conformer_a  1500 ms  T= 75  tokens  21  params 167,098  peak 0.17 GB
+  conformer_a  3000 ms  T=150  tokens  46  params 199,098  peak 0.26 GB
+[ok]   model conformer_a (EEG Conformer): parameters, every window: 151,738 / 167,098 / 199,098 parameters as expected; forward, backward and Adam step ok at every window  (0.1s)
+
+--- determinism conformer_a ---
+[ok]   determinism conformer_a: bit-identical weights after 3 training steps  (0.1s)
+  full-mode fold: train 144 (incl. augmentation), val 24, test 24; 15 subjects x 5 folds
+
+--- timing projection (full mode) ---
+  conformer_b_slim    800 ms: epoch    53.6 ms ->   3.52 min per pair
+  conformer_b_slim   1500 ms: epoch    59.6 ms ->   3.91 min per pair
+  conformer_b_slim   3000 ms: epoch    35.3 ms ->   2.31 min per pair
+  conformer_a         800 ms: epoch    42.7 ms ->   2.80 min per pair
+  conformer_a        1500 ms: epoch    45.9 ms ->   3.01 min per pair
+  conformer_a        3000 ms: epoch    55.2 ms ->   3.62 min per pair
+[ok]   timing projection (full mode): about 19 min per pair (all models) x 8 pair(s) per device -> about 2.8 h for a full-mode run of 15 pair(s) on 2 device(s)  (1.9s)
+
+========================================================================
+  [ok  ] packages: python 3.12.15, torch 2.14.1+cu130, numpy 2.5.4, scipy 1.18.1, sklearn 1.9.1, pandas 3.1.0
+  [ok  ] device: NVIDIA GeForce RTX 4090, 25.2 GB, cuda 13.0, visible devices 1
+  [ok  ] results folder writable: /workspace/FineMI-enhancements/OFNER experiments/results/0.5_3hz/smoke
+  [ok  ] pairs: 15 pairs, EF_EE ... HC_HO
+  [ok  ] data (all subjects): 15 subjects, (C=61, T=150 @ 50 Hz, was 750), trials/class 60-60
+  [ok  ] model conformer_b_slim (LEAN): parameters, every window: 25,139 parameters as expected; forward, backward and Adam step ok at every window
+  [ok  ] determinism conformer_b_slim: bit-identical weights after 3 training steps
+  [ok  ] model conformer_a (EEG Conformer): parameters, every window: 151,738 / 167,098 / 199,098 parameters as expected; forward, backward and Adam step ok at every window
+  [ok  ] determinism conformer_a: bit-identical weights after 3 training steps
+  [ok  ] timing projection (full mode): about 19 min per pair (all models) x 8 pair(s) per device -> about 2.8 h for a full-mode run of 15 pair(s) on 2 device(s)
+========================================================================
+PREFLIGHT PASSED
+
+Step 2: training Thu Oct 29 21:59:12 UTC 2026
+GPU 0: pairs=[EF_EE HC_HO] -> results/0.5_3hz/smoke/logs/gpu0_smoke_0.5_3hz_20261029_215856.log
+GPU 1: pairs=[SUP_PRO] -> results/0.5_3hz/smoke/logs/gpu1_smoke_0.5_3hz_20261029_215856.log
+Workers launched: PIDs 2943 2944  (follow one with: tail -f "results/0.5_3hz/smoke/logs/gpu0_smoke_0.5_3hz_20261029_215856.log")
+Workers finished: Thu Oct 29 21:59:28 UTC 2026
+
+Step 3: checking outputs Thu Oct 29 21:59:28 UTC 2026
+check_results (0.5_3hz, smoke): 6/6 pair runs present, expecting 2 subjects each
+CHECK PASSED: every run is complete
+
+Step 4: LEAN vs EEG Conformer Thu Oct 29 21:59:29 UTC 2026
+compare_models: written /workspace/FineMI-enhancements/OFNER experiments/results/0.5_3hz/smoke/comparison/ofner_numbers.md
+
+Mean accuracy over the selected pairs:
+               800 ms  1500 ms  3000 ms    Avg
+LEAN            51.94    49.44    47.36  49.58
+EEG Conformer   51.94    52.22    50.42  51.53
+
+LEAN minus EEG Conformer (pooled, paired over subjects):
+         diff   ci_lo   ci_hi  p_holm  n_lean_better  n_conf_better
+window                                                             
+800    -0.000  -7.059   7.059     1.0              1              1
+1500   -2.778 -34.543  28.988     1.0              0              2
+3000   -3.056 -38.351  32.239     1.0              0              2
+avg    -1.944 -21.945  18.056     1.0              0              2
+Resume check passed: finished runs are recognized and would be skipped.
+
+SMOKE TEST PASSED (0.5_3hz) Thu Oct 29 21:59:30 UTC 2026
+Full-run projection: see 'timing projection' in results/0.5_3hz/smoke/logs/preflight_smoke_0.5_3hz_20261029_215856.log
