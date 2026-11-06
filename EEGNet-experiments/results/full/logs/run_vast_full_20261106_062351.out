@@ -1,0 +1,91 @@
+Run:          full_20261106_062351
+Host:         d93806916a24
+Started:      Fri Nov  6 06:23:52 UTC 2026
+Mode:         full
+Models:       eegnet_250 eegnet_50 (EEGNet-8,2, 0.5-3 Hz)
+Pairs:        28 selected, 22 still to do
+Pending:      HOC_SFE WFE_WAA WFE_EPS WFE_EFE WFE_SPS WFE_SAA WFE_SFE WAA_EPS WAA_EFE WAA_SPS WAA_SAA WAA_SFE EPS_EFE EPS_SPS EPS_SAA EPS_SFE EFE_SPS EFE_SAA EFE_SFE SPS_SAA SPS_SFE SAA_SFE
+Overwrite:    0
+Dataset:      /workspace/fixationcrossbaseline_0.5_3hz_MIonly (18 files)
+Results:      /workspace/FineMI-enhancements/EEGNet-experiments/results/full
+GPUs:
+GPU 0: NVIDIA A100-PCIE-40GB (UUID: GPU-aeb1232a-755d-6795-815e-6574b33e402d)
+GPU 1: NVIDIA A100-PCIE-40GB (UUID: GPU-902961fc-0ff5-5698-a414-4c42892ddb96)
+
+Step 1: preflight Fri Nov  6 06:23:52 UTC 2026
+========================================================================
+PREFLIGHT  models=eegnet_250 (EEGNet 250 Hz), eegnet_50 (EEGNet 50 Hz)  band=0.5-3 Hz (0.5_3hz)
+  dataset=/workspace/fixationcrossbaseline_0.5_3hz_MIonly
+  eegnet_250: 250 Hz (decim 1) | windows [800, 1500, 3000, 4000] ms = [200, 375, 750, 1000] samples from imagery onset
+  eegnet_50: 50 Hz (decim 5) | windows [800, 1500, 3000, 4000] ms = [40, 75, 150, 200] samples from imagery onset
+  full: 5 folds x 50 epochs
+========================================================================
+
+--- packages ---
+[ok]   packages: python 3.12.15, torch 2.14.1+cu132, numpy 2.0.2, scipy 1.13.1, sklearn 1.6.1, pandas 2.3.3  (0.6s)
+
+--- device ---
+[ok]   device: NVIDIA A100-PCIE-40GB, 42.4 GB, cuda 13.2, visible devices 1  (1.3s)
+
+--- results folder writable ---
+[ok]   results folder writable: /workspace/FineMI-enhancements/EEGNet-experiments/results/full  (0.0s)
+
+--- pairs ---
+[ok]   pairs: 28 pairs, HOC_WFE ... SAA_SFE  (0.0s)
+
+--- data (all subjects, 250 Hz) ---
+
+Found 18 subject .npz files (0.5_3hz) in /workspace/fixationcrossbaseline_0.5_3hz_MIonly; decimating by 1
+  WARNING: subject 1: 360 trials (the dataset paper has 320)
+  WARNING: subject 5: 321 trials (the dataset paper has 320)
+[ok]   data (all subjects, 250 Hz): 18 subjects, (C=62, T=1000 @ 250 Hz), trials/class 40-45, 2 warning(s)  (15.6s)
+
+--- band (0.5-3 Hz) ---
+[ok]   band (0.5-3 Hz): 68-89% of the power lies in 0.5-3 Hz  (6.3s)
+
+--- data (all subjects, 50 Hz) ---
+
+Found 18 subject .npz files (0.5_3hz) in /workspace/fixationcrossbaseline_0.5_3hz_MIonly; decimating by 5
+  WARNING: subject 1: 360 trials (the dataset paper has 320)
+  WARNING: subject 5: 321 trials (the dataset paper has 320)
+[ok]   data (all subjects, 50 Hz): 18 subjects, (C=62, T=200 @ 50 Hz), trials/class 40-45, 2 warning(s)  (14.4s)
+
+--- model eegnet_250 (EEGNet 250 Hz): parameters, every window ---
+  eegnet_250   800 ms  T= 200  pooled steps   6  params 2,778  peak 0.11 GB
+  eegnet_250  1500 ms  T= 375  pooled steps  11  params 2,938  peak 0.14 GB
+  eegnet_250  3000 ms  T= 750  pooled steps  23  params 3,322  peak 0.22 GB
+  eegnet_250  4000 ms  T=1000  pooled steps  31  params 3,578  peak 0.27 GB
+[ok]   model eegnet_250 (EEGNet 250 Hz): parameters, every window: 2,778 / 2,938 / 3,322 / 3,578 parameters as expected; forward, backward and Adam step ok at every window  (0.8s)
+
+--- determinism eegnet_250 ---
+[ok]   determinism eegnet_250: bit-identical weights after 3 training steps  (0.2s)
+
+--- model eegnet_50 (EEGNet 50 Hz): parameters, every window ---
+  eegnet_50   800 ms  T=  40  pooled steps   5  params 1,818  peak 0.08 GB
+  eegnet_50  1500 ms  T=  75  pooled steps   9  params 1,946  peak 0.08 GB
+  eegnet_50  3000 ms  T= 150  pooled steps  18  params 2,234  peak 0.10 GB
+  eegnet_50  4000 ms  T= 200  pooled steps  25  params 2,458  peak 0.11 GB
+[ok]   model eegnet_50 (EEGNet 50 Hz): parameters, every window: 1,818 / 1,946 / 2,234 / 2,458 parameters as expected; forward, backward and Adam step ok at every window  (0.1s)
+
+--- determinism eegnet_50 ---
+[ok]   determinism eegnet_50: bit-identical weights after 3 training steps  (0.1s)
+
+========================================================================
+  [ok  ] packages: python 3.12.15, torch 2.14.1+cu132, numpy 2.0.2, scipy 1.13.1, sklearn 1.6.1, pandas 2.3.3
+  [ok  ] device: NVIDIA A100-PCIE-40GB, 42.4 GB, cuda 13.2, visible devices 1
+  [ok  ] results folder writable: /workspace/FineMI-enhancements/EEGNet-experiments/results/full
+  [ok  ] pairs: 28 pairs, HOC_WFE ... SAA_SFE
+  [ok  ] data (all subjects, 250 Hz): 18 subjects, (C=62, T=1000 @ 250 Hz), trials/class 40-45, 2 warning(s)
+  [ok  ] band (0.5-3 Hz): 68-89% of the power lies in 0.5-3 Hz
+  [ok  ] data (all subjects, 50 Hz): 18 subjects, (C=62, T=200 @ 50 Hz), trials/class 40-45, 2 warning(s)
+  [ok  ] model eegnet_250 (EEGNet 250 Hz): parameters, every window: 2,778 / 2,938 / 3,322 / 3,578 parameters as expected; forward, backward and Adam step ok at every window
+  [ok  ] determinism eegnet_250: bit-identical weights after 3 training steps
+  [ok  ] model eegnet_50 (EEGNet 50 Hz): parameters, every window: 1,818 / 1,946 / 2,234 / 2,458 parameters as expected; forward, backward and Adam step ok at every window
+  [ok  ] determinism eegnet_50: bit-identical weights after 3 training steps
+========================================================================
+PREFLIGHT PASSED
+
+Step 2: training Fri Nov  6 06:24:33 UTC 2026
+GPU 0: pairs=[HOC_SFE WFE_EPS WFE_SPS WFE_SFE WAA_EFE WAA_SAA EPS_EFE EPS_SAA EFE_SPS EFE_SFE SPS_SFE] -> results/full/logs/gpu0_full_20261106_062351.log
+GPU 1: pairs=[WFE_WAA WFE_EFE WFE_SAA WAA_EPS WAA_SPS WAA_SFE EPS_SPS EPS_SFE EFE_SAA SPS_SAA SAA_SFE] -> results/full/logs/gpu1_full_20261106_062351.log
+Workers launched: PIDs 1309 1310  (follow one with: tail -f results/full/logs/gpu0_full_20261106_062351.log)

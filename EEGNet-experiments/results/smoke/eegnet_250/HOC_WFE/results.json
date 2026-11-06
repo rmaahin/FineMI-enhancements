@@ -1,0 +1,69 @@
+{
+  "pair": "HOC/WFE",
+  "class_a": 0,
+  "class_b": 1,
+  "windows": [
+    800,
+    1500,
+    3000,
+    4000
+  ],
+  "seed": 42,
+  "gpu": "NVIDIA A100-PCIE-40GB",
+  "torch": "2.14.1+cu132",
+  "model": "eegnet_250",
+  "mode": "smoke",
+  "band": "0.5_3hz",
+  "dataset_root": "/workspace/fixationcrossbaseline_0.5_3hz_MIonly",
+  "pipeline_version": 1,
+  "decim": 1,
+  "orig_sampling_rate": 250,
+  "sampling_rate": 250,
+  "window_samples": [
+    200,
+    375,
+    750,
+    1000
+  ],
+  "n_folds": 2,
+  "n_epochs": 2,
+  "n_params": {
+    "800": 2778,
+    "1500": 2938,
+    "3000": 3322,
+    "4000": 3578
+  },
+  "model_cfg": {
+    "F1": 8,
+    "D": 2,
+    "F2": 16,
+    "drop_prob": 0.5,
+    "bn_momentum": 0.1,
+    "bn_eps": 0.001,
+    "max_norm_depthwise": 1.0,
+    "max_norm_linear": 0.25,
+    "kern_length": 125,
+    "pool1": 4,
+    "sep_kern_length": 16,
+    "pool2": 8
+  },
+  "seconds": 7.7,
+  "subjects": [
+    1,
+    2
+  ],
+  "matrix": [
+    [
+      54.44444444444444,
+      52.22222222222223,
+      48.888888888888886,
+      58.88888888888889
+    ],
+    [
+      62.5,
+      50.0,
+      52.5,
+      55.00000000000001
+    ]
+  ]
+}

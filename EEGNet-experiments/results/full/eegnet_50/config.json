@@ -1,0 +1,50 @@
+{
+  "model": "eegnet_50",
+  "dataset_root": "/workspace/fixationcrossbaseline_0.5_3hz_MIonly",
+  "band_tag": "0.5_3hz",
+  "orig_sampling_rate": 250,
+  "decim": 5,
+  "sampling_rate": 50,
+  "n_channels": 62,
+  "test_time_windows_ms": [
+    800,
+    1500,
+    3000,
+    4000
+  ],
+  "joint_names": [
+    "HOC",
+    "WFE",
+    "WAA",
+    "EPS",
+    "EFE",
+    "SPS",
+    "SAA",
+    "SFE"
+  ],
+  "n_folds": 5,
+  "val_size_of_train": 0.25,
+  "batch_size": 32,
+  "n_epochs": 50,
+  "lr": 0.001,
+  "weight_decay": 0.0001,
+  "noise_level": 0.15,
+  "seed": 42,
+  "eegnet": {
+    "F1": 8,
+    "D": 2,
+    "F2": 16,
+    "drop_prob": 0.5,
+    "bn_momentum": 0.1,
+    "bn_eps": 0.001,
+    "max_norm_depthwise": 1.0,
+    "max_norm_linear": 0.25,
+    "kern_length": 25,
+    "pool1": 2,
+    "sep_kern_length": 8,
+    "pool2": 4
+  },
+  "results_root": "/workspace/FineMI-enhancements/EEGNet-experiments/results/full/eegnet_50",
+  "_max_subjects": null,
+  "_mode": "full"
+}
