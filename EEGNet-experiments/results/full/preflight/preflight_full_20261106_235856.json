@@ -1,6 +1,6 @@
 {
   "packages": "python 3.12.15, torch 2.14.1+cu132, numpy 2.0.2, scipy 1.13.1, sklearn 1.6.1, pandas 2.3.3",
-  "device": "NVIDIA A100-PCIE-40GB, 42.4 GB, cuda 13.2, visible devices 1",
+  "device": "NVIDIA GeForce RTX 4060, 8.2 GB, cuda 13.2, visible devices 1",
   "data": {
     "n_subjects": 18,
     "shapes": [
@@ -242,7 +242,7 @@
     {
       "status": "ok",
       "name": "device",
-      "detail": "NVIDIA A100-PCIE-40GB, 42.4 GB, cuda 13.2, visible devices 1"
+      "detail": "NVIDIA GeForce RTX 4060, 8.2 GB, cuda 13.2, visible devices 1"
     },
     {
       "status": "ok",

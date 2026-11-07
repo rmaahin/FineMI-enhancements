@@ -1,0 +1,125 @@
+Run:          smoke_20261106_235618
+Host:         a23cfaee7171
+Started:      Fri Nov  6 23:56:18 UTC 2026
+Mode:         smoke
+Models:       eegnet_250 eegnet_50 (EEGNet-8,2, 0.5-3 Hz)
+Pairs:        3 selected, 3 still to do
+Pending:      WAA_SAA HOC_WFE EPS_SPS
+Overwrite:    1
+Dataset:      /workspace/fixationcrossbaseline_0.5_3hz_MIonly (18 files)
+Results:      /workspace/FineMI-enhancements/EEGNet-experiments/results/smoke
+GPUs:
+GPU 0: NVIDIA GeForce RTX 4060 (UUID: GPU-5175f5db-792f-7713-b2e9-2338940c9169)
+GPU 1: NVIDIA GeForce RTX 4060 (UUID: GPU-65a73736-6cd9-b901-de0a-3f85d1191e72)
+
+Step 1: preflight Fri Nov  6 23:56:18 UTC 2026
+========================================================================
+PREFLIGHT  models=eegnet_250 (EEGNet 250 Hz), eegnet_50 (EEGNet 50 Hz)  band=0.5-3 Hz (0.5_3hz)
+  dataset=/workspace/fixationcrossbaseline_0.5_3hz_MIonly
+  eegnet_250: 250 Hz (decim 1) | windows [800, 1500, 3000, 4000] ms = [200, 375, 750, 1000] samples from imagery onset
+  eegnet_50: 50 Hz (decim 5) | windows [800, 1500, 3000, 4000] ms = [40, 75, 150, 200] samples from imagery onset
+  full: 5 folds x 50 epochs
+========================================================================
+
+--- packages ---
+[ok]   packages: python 3.12.15, torch 2.14.1+cu132, numpy 2.0.2, scipy 1.13.1, sklearn 1.6.1, pandas 2.3.3  (2.3s)
+
+--- device ---
+[ok]   device: NVIDIA GeForce RTX 4060, 8.2 GB, cuda 13.2, visible devices 1  (4.4s)
+
+--- results folder writable ---
+[ok]   results folder writable: /workspace/FineMI-enhancements/EEGNet-experiments/results/smoke  (0.0s)
+
+--- pairs ---
+[ok]   pairs: 28 pairs, HOC_WFE ... SAA_SFE  (0.0s)
+
+--- data (all subjects, 250 Hz) ---
+
+Found 18 subject .npz files (0.5_3hz) in /workspace/fixationcrossbaseline_0.5_3hz_MIonly; decimating by 1
+  WARNING: subject 1: 360 trials (the dataset paper has 320)
+  WARNING: subject 5: 321 trials (the dataset paper has 320)
+[ok]   data (all subjects, 250 Hz): 18 subjects, (C=62, T=1000 @ 250 Hz), trials/class 40-45, 2 warning(s)  (27.1s)
+
+--- band (0.5-3 Hz) ---
+[ok]   band (0.5-3 Hz): 68-89% of the power lies in 0.5-3 Hz  (22.9s)
+
+--- data (all subjects, 50 Hz) ---
+
+Found 18 subject .npz files (0.5_3hz) in /workspace/fixationcrossbaseline_0.5_3hz_MIonly; decimating by 5
+  WARNING: subject 1: 360 trials (the dataset paper has 320)
+  WARNING: subject 5: 321 trials (the dataset paper has 320)
+[ok]   data (all subjects, 50 Hz): 18 subjects, (C=62, T=200 @ 50 Hz), trials/class 40-45, 2 warning(s)  (16.8s)
+
+--- model eegnet_250 (EEGNet 250 Hz): parameters, every window ---
+  eegnet_250   800 ms  T= 200  pooled steps   6  params 2,778  peak 0.11 GB
+  eegnet_250  1500 ms  T= 375  pooled steps  11  params 2,938  peak 0.14 GB
+  eegnet_250  3000 ms  T= 750  pooled steps  23  params 3,322  peak 0.22 GB
+  eegnet_250  4000 ms  T=1000  pooled steps  31  params 3,578  peak 0.27 GB
+[ok]   model eegnet_250 (EEGNet 250 Hz): parameters, every window: 2,778 / 2,938 / 3,322 / 3,578 parameters as expected; forward, backward and Adam step ok at every window  (1.6s)
+
+--- determinism eegnet_250 ---
+[ok]   determinism eegnet_250: bit-identical weights after 3 training steps  (0.2s)
+
+--- model eegnet_50 (EEGNet 50 Hz): parameters, every window ---
+  eegnet_50   800 ms  T=  40  pooled steps   5  params 1,818  peak 0.08 GB
+  eegnet_50  1500 ms  T=  75  pooled steps   9  params 1,946  peak 0.08 GB
+  eegnet_50  3000 ms  T= 150  pooled steps  18  params 2,234  peak 0.10 GB
+  eegnet_50  4000 ms  T= 200  pooled steps  25  params 2,458  peak 0.11 GB
+[ok]   model eegnet_50 (EEGNet 50 Hz): parameters, every window: 1,818 / 1,946 / 2,234 / 2,458 parameters as expected; forward, backward and Adam step ok at every window  (0.1s)
+
+--- determinism eegnet_50 ---
+[ok]   determinism eegnet_50: bit-identical weights after 3 training steps  (0.0s)
+  full-mode fold: train 108 (incl. augmentation), val 18, test 18; 18 subjects x 5 folds
+
+--- timing projection (full mode) ---
+  eegnet_250        800 ms: epoch    24.4 ms ->   1.92 min per pair
+  eegnet_250       1500 ms: epoch    34.4 ms ->   2.71 min per pair
+  eegnet_250       3000 ms: epoch    64.5 ms ->   5.08 min per pair
+  eegnet_250       4000 ms: epoch    83.5 ms ->   6.58 min per pair
+  eegnet_50         800 ms: epoch    16.9 ms ->   1.33 min per pair
+  eegnet_50        1500 ms: epoch    16.8 ms ->   1.32 min per pair
+  eegnet_50        3000 ms: epoch    20.7 ms ->   1.63 min per pair
+  eegnet_50        4000 ms: epoch    23.1 ms ->   1.82 min per pair
+[ok]   timing projection (full mode): about 22 min per pair x 14 pair(s) per device -> about 5.8 h for a full-mode run of 28 pair(s) on 2 device(s)  (2.2s)
+
+========================================================================
+  [ok  ] packages: python 3.12.15, torch 2.14.1+cu132, numpy 2.0.2, scipy 1.13.1, sklearn 1.6.1, pandas 2.3.3
+  [ok  ] device: NVIDIA GeForce RTX 4060, 8.2 GB, cuda 13.2, visible devices 1
+  [ok  ] results folder writable: /workspace/FineMI-enhancements/EEGNet-experiments/results/smoke
+  [ok  ] pairs: 28 pairs, HOC_WFE ... SAA_SFE
+  [ok  ] data (all subjects, 250 Hz): 18 subjects, (C=62, T=1000 @ 250 Hz), trials/class 40-45, 2 warning(s)
+  [ok  ] band (0.5-3 Hz): 68-89% of the power lies in 0.5-3 Hz
+  [ok  ] data (all subjects, 50 Hz): 18 subjects, (C=62, T=200 @ 50 Hz), trials/class 40-45, 2 warning(s)
+  [ok  ] model eegnet_250 (EEGNet 250 Hz): parameters, every window: 2,778 / 2,938 / 3,322 / 3,578 parameters as expected; forward, backward and Adam step ok at every window
+  [ok  ] determinism eegnet_250: bit-identical weights after 3 training steps
+  [ok  ] model eegnet_50 (EEGNet 50 Hz): parameters, every window: 1,818 / 1,946 / 2,234 / 2,458 parameters as expected; forward, backward and Adam step ok at every window
+  [ok  ] determinism eegnet_50: bit-identical weights after 3 training steps
+  [ok  ] timing projection (full mode): about 22 min per pair x 14 pair(s) per device -> about 5.8 h for a full-mode run of 28 pair(s) on 2 device(s)
+========================================================================
+PREFLIGHT PASSED
+
+Step 2: training Fri Nov  6 23:57:40 UTC 2026
+GPU 0: pairs=[WAA_SAA EPS_SPS] -> results/smoke/logs/gpu0_smoke_20261106_235618.log
+GPU 1: pairs=[HOC_WFE] -> results/smoke/logs/gpu1_smoke_20261106_235618.log
+Workers launched: PIDs 2248 2249  (follow one with: tail -f results/smoke/logs/gpu0_smoke_20261106_235618.log)
+Workers finished: Fri Nov  6 23:58:43 UTC 2026
+
+Step 3: checking outputs Fri Nov  6 23:58:43 UTC 2026
+check_results (smoke): 6/6 pair runs present, expecting 2 subjects each
+CHECK PASSED: every run is complete
+
+Step 4: summary Fri Nov  6 23:58:44 UTC 2026
+summarize: written /workspace/FineMI-enhancements/EEGNet-experiments/results/smoke/summary/summary.md
+
+Mean accuracy over the pairs:
+                800 ms  1500 ms  3000 ms  4000 ms    Avg
+EEGNet 250 Hz    56.94    56.81    55.12    57.87  56.68
+EEGNet 50 Hz     54.88    50.95    57.50    59.54  55.72
+LEAN             52.06    50.49    46.90    49.61  49.76
+EEG Conformer    60.09    58.68    54.38    53.91  56.77
+ShallowConvNet   50.95    49.17    51.85    51.53  50.87
+Resume check passed: finished runs are recognized and would be skipped.
+
+SMOKE TEST PASSED Fri Nov  6 23:58:47 UTC 2026
+Full-run projection: see 'timing projection' in results/smoke/logs/preflight_smoke_20261106_235618.log
+Next: bash run_vast.sh full

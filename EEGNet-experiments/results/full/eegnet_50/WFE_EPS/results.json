@@ -9,7 +9,7 @@
     4000
   ],
   "seed": 42,
-  "gpu": "NVIDIA A100-PCIE-40GB",
+  "gpu": "NVIDIA GeForce RTX 4060",
   "torch": "2.14.1+cu132",
   "model": "eegnet_50",
   "mode": "full",
@@ -47,7 +47,7 @@
     "sep_kern_length": 8,
     "pool2": 4
   },
-  "seconds": 548.2,
+  "seconds": 422.2,
   "subjects": [
     1,
     2,

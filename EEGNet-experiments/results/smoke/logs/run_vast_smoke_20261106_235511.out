@@ -1,0 +1,2 @@
+No subject*_eeg_epochs_0.5_3hz_*.npz files in DATASET_ROOT=/workspace/fixationcrossbaseline_0.5_3hz_MIonly
+(set DATASET_ROOT, or BAND_TAG in src/config.py if the files are named differently)
