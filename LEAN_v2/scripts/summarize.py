@@ -29,7 +29,8 @@ import pandas as pd
 from scipy import stats
 
 from src.config import (BAND_LABEL, FINAL, LADDER, LOO, MODE_OVERRIDES, MODEL_LABELS, MODELS,
-                        PROJECT_ROOT, REFERENCES, RESULTS_ROOT_DEFAULT, TRAINING_ONLY,
+                        PROJECT_ROOT, R5_STUDY, REFERENCES, RESULTS_ROOT_DEFAULT,
+                        TRAINING_ONLY,
                         expand_models, make_config, mode_root, pair_slug)
 from src.param_budget import expected_params
 from scripts.run_selected_pairs import resolve_pairs
@@ -182,6 +183,25 @@ def main():
         if a in runs and b in runs:
             base.append((a, b, f"{name(a)} vs {name(b)}"))
     sections.append(('Baselines and reproduction checks', base))
+
+    r5 = 'lean_v2_r5'
+    dec = []
+    for a, b, label in (
+            ('lean_v2_r4_sched', 'lean_v2_r4', 'fixed schedule alone (R4 + schedule vs R4)'),
+            ('lean_v2_r4_reg', 'lean_v2_r4', 'regularisation alone (R4 + reg vs R4)'),
+            (r5, 'lean_v2_r4_sched', 'regularisation, given the schedule'),
+            (r5, 'lean_v2_r4_reg', 'schedule, given the regularisation'),
+            *[(r5, m, f"R5 minus R5 without {R5_STUDY[m][0].split(' - ', 1)[1]}")
+              for m in R5_STUDY if m.startswith('lean_v2_r5_loo_')],
+            ('lean_schedule', 'lean_v2_r0', 'LEAN + schedule vs LEAN'),
+            ('lean_r5recipe', 'lean_v2_r0', 'LEAN + R5 recipe vs LEAN'),
+            (r5, 'lean_r5recipe', 'R5 vs LEAN, both with the R5 recipe (architecture)'),
+            ('eegnet_50_sched', 'eegnet_50', 'EEGNet + schedule vs EEGNet'),
+            (r5, 'eegnet_50', 'R5 vs EEGNet (both rerun here)'),
+            (r5, 'eegnet_50_sched', 'R5 vs EEGNet + schedule (same schedule)')):
+        if a in runs and b in runs:
+            dec.append((a, b, label))
+    sections.append(('Decomposing R5 (positive = A better)', dec))
 
     vs_ref = [(m, EEGNET_REF, name(m)) for m in own if EEGNET_REF in runs]
     sections.append((f'Every preset minus {EEGNET_REF} (positive = beats EEGNet)', vs_ref))

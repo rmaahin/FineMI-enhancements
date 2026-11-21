@@ -13,7 +13,9 @@ Preset groups (pass a group name or model names to --models / MODELS=):
   loo        leave-one-out: the final model (R7) minus one change at a time
   training   LEAN's architecture with only training changes
   baselines  EEGNet-8,2 at 50 Hz, with its original recipe and with R7's recipe
-  all        everything above
+  r5         R5 decomposed: regularisation vs schedule, R5 minus each architecture
+             change, LEAN and EEGNet with the same schedule
+  all       everything above
 
 Modes:
   smoke    2 subjects, 2 folds, 2 epochs, all 4 windows - proves the code runs
@@ -189,6 +191,28 @@ PRESETS['eegnet_50'] = dict(label='EEGNet 50 Hz', arch=EEGNET50_ARCH, train=LEAN
 PRESETS['eegnet_50_recipe'] = dict(label='EEGNet 50 Hz + R7 recipe', arch=EEGNET50_ARCH,
                                    train=_T7)
 
+# ---- Decomposing R5 (added after the ladder screen) --------------------------------
+# The ladder screen put R5 at 65.17% (R4 56.49%, EEGNet 63.60%) and SupCon / crops below
+# it, so R5 is the model to explain. R5 added two things at once, regularisation and the
+# fixed schedule: split them, remove each architecture change from R5, and give LEAN and
+# EEGNet the same schedule so the comparison with EEGNet is like for like.
+_R5_LEAN_ARCH = _w(LEAN_ARCH, act='elu', max_norm=True, p_conv=0.25)
+R5_STUDY = {
+    'lean_v2_r4_sched': ('R4 + fixed schedule only', _A4, _T5),
+    'lean_v2_r4_reg': ('R4 + ELU/max-norm/dropout only', _A5, LEAN_TRAIN),
+    'lean_v2_r5_loo_fusion': ('R5 - separable fusion', _w(_A5, fusion='lean'), _T5),
+    'lean_v2_r5_loo_tcn': ('R5 - TCN (transformer)', _w(_A5, context='transformer'), _T5),
+    'lean_v2_r5_loo_readout': ('R5 - last-step readout (GAP+MLP)',
+                               _w(_A5, readout='gap_mlp'), _T5),
+    'lean_v2_r5_loo_shared': ('R5 - shared temporal (and depth att.)',
+                              _w(_A5, temporal='per_electrode', depth_attention=False), _T5),
+    'lean_v2_r5_loo_depthatt': ('R5 - depth attention', _w(_A5, depth_attention=False), _T5),
+    'lean_r5recipe': ('LEAN + R5 recipe (reg + fixed schedule)', _R5_LEAN_ARCH, _T5),
+    'eegnet_50_sched': ('EEGNet 50 Hz + fixed schedule', EEGNET50_ARCH, _T5),
+}
+for _name, (_label, _arch, _train) in R5_STUDY.items():
+    PRESETS[_name] = dict(label=_label, arch=_arch, train=_train)
+
 MODELS = tuple(PRESETS)
 MODEL_LABELS = {m: p['label'] for m, p in PRESETS.items()}
 MODEL_GROUPS = {
@@ -196,6 +220,10 @@ MODEL_GROUPS = {
     'loo': list(LOO),
     'training': list(TRAINING_ONLY),
     'baselines': ['eegnet_50', 'eegnet_50_recipe'],
+    # R5 study: the new presets plus the reruns they are compared with (lean_v2_r0 /
+    # r4 / r5 are skipped if the ladder screen already finished them)
+    'r5': ['lean_v2_r0', 'lean_v2_r4', 'lean_v2_r5'] + list(R5_STUDY)
+          + ['lean_schedule', 'eegnet_50'],
     'all': list(MODELS),
 }
 

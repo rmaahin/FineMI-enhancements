@@ -40,6 +40,15 @@ positional embedding).
 it shares the GPU type) and `eegnet_50_recipe` (with R7's training recipe;
 1,786 / 1,914 / 2,170 / 2,362 parameters, crops shorten the classifier).
 
+**R5 study** (`r5`, added after the ladder screen: R5 65.17% vs EEGNet 63.60%, SupCon and
+crops hurt): `lean_v2_r4_sched` (R4 + fixed schedule only) and `lean_v2_r4_reg` (R4 +
+ELU/max-norm/dropout only) split R5's two changes; `lean_v2_r5_loo_{fusion, tcn,
+readout, shared, depthatt}` remove one architecture change from R5 (9,862 / 6,662 /
+10,918 / 14,440 / 9,278); `lean_r5recipe` (LEAN + R5's regularisation and schedule,
+25,752) and `eegnet_50_sched` (EEGNet + fixed schedule) give the references the same
+recipe. The group also lists `lean_v2_r0/r4/r5`, `lean_schedule` and `eegnet_50`, so
+the comparisons run on the same GPU; finished runs are skipped.
+
 ## Modes
 
 | Mode | Subjects | Folds | Epochs | Windows | Pairs |
@@ -77,6 +86,7 @@ restricted to the same pairs and windows.
 
    WORKERS_PER_GPU=3 bash run_vast.sh smoke     # must end with SMOKE TEST PASSED
    WORKERS_PER_GPU=3 bash run_vast.sh screen    # the ladder (R0-R7)
+   MODELS=r5 WORKERS_PER_GPU=3 bash run_vast.sh screen     # decompose R5
    MODELS="loo training baselines" WORKERS_PER_GPU=3 bash run_vast.sh screen
    MODELS="lean_v2_r7 lean_v2_r2 eegnet_50_recipe" WORKERS_PER_GPU=3 bash run_vast.sh full
    ```
