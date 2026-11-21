@@ -16,6 +16,10 @@
 #   VENV             virtualenv to activate (default /workspace/venv; skipped if absent)
 #   PAIRS            smoke: "WAA_SAA HOC_WFE EPS_SPS" (default); full: "all" (default)
 #   MODELS           "eegnet_250 eegnet_50" (default); pass one to run just that rate
+#   WORKERS_PER_GPU  training processes per GPU (default 1). EEGNet is tiny and leaves
+#                    the GPU mostly idle, so 2-3 workers per GPU give near-linear
+#                    speed-ups. Each worker still runs deterministically (same numbers).
+#                    Each worker needs ~5 GB of RAM (it holds the data at both rates).
 #   OVERWRITE        1 = re-train finished runs (default: 1 smoke, 0 full)
 #   FULL_WALLTIME_H  smoke only: fail if the projected full run exceeds this many hours
 #                    (default 0 = just report the projection)
@@ -42,6 +46,11 @@ esac
 MODELS="${MODELS:-eegnet_250 eegnet_50}"
 VENV="${VENV:-/workspace/venv}"
 FULL_WALLTIME_H="${FULL_WALLTIME_H:-0}"
+WORKERS_PER_GPU="${WORKERS_PER_GPU:-1}"
+if ! [[ "$WORKERS_PER_GPU" =~ ^[1-9][0-9]*$ ]]; then
+    echo "WORKERS_PER_GPU must be a positive integer (got '$WORKERS_PER_GPU')" >&2
+    exit 1
+fi
 
 # ---- Paths -------------------------------------------------------------------
 PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -110,14 +119,18 @@ echo "Models:       ${MODEL_LIST[*]} (EEGNet-8,2, $BAND_LABEL)"
 echo "Pairs:        ${#ALL_PAIRS[@]} selected, ${#PENDING_PAIRS[@]} still to do"
 echo "Pending:      ${PENDING_PAIRS[*]:-(none)}"
 echo "Overwrite:    $OVERWRITE"
+echo "Workers/GPU:  $WORKERS_PER_GPU ($((NGPU * WORKERS_PER_GPU)) training processes on $NGPU GPU(s))"
 echo "Dataset:      $DATASET_ROOT (${#DATA_FILES[@]} files)"
 echo "Results:      $PROJECT_DIR/results/$MODE"
 echo "GPUs:"
 nvidia-smi -L
 
 # ---- Step 1: preflight (stops before any training if it fails) ------------------
+# The projection treats every worker as a separate device, so with WORKERS_PER_GPU > 1
+# it is optimistic (workers sharing a GPU are not fully independent).
 PREFLIGHT_ARGS=(--dataset-root "$DATASET_ROOT" --mode "$MODE" --models "${MODEL_LIST[@]}"
-                --n-gpus "$NGPU" --project-pairs 28 --walltime-hours "$FULL_WALLTIME_H")
+                --n-gpus "$((NGPU * WORKERS_PER_GPU))" --project-pairs 28
+                --walltime-hours "$FULL_WALLTIME_H")
 if [ "$MODE" = "full" ]; then
     PREFLIGHT_ARGS+=(--skip-timing)
 fi
@@ -133,22 +146,30 @@ cat "$LOGDIR/preflight_${RUN_TAG}.log"
 
 FAIL=0
 
-# ---- Step 2: training, pairs dealt round-robin over the GPUs ---------------------
+# ---- Step 2: training, pairs dealt round-robin over the workers ------------------
+# Worker slot s runs on GPU s % NGPU, so consecutive pairs land on different GPUs.
 echo ""
 echo "Step 2: training $(date)"
 if [ ${#PENDING_PAIRS[@]} -gt 0 ]; then
+    NSLOTS=$((NGPU * WORKERS_PER_GPU))
     GROUP_PAIRS=()
     for i in "${!PENDING_PAIRS[@]}"; do
-        g=$((i % NGPU))
-        GROUP_PAIRS[g]="${GROUP_PAIRS[g]:-} ${PENDING_PAIRS[i]}"
+        s=$((i % NSLOTS))
+        GROUP_PAIRS[s]="${GROUP_PAIRS[s]:-} ${PENDING_PAIRS[i]}"
     done
     PIDS=()
-    for g in "${!GROUP_PAIRS[@]}"; do
-        LOG="${LOGDIR}/gpu${g}_${RUN_TAG}.log"
-        echo "GPU $g: pairs=[${GROUP_PAIRS[g]# }] -> $LOG"
+    for s in "${!GROUP_PAIRS[@]}"; do
+        g=$((s % NGPU))
+        w=$((s / NGPU))
+        if [ "$WORKERS_PER_GPU" -eq 1 ]; then
+            LOG="${LOGDIR}/gpu${g}_${RUN_TAG}.log"
+        else
+            LOG="${LOGDIR}/gpu${g}_w${w}_${RUN_TAG}.log"
+        fi
+        echo "GPU $g worker $w: pairs=[${GROUP_PAIRS[s]# }] -> $LOG"
         # word splitting of the pair group is intentional
         CUDA_VISIBLE_DEVICES=$g python -m scripts.run_selected_pairs \
-            --pairs ${GROUP_PAIRS[g]} \
+            --pairs ${GROUP_PAIRS[s]} \
             --models "${MODEL_LIST[@]}" \
             --mode "$MODE" \
             --dataset-root "$DATASET_ROOT" \
@@ -156,7 +177,7 @@ if [ ${#PENDING_PAIRS[@]} -gt 0 ]; then
             > "$LOG" 2>&1 &
         PIDS+=($!)
     done
-    echo "Workers launched: PIDs ${PIDS[*]}  (follow one with: tail -f ${LOGDIR}/gpu0_${RUN_TAG}.log)"
+    echo "Workers launched: PIDs ${PIDS[*]}  (follow one with: tail -f ${LOGDIR}/gpu0_*${RUN_TAG}.log)"
     for pid in "${PIDS[@]}"; do
         wait "$pid" || FAIL=1
     done

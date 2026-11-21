@@ -66,6 +66,10 @@ scripts/summarize.py           both models' numbers, and the paired comparisons
    `T=200 @ 50 Hz` (warnings only for subjects 1 and 5), that `band` reports most of the
    power in 0.5-3 Hz, and that both models pass the parameter check. Also note the
    `timing projection`. To run one rate only: `MODELS=eegnet_50 bash run_vast.sh full`.
+   EEGNet leaves the GPU mostly idle, so run several workers per GPU for a near-linear
+   speed-up (same numbers, ~5 GB RAM per worker; check `free -g`):
+   `WORKERS_PER_GPU=3 bash run_vast.sh full`. To stop a run, Ctrl-C the script AND
+   `pkill -f scripts.run_selected_pairs` (the background workers ignore Ctrl-C).
 5. **Download** from your PC, then destroy the instance:
    ```bash
    cd "/c/Users/rmaah/Documents/Summer 2026/Fine MI/FineMI-enhancements/EEGNet-experiments"
