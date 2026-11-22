@@ -49,6 +49,10 @@ readout, shared, depthatt}` remove one architecture change from R5 (9,862 / 6,66
 recipe. The group also lists `lean_v2_r0/r4/r5`, `lean_schedule` and `eegnet_50`, so
 the comparisons run on the same GPU; finished runs are skipped.
 
+**Final** (`final`, chosen from the R5 screen): `lean_v2_final` = R5 without depth
+attention (9,278 parameters), and `eegnet_50_sched` (EEGNet with the same fixed
+schedule); both are also compared with the EEGNet 50 Hz and LEAN paper runs.
+
 ## Modes
 
 | Mode | Subjects | Folds | Epochs | Windows | Pairs |
@@ -88,7 +92,7 @@ restricted to the same pairs and windows.
    WORKERS_PER_GPU=3 bash run_vast.sh screen    # the ladder (R0-R7)
    MODELS=r5 WORKERS_PER_GPU=3 bash run_vast.sh screen     # decompose R5
    MODELS="loo training baselines" WORKERS_PER_GPU=3 bash run_vast.sh screen
-   MODELS="lean_v2_r7 lean_v2_r2 eegnet_50_recipe" WORKERS_PER_GPU=3 bash run_vast.sh full
+   MODELS=final WORKERS_PER_GPU=3 bash run_vast.sh full    # lean_v2_final + eegnet_50_sched, 28 pairs x 4 windows
    ```
    In the smoke preflight check that `LEAN layout (lean_v2_r0)` passes, that every
    `model ...` line shows the predicted parameters, and read the `timing projection`

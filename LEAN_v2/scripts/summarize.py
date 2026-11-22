@@ -203,6 +203,12 @@ def main():
             dec.append((a, b, label))
     sections.append(('Decomposing R5 (positive = A better)', dec))
 
+    fin = []
+    for b in ('eegnet_50_sched', 'eegnet_50', EEGNET_REF, 'lean_v2_r0', LEAN_REF):
+        if 'lean_v2_final' in runs and b in runs:
+            fin.append(('lean_v2_final', b, f"LEAN v2 (final) vs {name(b)}"))
+    sections.append(('Final model (positive = LEAN v2 better)', fin))
+
     vs_ref = [(m, EEGNET_REF, name(m)) for m in own if EEGNET_REF in runs]
     sections.append((f'Every preset minus {EEGNET_REF} (positive = beats EEGNet)', vs_ref))
 

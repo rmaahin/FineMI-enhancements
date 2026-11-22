@@ -213,6 +213,12 @@ R5_STUDY = {
 for _name, (_label, _arch, _train) in R5_STUDY.items():
     PRESETS[_name] = dict(label=_label, arch=_arch, train=_train)
 
+# ---- Final model (chosen from the R5 screen) ------------------------------------------
+# R5 without depth attention (no effect in the screen: +0.01 pp), 9,278 parameters.
+# Same arch + train as lean_v2_r5_loo_depthatt, under its own name for the full run.
+PRESETS['lean_v2_final'] = dict(label='LEAN v2 (final)', arch=_w(_A5, depth_attention=False),
+                                train=_T5)
+
 MODELS = tuple(PRESETS)
 MODEL_LABELS = {m: p['label'] for m, p in PRESETS.items()}
 MODEL_GROUPS = {
@@ -224,6 +230,9 @@ MODEL_GROUPS = {
     # r4 / r5 are skipped if the ladder screen already finished them)
     'r5': ['lean_v2_r0', 'lean_v2_r4', 'lean_v2_r5'] + list(R5_STUDY)
           + ['lean_schedule', 'eegnet_50'],
+    # full run: the final model and EEGNet with the same fixed schedule; summarize.py also
+    # compares with the EEGNet 50 Hz and LEAN paper runs (REFERENCES)
+    'final': ['lean_v2_final', 'eegnet_50_sched'],
     'all': list(MODELS),
 }
 
