@@ -1,0 +1,107 @@
+{
+  "pair": "HOC/WFE",
+  "class_a": 0,
+  "class_b": 1,
+  "windows": [
+    800,
+    1500,
+    3000,
+    4000
+  ],
+  "seed": 42,
+  "gpu": "NVIDIA GeForce RTX 3090",
+  "torch": "2.14.1+cu130",
+  "model": "lean_v2_r6",
+  "model_label": "R6 +SupCon",
+  "mode": "smoke",
+  "band": "0.5_3hz",
+  "dataset_root": "/workspace/fixationcrossbaseline_0.5_3hz_MIonly",
+  "pipeline_version": 1,
+  "preset_hash": "9ac115288c2f",
+  "decim": 5,
+  "orig_sampling_rate": 250,
+  "sampling_rate": 50,
+  "window_samples": [
+    40,
+    75,
+    150,
+    200
+  ],
+  "n_folds": 2,
+  "n_epochs": 2,
+  "n_params": {
+    "800": 9286,
+    "1500": 9286,
+    "3000": 9286,
+    "4000": 9286
+  },
+  "arch": {
+    "arch": "lean_v2",
+    "temporal": "shared",
+    "mtc_kernels": [
+      7,
+      15,
+      31
+    ],
+    "mtc_filters": 16,
+    "shared_filters": 4,
+    "depth_mult": 2,
+    "depth_attention": true,
+    "da_kernel": 7,
+    "fusion": "separable",
+    "width": 16,
+    "lean_fusion_kernel": 3,
+    "lean_pool": 3,
+    "sep_kernel": 8,
+    "pool1": 2,
+    "pool2": 4,
+    "context": "tcn",
+    "n_heads": 4,
+    "d_ff": 64,
+    "p_att": 0.3,
+    "tcn_blocks": 3,
+    "tcn_kernel": 4,
+    "p_tcn": 0.3,
+    "refine_kernel": 5,
+    "eca_reduction": 4,
+    "readout": "last_step",
+    "embedding_dim": 32,
+    "p_proj": 0.3,
+    "classifier_hidden": 32,
+    "p_head": 0.4,
+    "act": "elu",
+    "max_norm": true,
+    "max_norm_spatial": 1.0,
+    "max_norm_linear": 0.25,
+    "p_conv": 0.25
+  },
+  "train": {
+    "n_epochs": 50,
+    "schedule": "fixed_avg",
+    "avg_last": 10,
+    "supcon_weight": 0.5,
+    "supcon_tau": 0.05,
+    "supcon_dim": 16,
+    "n_crops": 0,
+    "crop_frac": 0.9
+  },
+  "seconds": 3.4,
+  "subjects": [
+    1,
+    2
+  ],
+  "matrix": [
+    [
+      52.22222222222223,
+      47.77777777777778,
+      43.333333333333336,
+      55.55555555555556
+    ],
+    [
+      45.0,
+      50.0,
+      42.5,
+      50.0
+    ]
+  ]
+}

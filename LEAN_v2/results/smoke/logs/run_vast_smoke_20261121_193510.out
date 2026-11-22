@@ -1,0 +1,405 @@
+Run:          smoke_20261121_193510
+Host:         582d8cfb56e0
+Started:      Sat Nov 21 19:35:10 UTC 2026
+Mode:         smoke
+Presets:      21: lean_v2_r0 lean_v2_r1 lean_v2_r2 lean_v2_r3 lean_v2_r4 lean_v2_r5 lean_v2_r6 lean_v2_r7 lean_v2_loo_fusion lean_v2_loo_tcn lean_v2_loo_readout lean_v2_loo_shared lean_v2_loo_depthatt lean_v2_loo_reg lean_v2_loo_schedule lean_v2_loo_supcon lean_schedule lean_supcon lean_recipe eegnet_50 eegnet_50_recipe
+Pairs:        3 selected, 3 with work left
+Pending:      WAA_SAA HOC_WFE EPS_SPS
+Overwrite:    1
+Workers/GPU:  3 (6 training processes on 2 GPU(s))
+Dataset:      /workspace/fixationcrossbaseline_0.5_3hz_MIonly (18 files)
+Results:      /workspace/FineMI-enhancements/LEAN_v2/results/smoke
+GPU 0: NVIDIA GeForce RTX 3090 (UUID: GPU-1def84b2-025e-acc7-ff8d-6773edf71852)
+GPU 1: NVIDIA GeForce RTX 3090 (UUID: GPU-f5ac8ec4-0e4e-9f32-9b8f-2541c04a0767)
+
+Step 1: preflight Sat Nov 21 19:35:10 UTC 2026
+========================================================================
+PREFLIGHT  21 preset(s): lean_v2_r0, lean_v2_r1, lean_v2_r2, lean_v2_r3, lean_v2_r4, lean_v2_r5, lean_v2_r6, lean_v2_r7, lean_v2_loo_fusion, lean_v2_loo_tcn, lean_v2_loo_readout, lean_v2_loo_shared, lean_v2_loo_depthatt, lean_v2_loo_reg, lean_v2_loo_schedule, lean_v2_loo_supcon, lean_schedule, lean_supcon, lean_recipe, eegnet_50, eegnet_50_recipe
+  dataset=/workspace/fixationcrossbaseline_0.5_3hz_MIonly  band=0.5-3 Hz  50 Hz
+========================================================================
+
+--- packages ---
+[ok]   packages: python 3.12.15, torch 2.14.1+cu130, numpy 2.0.2, scipy 1.13.1, sklearn 1.6.1, pandas 2.3.3  (0.9s)
+
+--- device ---
+[ok]   device: NVIDIA GeForce RTX 3090, 25.3 GB, cuda 13.0, visible devices 1  (5.3s)
+
+--- results folder writable ---
+[ok]   results folder writable: /workspace/FineMI-enhancements/LEAN_v2/results/smoke  (0.0s)
+
+--- data (all subjects, 50 Hz) ---
+
+Found 18 subject .npz files (0.5_3hz) in /workspace/fixationcrossbaseline_0.5_3hz_MIonly; decimating by 5
+  WARNING: subject 1: 360 trials (the dataset paper has 320)
+  WARNING: subject 5: 321 trials (the dataset paper has 320)
+[ok]   data (all subjects, 50 Hz): 18 subjects, (C=62, T=200 @ 50 Hz, 1000 @ 250 Hz), trials/class 40-45, 2 warning(s)  (105.9s)
+
+--- band (0.5-3 Hz) ---
+[ok]   band (0.5-3 Hz): 68-89% of the 0.1-25 Hz power lies in 0.5-3 Hz  (4.7s)
+
+--- LEAN layout (lean_v2_r0) ---
+[ok]   LEAN layout (lean_v2_r0): 25,752 parameters in LEAN's layout (44 tensors)  (0.4s)
+
+--- model lean_v2_r0 (R0 LEAN) ---
+  lean_v2_r0               800 ms  T=  40 (model input 40)  params 25,752
+  lean_v2_r0              1500 ms  T=  75 (model input 75)  params 25,752
+  lean_v2_r0              3000 ms  T= 150 (model input 150)  params 25,752
+  lean_v2_r0              4000 ms  T= 200 (model input 200)  params 25,752
+[ok]   model lean_v2_r0 (R0 LEAN): 25,752 parameters as predicted; best_val run at every window  (1.8s)
+
+--- determinism lean_v2_r0 ---
+[ok]   determinism lean_v2_r0: bit-identical weights after 3 training steps  (0.2s)
+
+--- model lean_v2_r1 (R1 +separable fusion, avg pools) ---
+  lean_v2_r1               800 ms  T=  40 (model input 40)  params 21,752
+  lean_v2_r1              1500 ms  T=  75 (model input 75)  params 21,752
+  lean_v2_r1              3000 ms  T= 150 (model input 150)  params 21,752
+  lean_v2_r1              4000 ms  T= 200 (model input 200)  params 21,752
+[ok]   model lean_v2_r1 (R1 +separable fusion, avg pools): 21,752 parameters as predicted; best_val run at every window  (0.5s)
+
+--- determinism lean_v2_r1 ---
+[ok]   determinism lean_v2_r1: bit-identical weights after 3 training steps  (0.2s)
+
+--- model lean_v2_r2 (R2 +TCN, last-step readout) ---
+  lean_v2_r2               800 ms  T=  40 (model input 40)  params 14,440
+  lean_v2_r2              1500 ms  T=  75 (model input 75)  params 14,440
+  lean_v2_r2              3000 ms  T= 150 (model input 150)  params 14,440
+  lean_v2_r2              4000 ms  T= 200 (model input 200)  params 14,440
+[ok]   model lean_v2_r2 (R2 +TCN, last-step readout): 14,440 parameters as predicted; best_val run at every window  (0.6s)
+
+--- determinism lean_v2_r2 ---
+[ok]   determinism lean_v2_r2: bit-identical weights after 3 training steps  (0.2s)
+
+--- model lean_v2_r3 (R3 +shared temporal filters) ---
+  lean_v2_r3               800 ms  T=  40 (model input 40)  params 9,278
+  lean_v2_r3              1500 ms  T=  75 (model input 75)  params 9,278
+  lean_v2_r3              3000 ms  T= 150 (model input 150)  params 9,278
+  lean_v2_r3              4000 ms  T= 200 (model input 200)  params 9,278
+[ok]   model lean_v2_r3 (R3 +shared temporal filters): 9,278 parameters as predicted; best_val run at every window  (0.5s)
+
+--- determinism lean_v2_r3 ---
+[ok]   determinism lean_v2_r3: bit-identical weights after 3 training steps  (0.2s)
+
+--- model lean_v2_r4 (R4 +depth attention) ---
+  lean_v2_r4               800 ms  T=  40 (model input 40)  params 9,286
+  lean_v2_r4              1500 ms  T=  75 (model input 75)  params 9,286
+  lean_v2_r4              3000 ms  T= 150 (model input 150)  params 9,286
+  lean_v2_r4              4000 ms  T= 200 (model input 200)  params 9,286
+[ok]   model lean_v2_r4 (R4 +depth attention): 9,286 parameters as predicted; best_val run at every window  (0.6s)
+
+--- determinism lean_v2_r4 ---
+[ok]   determinism lean_v2_r4: bit-identical weights after 3 training steps  (0.2s)
+
+--- model lean_v2_r5 (R5 +ELU/max-norm/dropout, fixed schedule) ---
+  lean_v2_r5               800 ms  T=  40 (model input 40)  params 9,286
+  lean_v2_r5              1500 ms  T=  75 (model input 75)  params 9,286
+  lean_v2_r5              3000 ms  T= 150 (model input 150)  params 9,286
+  lean_v2_r5              4000 ms  T= 200 (model input 200)  params 9,286
+[ok]   model lean_v2_r5 (R5 +ELU/max-norm/dropout, fixed schedule): 9,286 parameters as predicted; fixed_avg run at every window  (0.5s)
+
+--- determinism lean_v2_r5 ---
+[ok]   determinism lean_v2_r5: bit-identical weights after 3 training steps  (0.2s)
+
+--- model lean_v2_r6 (R6 +SupCon) ---
+  lean_v2_r6               800 ms  T=  40 (model input 40)  params 9,286
+  lean_v2_r6              1500 ms  T=  75 (model input 75)  params 9,286
+  lean_v2_r6              3000 ms  T= 150 (model input 150)  params 9,286
+  lean_v2_r6              4000 ms  T= 200 (model input 200)  params 9,286
+[ok]   model lean_v2_r6 (R6 +SupCon): 9,286 parameters as predicted; fixed_avg, SupCon 0.5 run at every window  (0.7s)
+
+--- determinism lean_v2_r6 ---
+[ok]   determinism lean_v2_r6: bit-identical weights after 3 training steps  (0.2s)
+
+--- model lean_v2_r7 (R7 +crops (final)) ---
+  lean_v2_r7               800 ms  T=  40 (model input 36)  params 9,286
+  lean_v2_r7              1500 ms  T=  75 (model input 67)  params 9,286
+  lean_v2_r7              3000 ms  T= 150 (model input 135)  params 9,286
+  lean_v2_r7              4000 ms  T= 200 (model input 180)  params 9,286
+[ok]   model lean_v2_r7 (R7 +crops (final)): 9,286 parameters as predicted; fixed_avg, SupCon 0.5, 3 crops run at every window  (0.7s)
+
+--- determinism lean_v2_r7 ---
+[ok]   determinism lean_v2_r7: bit-identical weights after 3 training steps  (0.2s)
+
+--- model lean_v2_loo_fusion (R7 - separable fusion) ---
+  lean_v2_loo_fusion       800 ms  T=  40 (model input 36)  params 9,862
+  lean_v2_loo_fusion      1500 ms  T=  75 (model input 67)  params 9,862
+  lean_v2_loo_fusion      3000 ms  T= 150 (model input 135)  params 9,862
+  lean_v2_loo_fusion      4000 ms  T= 200 (model input 180)  params 9,862
+[ok]   model lean_v2_loo_fusion (R7 - separable fusion): 9,862 parameters as predicted; fixed_avg, SupCon 0.5, 3 crops run at every window  (0.8s)
+
+--- determinism lean_v2_loo_fusion ---
+[ok]   determinism lean_v2_loo_fusion: bit-identical weights after 3 training steps  (0.2s)
+
+--- model lean_v2_loo_tcn (R7 - TCN (transformer)) ---
+  lean_v2_loo_tcn          800 ms  T=  40 (model input 36)  params 6,614
+  lean_v2_loo_tcn         1500 ms  T=  75 (model input 67)  params 6,614
+  lean_v2_loo_tcn         3000 ms  T= 150 (model input 135)  params 6,614
+  lean_v2_loo_tcn         4000 ms  T= 200 (model input 180)  params 6,614
+[ok]   model lean_v2_loo_tcn (R7 - TCN (transformer)): 6,614 parameters as predicted; fixed_avg, SupCon 0.5, 3 crops run at every window  (0.6s)
+
+--- determinism lean_v2_loo_tcn ---
+[ok]   determinism lean_v2_loo_tcn: bit-identical weights after 3 training steps  (0.2s)
+
+--- model lean_v2_loo_readout (R7 - last-step readout (GAP+MLP)) ---
+  lean_v2_loo_readout      800 ms  T=  40 (model input 36)  params 10,918
+  lean_v2_loo_readout     1500 ms  T=  75 (model input 67)  params 10,918
+  lean_v2_loo_readout     3000 ms  T= 150 (model input 135)  params 10,918
+  lean_v2_loo_readout     4000 ms  T= 200 (model input 180)  params 10,918
+[ok]   model lean_v2_loo_readout (R7 - last-step readout (GAP+MLP)): 10,918 parameters as predicted; fixed_avg, SupCon 0.5, 3 crops run at every window  (0.7s)
+
+--- determinism lean_v2_loo_readout ---
+[ok]   determinism lean_v2_loo_readout: bit-identical weights after 3 training steps  (0.2s)
+
+--- model lean_v2_loo_shared (R7 - shared temporal (and depth att.)) ---
+  lean_v2_loo_shared       800 ms  T=  40 (model input 36)  params 14,440
+  lean_v2_loo_shared      1500 ms  T=  75 (model input 67)  params 14,440
+  lean_v2_loo_shared      3000 ms  T= 150 (model input 135)  params 14,440
+  lean_v2_loo_shared      4000 ms  T= 200 (model input 180)  params 14,440
+[ok]   model lean_v2_loo_shared (R7 - shared temporal (and depth att.)): 14,440 parameters as predicted; fixed_avg, SupCon 0.5, 3 crops run at every window  (0.6s)
+
+--- determinism lean_v2_loo_shared ---
+[ok]   determinism lean_v2_loo_shared: bit-identical weights after 3 training steps  (0.2s)
+
+--- model lean_v2_loo_depthatt (R7 - depth attention) ---
+  lean_v2_loo_depthatt     800 ms  T=  40 (model input 36)  params 9,278
+  lean_v2_loo_depthatt    1500 ms  T=  75 (model input 67)  params 9,278
+  lean_v2_loo_depthatt    3000 ms  T= 150 (model input 135)  params 9,278
+  lean_v2_loo_depthatt    4000 ms  T= 200 (model input 180)  params 9,278
+[ok]   model lean_v2_loo_depthatt (R7 - depth attention): 9,278 parameters as predicted; fixed_avg, SupCon 0.5, 3 crops run at every window  (0.6s)
+
+--- determinism lean_v2_loo_depthatt ---
+[ok]   determinism lean_v2_loo_depthatt: bit-identical weights after 3 training steps  (0.2s)
+
+--- model lean_v2_loo_reg (R7 - ELU/max-norm/dropout) ---
+  lean_v2_loo_reg          800 ms  T=  40 (model input 36)  params 9,286
+  lean_v2_loo_reg         1500 ms  T=  75 (model input 67)  params 9,286
+  lean_v2_loo_reg         3000 ms  T= 150 (model input 135)  params 9,286
+  lean_v2_loo_reg         4000 ms  T= 200 (model input 180)  params 9,286
+[ok]   model lean_v2_loo_reg (R7 - ELU/max-norm/dropout): 9,286 parameters as predicted; fixed_avg, SupCon 0.5, 3 crops run at every window  (0.6s)
+
+--- determinism lean_v2_loo_reg ---
+[ok]   determinism lean_v2_loo_reg: bit-identical weights after 3 training steps  (0.2s)
+
+--- model lean_v2_loo_schedule (R7 - fixed schedule (best-val)) ---
+  lean_v2_loo_schedule     800 ms  T=  40 (model input 36)  params 9,286
+  lean_v2_loo_schedule    1500 ms  T=  75 (model input 67)  params 9,286
+  lean_v2_loo_schedule    3000 ms  T= 150 (model input 135)  params 9,286
+  lean_v2_loo_schedule    4000 ms  T= 200 (model input 180)  params 9,286
+[ok]   model lean_v2_loo_schedule (R7 - fixed schedule (best-val)): 9,286 parameters as predicted; best_val, SupCon 0.5, 3 crops run at every window  (0.7s)
+
+--- determinism lean_v2_loo_schedule ---
+[ok]   determinism lean_v2_loo_schedule: bit-identical weights after 3 training steps  (0.2s)
+
+--- model lean_v2_loo_supcon (R7 - SupCon) ---
+  lean_v2_loo_supcon       800 ms  T=  40 (model input 36)  params 9,286
+  lean_v2_loo_supcon      1500 ms  T=  75 (model input 67)  params 9,286
+  lean_v2_loo_supcon      3000 ms  T= 150 (model input 135)  params 9,286
+  lean_v2_loo_supcon      4000 ms  T= 200 (model input 180)  params 9,286
+[ok]   model lean_v2_loo_supcon (R7 - SupCon): 9,286 parameters as predicted; fixed_avg, 3 crops run at every window  (0.6s)
+
+--- determinism lean_v2_loo_supcon ---
+[ok]   determinism lean_v2_loo_supcon: bit-identical weights after 3 training steps  (0.2s)
+
+--- model lean_schedule (LEAN + fixed schedule) ---
+  lean_schedule            800 ms  T=  40 (model input 40)  params 25,752
+  lean_schedule           1500 ms  T=  75 (model input 75)  params 25,752
+  lean_schedule           3000 ms  T= 150 (model input 150)  params 25,752
+  lean_schedule           4000 ms  T= 200 (model input 200)  params 25,752
+[ok]   model lean_schedule (LEAN + fixed schedule): 25,752 parameters as predicted; fixed_avg run at every window  (0.5s)
+
+--- determinism lean_schedule ---
+[ok]   determinism lean_schedule: bit-identical weights after 3 training steps  (0.2s)
+
+--- model lean_supcon (LEAN + SupCon) ---
+  lean_supcon              800 ms  T=  40 (model input 40)  params 25,752
+  lean_supcon             1500 ms  T=  75 (model input 75)  params 25,752
+  lean_supcon             3000 ms  T= 150 (model input 150)  params 25,752
+  lean_supcon             4000 ms  T= 200 (model input 200)  params 25,752
+[ok]   model lean_supcon (LEAN + SupCon): 25,752 parameters as predicted; best_val, SupCon 0.5 run at every window  (0.5s)
+
+--- determinism lean_supcon ---
+[ok]   determinism lean_supcon: bit-identical weights after 3 training steps  (0.2s)
+
+--- model lean_recipe (LEAN + R7 recipe) ---
+  lean_recipe              800 ms  T=  40 (model input 36)  params 25,560
+  lean_recipe             1500 ms  T=  75 (model input 67)  params 25,560
+  lean_recipe             3000 ms  T= 150 (model input 135)  params 25,560
+  lean_recipe             4000 ms  T= 200 (model input 180)  params 25,560
+[ok]   model lean_recipe (LEAN + R7 recipe): 25,560 parameters as predicted; fixed_avg, SupCon 0.5, 3 crops run at every window  (0.7s)
+
+--- determinism lean_recipe ---
+[ok]   determinism lean_recipe: bit-identical weights after 3 training steps  (0.2s)
+
+--- model eegnet_50 (EEGNet 50 Hz) ---
+  eegnet_50                800 ms  T=  40 (model input 40)  params 1,818
+  eegnet_50               1500 ms  T=  75 (model input 75)  params 1,946
+  eegnet_50               3000 ms  T= 150 (model input 150)  params 2,234
+  eegnet_50               4000 ms  T= 200 (model input 200)  params 2,458
+[ok]   model eegnet_50 (EEGNet 50 Hz): 1,818 / 1,946 / 2,234 / 2,458 parameters as predicted; best_val run at every window  (0.2s)
+
+--- determinism eegnet_50 ---
+[ok]   determinism eegnet_50: bit-identical weights after 3 training steps  (0.1s)
+
+--- model eegnet_50_recipe (EEGNet 50 Hz + R7 recipe) ---
+  eegnet_50_recipe         800 ms  T=  40 (model input 36)  params 1,786
+  eegnet_50_recipe        1500 ms  T=  75 (model input 67)  params 1,914
+  eegnet_50_recipe        3000 ms  T= 150 (model input 135)  params 2,170
+  eegnet_50_recipe        4000 ms  T= 200 (model input 180)  params 2,362
+[ok]   model eegnet_50_recipe (EEGNet 50 Hz + R7 recipe): 1,786 / 1,914 / 2,170 / 2,362 parameters as predicted; fixed_avg, SupCon 0.5, 3 crops run at every window  (0.3s)
+
+--- determinism eegnet_50_recipe ---
+[ok]   determinism eegnet_50_recipe: bit-identical weights after 3 training steps  (0.1s)
+  fold: train 108 (incl. augmentation), val 18, test 18; 18 subjects
+
+--- timing projection ---
+  screen lean_v2_r0                8.03 min per pair
+  screen lean_v2_r1                8.25 min per pair
+  screen lean_v2_r2                8.47 min per pair
+  screen lean_v2_r3                8.02 min per pair
+  screen lean_v2_r4                8.57 min per pair
+  screen lean_v2_r5                9.48 min per pair
+  screen lean_v2_r6               12.68 min per pair
+  screen lean_v2_r7               15.50 min per pair
+  screen lean_v2_loo_fusion       18.03 min per pair
+  screen lean_v2_loo_tcn          18.46 min per pair
+  screen lean_v2_loo_readout      18.58 min per pair
+  screen lean_v2_loo_shared       17.83 min per pair
+  screen lean_v2_loo_depthatt     16.57 min per pair
+  screen lean_v2_loo_reg          18.51 min per pair
+  screen lean_v2_loo_schedule     18.95 min per pair
+  screen lean_v2_loo_supcon       15.91 min per pair
+  screen lean_schedule            14.78 min per pair
+  screen lean_supcon              18.42 min per pair
+  screen lean_recipe              17.73 min per pair
+  screen eegnet_50                 4.63 min per pair
+  screen eegnet_50_recipe          5.47 min per pair
+  full   lean_v2_r0               16.28 min per pair
+  full   lean_v2_r1               16.23 min per pair
+  full   lean_v2_r2               16.65 min per pair
+  full   lean_v2_r3               16.95 min per pair
+  full   lean_v2_r4               17.13 min per pair
+  full   lean_v2_r5               19.94 min per pair
+  full   lean_v2_r6               25.39 min per pair
+  full   lean_v2_r7               29.91 min per pair
+  full   lean_v2_loo_fusion       35.92 min per pair
+  full   lean_v2_loo_tcn          36.28 min per pair
+  full   lean_v2_loo_readout      38.67 min per pair
+  full   lean_v2_loo_shared       35.48 min per pair
+  full   lean_v2_loo_depthatt     33.56 min per pair
+  full   lean_v2_loo_reg          36.52 min per pair
+  full   lean_v2_loo_schedule     37.85 min per pair
+  full   lean_v2_loo_supcon       31.75 min per pair
+  full   lean_schedule            30.09 min per pair
+  full   lean_supcon              37.10 min per pair
+  full   lean_recipe              35.90 min per pair
+  full   eegnet_50                 8.93 min per pair
+  full   eegnet_50_recipe         10.86 min per pair
+[ok]   timing projection: screen: 282.9 min per pair for 21 preset(s) x 1 pair(s) per slot -> about 5.2 h on 6 slot(s); full: 567.4 min per pair for 21 preset(s) x 5 pair(s) per slot -> about 52.0 h on 6 slot(s)  (31.5s)
+
+========================================================================
+  [ok  ] packages: python 3.12.15, torch 2.14.1+cu130, numpy 2.0.2, scipy 1.13.1, sklearn 1.6.1, pandas 2.3.3
+  [ok  ] device: NVIDIA GeForce RTX 3090, 25.3 GB, cuda 13.0, visible devices 1
+  [ok  ] results folder writable: /workspace/FineMI-enhancements/LEAN_v2/results/smoke
+  [ok  ] data (all subjects, 50 Hz): 18 subjects, (C=62, T=200 @ 50 Hz, 1000 @ 250 Hz), trials/class 40-45, 2 warning(s)
+  [ok  ] band (0.5-3 Hz): 68-89% of the 0.1-25 Hz power lies in 0.5-3 Hz
+  [ok  ] LEAN layout (lean_v2_r0): 25,752 parameters in LEAN's layout (44 tensors)
+  [ok  ] model lean_v2_r0 (R0 LEAN): 25,752 parameters as predicted; best_val run at every window
+  [ok  ] determinism lean_v2_r0: bit-identical weights after 3 training steps
+  [ok  ] model lean_v2_r1 (R1 +separable fusion, avg pools): 21,752 parameters as predicted; best_val run at every window
+  [ok  ] determinism lean_v2_r1: bit-identical weights after 3 training steps
+  [ok  ] model lean_v2_r2 (R2 +TCN, last-step readout): 14,440 parameters as predicted; best_val run at every window
+  [ok  ] determinism lean_v2_r2: bit-identical weights after 3 training steps
+  [ok  ] model lean_v2_r3 (R3 +shared temporal filters): 9,278 parameters as predicted; best_val run at every window
+  [ok  ] determinism lean_v2_r3: bit-identical weights after 3 training steps
+  [ok  ] model lean_v2_r4 (R4 +depth attention): 9,286 parameters as predicted; best_val run at every window
+  [ok  ] determinism lean_v2_r4: bit-identical weights after 3 training steps
+  [ok  ] model lean_v2_r5 (R5 +ELU/max-norm/dropout, fixed schedule): 9,286 parameters as predicted; fixed_avg run at every window
+  [ok  ] determinism lean_v2_r5: bit-identical weights after 3 training steps
+  [ok  ] model lean_v2_r6 (R6 +SupCon): 9,286 parameters as predicted; fixed_avg, SupCon 0.5 run at every window
+  [ok  ] determinism lean_v2_r6: bit-identical weights after 3 training steps
+  [ok  ] model lean_v2_r7 (R7 +crops (final)): 9,286 parameters as predicted; fixed_avg, SupCon 0.5, 3 crops run at every window
+  [ok  ] determinism lean_v2_r7: bit-identical weights after 3 training steps
+  [ok  ] model lean_v2_loo_fusion (R7 - separable fusion): 9,862 parameters as predicted; fixed_avg, SupCon 0.5, 3 crops run at every window
+  [ok  ] determinism lean_v2_loo_fusion: bit-identical weights after 3 training steps
+  [ok  ] model lean_v2_loo_tcn (R7 - TCN (transformer)): 6,614 parameters as predicted; fixed_avg, SupCon 0.5, 3 crops run at every window
+  [ok  ] determinism lean_v2_loo_tcn: bit-identical weights after 3 training steps
+  [ok  ] model lean_v2_loo_readout (R7 - last-step readout (GAP+MLP)): 10,918 parameters as predicted; fixed_avg, SupCon 0.5, 3 crops run at every window
+  [ok  ] determinism lean_v2_loo_readout: bit-identical weights after 3 training steps
+  [ok  ] model lean_v2_loo_shared (R7 - shared temporal (and depth att.)): 14,440 parameters as predicted; fixed_avg, SupCon 0.5, 3 crops run at every window
+  [ok  ] determinism lean_v2_loo_shared: bit-identical weights after 3 training steps
+  [ok  ] model lean_v2_loo_depthatt (R7 - depth attention): 9,278 parameters as predicted; fixed_avg, SupCon 0.5, 3 crops run at every window
+  [ok  ] determinism lean_v2_loo_depthatt: bit-identical weights after 3 training steps
+  [ok  ] model lean_v2_loo_reg (R7 - ELU/max-norm/dropout): 9,286 parameters as predicted; fixed_avg, SupCon 0.5, 3 crops run at every window
+  [ok  ] determinism lean_v2_loo_reg: bit-identical weights after 3 training steps
+  [ok  ] model lean_v2_loo_schedule (R7 - fixed schedule (best-val)): 9,286 parameters as predicted; best_val, SupCon 0.5, 3 crops run at every window
+  [ok  ] determinism lean_v2_loo_schedule: bit-identical weights after 3 training steps
+  [ok  ] model lean_v2_loo_supcon (R7 - SupCon): 9,286 parameters as predicted; fixed_avg, 3 crops run at every window
+  [ok  ] determinism lean_v2_loo_supcon: bit-identical weights after 3 training steps
+  [ok  ] model lean_schedule (LEAN + fixed schedule): 25,752 parameters as predicted; fixed_avg run at every window
+  [ok  ] determinism lean_schedule: bit-identical weights after 3 training steps
+  [ok  ] model lean_supcon (LEAN + SupCon): 25,752 parameters as predicted; best_val, SupCon 0.5 run at every window
+  [ok  ] determinism lean_supcon: bit-identical weights after 3 training steps
+  [ok  ] model lean_recipe (LEAN + R7 recipe): 25,560 parameters as predicted; fixed_avg, SupCon 0.5, 3 crops run at every window
+  [ok  ] determinism lean_recipe: bit-identical weights after 3 training steps
+  [ok  ] model eegnet_50 (EEGNet 50 Hz): 1,818 / 1,946 / 2,234 / 2,458 parameters as predicted; best_val run at every window
+  [ok  ] determinism eegnet_50: bit-identical weights after 3 training steps
+  [ok  ] model eegnet_50_recipe (EEGNet 50 Hz + R7 recipe): 1,786 / 1,914 / 2,170 / 2,362 parameters as predicted; fixed_avg, SupCon 0.5, 3 crops run at every window
+  [ok  ] determinism eegnet_50_recipe: bit-identical weights after 3 training steps
+  [ok  ] timing projection: screen: 282.9 min per pair for 21 preset(s) x 1 pair(s) per slot -> about 5.2 h on 6 slot(s); full: 567.4 min per pair for 21 preset(s) x 5 pair(s) per slot -> about 52.0 h on 6 slot(s)
+========================================================================
+PREFLIGHT PASSED
+
+Step 2: training Sat Nov 21 19:37:59 UTC 2026
+GPU 0 worker 0: pairs=[WAA_SAA] -> results/smoke/logs/gpu0_w0_smoke_20261121_193510.log
+GPU 1 worker 0: pairs=[HOC_WFE] -> results/smoke/logs/gpu1_w0_smoke_20261121_193510.log
+GPU 0 worker 1: pairs=[EPS_SPS] -> results/smoke/logs/gpu0_w1_smoke_20261121_193510.log
+Workers launched: PIDs 1835 1836 1837  (follow one with: tail -f results/smoke/logs/gpu0_w0_smoke_20261121_193510.log)
+Workers finished: Sat Nov 21 19:41:11 UTC 2026
+
+Step 3: checking outputs Sat Nov 21 19:41:11 UTC 2026
+check_results (smoke): 63/63 pair runs present, expecting 2 subjects each
+CHECK PASSED: every run is complete
+
+Step 4: summary Sat Nov 21 19:41:12 UTC 2026
+/workspace/FineMI-enhancements/LEAN_v2/scripts/summarize.py:211: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  per_pair[f'{r}_{c}'] = [have[s][c].mean() if s in have else np.nan for s in slugs]
+/workspace/FineMI-enhancements/LEAN_v2/scripts/summarize.py:211: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  per_pair[f'{r}_{c}'] = [have[s][c].mean() if s in have else np.nan for s in slugs]
+/workspace/FineMI-enhancements/LEAN_v2/scripts/summarize.py:211: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  per_pair[f'{r}_{c}'] = [have[s][c].mean() if s in have else np.nan for s in slugs]
+/workspace/FineMI-enhancements/LEAN_v2/scripts/summarize.py:211: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  per_pair[f'{r}_{c}'] = [have[s][c].mean() if s in have else np.nan for s in slugs]
+/workspace/FineMI-enhancements/LEAN_v2/scripts/summarize.py:211: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  per_pair[f'{r}_{c}'] = [have[s][c].mean() if s in have else np.nan for s in slugs]
+/workspace/FineMI-enhancements/LEAN_v2/scripts/summarize.py:211: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  per_pair[f'{r}_{c}'] = [have[s][c].mean() if s in have else np.nan for s in slugs]
+summarize: written /workspace/FineMI-enhancements/LEAN_v2/results/smoke/summary/summary.md
+
+Mean accuracy over the pairs:
+                                          800 ms  1500 ms  3000 ms  4000 ms    Avg
+R0 LEAN                                    51.88    49.56    46.71    50.25  49.60
+R1 +separable fusion, avg pools            51.76    49.91    51.18    52.87  51.43
+R2 +TCN, last-step readout                 49.26    48.89    49.63    52.82  50.15
+R3 +shared temporal filters                50.19    50.00    51.11    50.00  50.32
+R4 +depth attention                        49.77    50.19    51.64    49.63  50.31
+R5 +ELU/max-norm/dropout, fixed schedule   53.89    50.60    48.19    49.81  50.62
+R6 +SupCon                                 52.22    50.79    45.95    51.30  50.06
+R7 +crops (final)                          51.25    48.75    48.10    49.79  49.47
+R7 - separable fusion                      51.16    49.19    49.03    54.00  50.84
+R7 - TCN (transformer)                     48.06    50.51    51.41    46.20  49.05
+R7 - last-step readout (GAP+MLP)           50.37    49.61    50.00    47.78  49.44
+R7 - shared temporal (and depth att.)      49.47    50.56    50.56    50.58  50.29
+R7 - depth attention                       49.35    50.16    49.58    51.25  50.09
+R7 - ELU/max-norm/dropout                  49.77    50.19    50.19    50.74  50.22
+R7 - fixed schedule (best-val)             52.08    48.77    47.89    50.02  49.69
+R7 - SupCon                                51.88    50.32    48.61    50.37  50.30
+LEAN + fixed schedule                      50.86    50.14    48.26    50.35  49.90
+LEAN + SupCon                              48.63    50.05    49.21    52.04  49.98
+LEAN + R7 recipe                           48.89    48.82    46.20    48.33  48.06
+EEGNet 50 Hz                               54.88    50.95    57.50    59.54  55.72
+EEGNet 50 Hz + R7 recipe                   51.50    51.53    57.50    53.10  53.41
+Resume check passed: finished runs are recognized and would be skipped.
+
+SMOKE TEST PASSED Sat Nov 21 19:41:13 UTC 2026
+Time projection: see 'timing projection' in results/smoke/logs/preflight_smoke_20261121_193510.log
+Next: WORKERS_PER_GPU=3 bash run_vast.sh screen

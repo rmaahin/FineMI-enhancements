@@ -1,0 +1,82 @@
+{
+  "pair": "HOC/WFE",
+  "class_a": 0,
+  "class_b": 1,
+  "windows": [
+    800,
+    1500,
+    3000,
+    4000
+  ],
+  "seed": 42,
+  "gpu": "NVIDIA GeForce RTX 3090",
+  "torch": "2.14.1+cu130",
+  "model": "eegnet_50_recipe",
+  "model_label": "EEGNet 50 Hz + R7 recipe",
+  "mode": "smoke",
+  "band": "0.5_3hz",
+  "dataset_root": "/workspace/fixationcrossbaseline_0.5_3hz_MIonly",
+  "pipeline_version": 1,
+  "preset_hash": "a586e47ffec3",
+  "decim": 5,
+  "orig_sampling_rate": 250,
+  "sampling_rate": 50,
+  "window_samples": [
+    40,
+    75,
+    150,
+    200
+  ],
+  "n_folds": 2,
+  "n_epochs": 2,
+  "n_params": {
+    "800": 1786,
+    "1500": 1914,
+    "3000": 2170,
+    "4000": 2362
+  },
+  "arch": {
+    "arch": "eegnet",
+    "F1": 8,
+    "D": 2,
+    "F2": 16,
+    "drop_prob": 0.5,
+    "bn_momentum": 0.1,
+    "bn_eps": 0.001,
+    "max_norm_depthwise": 1.0,
+    "max_norm_linear": 0.25,
+    "kern_length": 25,
+    "pool1": 2,
+    "sep_kern_length": 8,
+    "pool2": 4
+  },
+  "train": {
+    "n_epochs": 50,
+    "schedule": "fixed_avg",
+    "avg_last": 10,
+    "supcon_weight": 0.5,
+    "supcon_tau": 0.05,
+    "supcon_dim": 16,
+    "n_crops": 3,
+    "crop_frac": 0.9
+  },
+  "seconds": 1.7,
+  "subjects": [
+    1,
+    2
+  ],
+  "matrix": [
+    [
+      58.88888888888889,
+      55.55555555555556,
+      50.0,
+      45.55555555555556
+    ],
+    [
+      50.0,
+      42.5,
+      61.25000000000001,
+      55.00000000000001
+    ]
+  ]
+}

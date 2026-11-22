@@ -1,0 +1,179 @@
+Run:          screen_20261121_195210
+Host:         582d8cfb56e0
+Started:      Sat Nov 21 19:52:10 UTC 2026
+Mode:         screen
+Presets:      8: lean_v2_r0 lean_v2_r1 lean_v2_r2 lean_v2_r3 lean_v2_r4 lean_v2_r5 lean_v2_r6 lean_v2_r7
+Pairs:        6 selected, 6 with work left
+Pending:      HOC_SPS WAA_SFE HOC_WFE EPS_SAA EPS_EFE SPS_SAA
+Overwrite:    0
+Workers/GPU:  3 (6 training processes on 2 GPU(s))
+Dataset:      /workspace/fixationcrossbaseline_0.5_3hz_MIonly (18 files)
+Results:      /workspace/FineMI-enhancements/LEAN_v2/results/screen
+GPU 0: NVIDIA GeForce RTX 3090 (UUID: GPU-1def84b2-025e-acc7-ff8d-6773edf71852)
+GPU 1: NVIDIA GeForce RTX 3090 (UUID: GPU-f5ac8ec4-0e4e-9f32-9b8f-2541c04a0767)
+
+Step 1: preflight Sat Nov 21 19:52:10 UTC 2026
+========================================================================
+PREFLIGHT  8 preset(s): lean_v2_r0, lean_v2_r1, lean_v2_r2, lean_v2_r3, lean_v2_r4, lean_v2_r5, lean_v2_r6, lean_v2_r7
+  dataset=/workspace/fixationcrossbaseline_0.5_3hz_MIonly  band=0.5-3 Hz  50 Hz
+========================================================================
+
+--- packages ---
+[ok]   packages: python 3.12.15, torch 2.14.1+cu130, numpy 2.0.2, scipy 1.13.1, sklearn 1.6.1, pandas 2.3.3  (0.8s)
+
+--- device ---
+[ok]   device: NVIDIA GeForce RTX 3090, 25.3 GB, cuda 13.0, visible devices 1  (1.4s)
+
+--- results folder writable ---
+[ok]   results folder writable: /workspace/FineMI-enhancements/LEAN_v2/results/screen  (0.0s)
+
+--- data (all subjects, 50 Hz) ---
+
+Found 18 subject .npz files (0.5_3hz) in /workspace/fixationcrossbaseline_0.5_3hz_MIonly; decimating by 5
+  WARNING: subject 1: 360 trials (the dataset paper has 320)
+  WARNING: subject 5: 321 trials (the dataset paper has 320)
+[ok]   data (all subjects, 50 Hz): 18 subjects, (C=62, T=200 @ 50 Hz, 1000 @ 250 Hz), trials/class 40-45, 2 warning(s)  (16.6s)
+
+--- band (0.5-3 Hz) ---
+[ok]   band (0.5-3 Hz): 68-89% of the 0.1-25 Hz power lies in 0.5-3 Hz  (1.6s)
+
+--- LEAN layout (lean_v2_r0) ---
+[ok]   LEAN layout (lean_v2_r0): 25,752 parameters in LEAN's layout (44 tensors)  (0.1s)
+
+--- model lean_v2_r0 (R0 LEAN) ---
+  lean_v2_r0               800 ms  T=  40 (model input 40)  params 25,752
+  lean_v2_r0              1500 ms  T=  75 (model input 75)  params 25,752
+  lean_v2_r0              3000 ms  T= 150 (model input 150)  params 25,752
+  lean_v2_r0              4000 ms  T= 200 (model input 200)  params 25,752
+[ok]   model lean_v2_r0 (R0 LEAN): 25,752 parameters as predicted; best_val run at every window  (1.6s)
+
+--- determinism lean_v2_r0 ---
+[ok]   determinism lean_v2_r0: bit-identical weights after 3 training steps  (0.4s)
+
+--- model lean_v2_r1 (R1 +separable fusion, avg pools) ---
+  lean_v2_r1               800 ms  T=  40 (model input 40)  params 21,752
+  lean_v2_r1              1500 ms  T=  75 (model input 75)  params 21,752
+  lean_v2_r1              3000 ms  T= 150 (model input 150)  params 21,752
+  lean_v2_r1              4000 ms  T= 200 (model input 200)  params 21,752
+[ok]   model lean_v2_r1 (R1 +separable fusion, avg pools): 21,752 parameters as predicted; best_val run at every window  (0.7s)
+
+--- determinism lean_v2_r1 ---
+[ok]   determinism lean_v2_r1: bit-identical weights after 3 training steps  (0.3s)
+
+--- model lean_v2_r2 (R2 +TCN, last-step readout) ---
+  lean_v2_r2               800 ms  T=  40 (model input 40)  params 14,440
+  lean_v2_r2              1500 ms  T=  75 (model input 75)  params 14,440
+  lean_v2_r2              3000 ms  T= 150 (model input 150)  params 14,440
+  lean_v2_r2              4000 ms  T= 200 (model input 200)  params 14,440
+[ok]   model lean_v2_r2 (R2 +TCN, last-step readout): 14,440 parameters as predicted; best_val run at every window  (0.7s)
+
+--- determinism lean_v2_r2 ---
+[ok]   determinism lean_v2_r2: bit-identical weights after 3 training steps  (0.2s)
+
+--- model lean_v2_r3 (R3 +shared temporal filters) ---
+  lean_v2_r3               800 ms  T=  40 (model input 40)  params 9,278
+  lean_v2_r3              1500 ms  T=  75 (model input 75)  params 9,278
+  lean_v2_r3              3000 ms  T= 150 (model input 150)  params 9,278
+  lean_v2_r3              4000 ms  T= 200 (model input 200)  params 9,278
+[ok]   model lean_v2_r3 (R3 +shared temporal filters): 9,278 parameters as predicted; best_val run at every window  (0.4s)
+
+--- determinism lean_v2_r3 ---
+[ok]   determinism lean_v2_r3: bit-identical weights after 3 training steps  (0.2s)
+
+--- model lean_v2_r4 (R4 +depth attention) ---
+  lean_v2_r4               800 ms  T=  40 (model input 40)  params 9,286
+  lean_v2_r4              1500 ms  T=  75 (model input 75)  params 9,286
+  lean_v2_r4              3000 ms  T= 150 (model input 150)  params 9,286
+  lean_v2_r4              4000 ms  T= 200 (model input 200)  params 9,286
+[ok]   model lean_v2_r4 (R4 +depth attention): 9,286 parameters as predicted; best_val run at every window  (0.6s)
+
+--- determinism lean_v2_r4 ---
+[ok]   determinism lean_v2_r4: bit-identical weights after 3 training steps  (0.2s)
+
+--- model lean_v2_r5 (R5 +ELU/max-norm/dropout, fixed schedule) ---
+  lean_v2_r5               800 ms  T=  40 (model input 40)  params 9,286
+  lean_v2_r5              1500 ms  T=  75 (model input 75)  params 9,286
+  lean_v2_r5              3000 ms  T= 150 (model input 150)  params 9,286
+  lean_v2_r5              4000 ms  T= 200 (model input 200)  params 9,286
+[ok]   model lean_v2_r5 (R5 +ELU/max-norm/dropout, fixed schedule): 9,286 parameters as predicted; fixed_avg run at every window  (0.6s)
+
+--- determinism lean_v2_r5 ---
+[ok]   determinism lean_v2_r5: bit-identical weights after 3 training steps  (0.2s)
+
+--- model lean_v2_r6 (R6 +SupCon) ---
+  lean_v2_r6               800 ms  T=  40 (model input 40)  params 9,286
+  lean_v2_r6              1500 ms  T=  75 (model input 75)  params 9,286
+  lean_v2_r6              3000 ms  T= 150 (model input 150)  params 9,286
+  lean_v2_r6              4000 ms  T= 200 (model input 200)  params 9,286
+[ok]   model lean_v2_r6 (R6 +SupCon): 9,286 parameters as predicted; fixed_avg, SupCon 0.5 run at every window  (0.7s)
+
+--- determinism lean_v2_r6 ---
+[ok]   determinism lean_v2_r6: bit-identical weights after 3 training steps  (0.2s)
+
+--- model lean_v2_r7 (R7 +crops (final)) ---
+  lean_v2_r7               800 ms  T=  40 (model input 36)  params 9,286
+  lean_v2_r7              1500 ms  T=  75 (model input 67)  params 9,286
+  lean_v2_r7              3000 ms  T= 150 (model input 135)  params 9,286
+  lean_v2_r7              4000 ms  T= 200 (model input 180)  params 9,286
+[ok]   model lean_v2_r7 (R7 +crops (final)): 9,286 parameters as predicted; fixed_avg, SupCon 0.5, 3 crops run at every window  (0.8s)
+
+--- determinism lean_v2_r7 ---
+[ok]   determinism lean_v2_r7: bit-identical weights after 3 training steps  (0.3s)
+
+========================================================================
+  [ok  ] packages: python 3.12.15, torch 2.14.1+cu130, numpy 2.0.2, scipy 1.13.1, sklearn 1.6.1, pandas 2.3.3
+  [ok  ] device: NVIDIA GeForce RTX 3090, 25.3 GB, cuda 13.0, visible devices 1
+  [ok  ] results folder writable: /workspace/FineMI-enhancements/LEAN_v2/results/screen
+  [ok  ] data (all subjects, 50 Hz): 18 subjects, (C=62, T=200 @ 50 Hz, 1000 @ 250 Hz), trials/class 40-45, 2 warning(s)
+  [ok  ] band (0.5-3 Hz): 68-89% of the 0.1-25 Hz power lies in 0.5-3 Hz
+  [ok  ] LEAN layout (lean_v2_r0): 25,752 parameters in LEAN's layout (44 tensors)
+  [ok  ] model lean_v2_r0 (R0 LEAN): 25,752 parameters as predicted; best_val run at every window
+  [ok  ] determinism lean_v2_r0: bit-identical weights after 3 training steps
+  [ok  ] model lean_v2_r1 (R1 +separable fusion, avg pools): 21,752 parameters as predicted; best_val run at every window
+  [ok  ] determinism lean_v2_r1: bit-identical weights after 3 training steps
+  [ok  ] model lean_v2_r2 (R2 +TCN, last-step readout): 14,440 parameters as predicted; best_val run at every window
+  [ok  ] determinism lean_v2_r2: bit-identical weights after 3 training steps
+  [ok  ] model lean_v2_r3 (R3 +shared temporal filters): 9,278 parameters as predicted; best_val run at every window
+  [ok  ] determinism lean_v2_r3: bit-identical weights after 3 training steps
+  [ok  ] model lean_v2_r4 (R4 +depth attention): 9,286 parameters as predicted; best_val run at every window
+  [ok  ] determinism lean_v2_r4: bit-identical weights after 3 training steps
+  [ok  ] model lean_v2_r5 (R5 +ELU/max-norm/dropout, fixed schedule): 9,286 parameters as predicted; fixed_avg run at every window
+  [ok  ] determinism lean_v2_r5: bit-identical weights after 3 training steps
+  [ok  ] model lean_v2_r6 (R6 +SupCon): 9,286 parameters as predicted; fixed_avg, SupCon 0.5 run at every window
+  [ok  ] determinism lean_v2_r6: bit-identical weights after 3 training steps
+  [ok  ] model lean_v2_r7 (R7 +crops (final)): 9,286 parameters as predicted; fixed_avg, SupCon 0.5, 3 crops run at every window
+  [ok  ] determinism lean_v2_r7: bit-identical weights after 3 training steps
+========================================================================
+PREFLIGHT PASSED
+
+Step 2: training Sat Nov 21 19:52:42 UTC 2026
+GPU 0 worker 0: pairs=[HOC_SPS] -> results/screen/logs/gpu0_w0_screen_20261121_195210.log
+GPU 1 worker 0: pairs=[WAA_SFE] -> results/screen/logs/gpu1_w0_screen_20261121_195210.log
+GPU 0 worker 1: pairs=[HOC_WFE] -> results/screen/logs/gpu0_w1_screen_20261121_195210.log
+GPU 1 worker 1: pairs=[EPS_SAA] -> results/screen/logs/gpu1_w1_screen_20261121_195210.log
+GPU 0 worker 2: pairs=[EPS_EFE] -> results/screen/logs/gpu0_w2_screen_20261121_195210.log
+GPU 1 worker 2: pairs=[SPS_SAA] -> results/screen/logs/gpu1_w2_screen_20261121_195210.log
+Workers launched: PIDs 2746 2747 2748 2749 2750 2751  (follow one with: tail -f results/screen/logs/gpu0_w0_screen_20261121_195210.log)
+Workers finished: Sat Nov 21 21:54:01 UTC 2026
+
+Step 3: checking outputs Sat Nov 21 21:54:01 UTC 2026
+check_results (screen): 48/48 pair runs present, expecting 18 subjects each
+CHECK PASSED: every run is complete
+
+Step 4: summary Sat Nov 21 21:54:01 UTC 2026
+summarize: written /workspace/FineMI-enhancements/LEAN_v2/results/screen/summary/summary.md
+
+Mean accuracy over the pairs:
+                                          800 ms  4000 ms    Avg
+R0 LEAN                                    60.03    55.12  57.58
+R1 +separable fusion, avg pools            59.60    54.20  56.90
+R2 +TCN, last-step readout                 60.02    53.03  56.53
+R3 +shared temporal filters                59.30    53.66  56.48
+R4 +depth attention                        59.50    53.49  56.49
+R5 +ELU/max-norm/dropout, fixed schedule   66.17    64.17  65.17
+R6 +SupCon                                 58.08    54.13  56.10
+R7 +crops (final)                          57.67    53.61  55.64
+LEAN (paper run)                           60.81    55.32  58.07
+EEGNet 50 Hz (paper run)                   63.31    63.89  63.60
+
+All runs completed Sat Nov 21 21:54:03 UTC 2026: results/screen/summary/summary.md

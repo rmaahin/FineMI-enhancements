@@ -1,0 +1,116 @@
+section,label,a,b,n_pairs,window,n_subjects,mean_a,mean_b,diff,ci_lo,ci_hi,p_ttest,n_a_better,n_b_better,p_holm
+Ladder steps (each change on top of the rungs before it),"R1 +separable fusion, avg pools vs R0",lean_v2_r1,lean_v2_r0,3,800,2,51.759259,51.875,-0.115741,-25.116375,24.884894,0.962595,1,1,1.0
+Ladder steps (each change on top of the rungs before it),"R1 +separable fusion, avg pools vs R0",lean_v2_r1,lean_v2_r0,3,1500,2,49.907407,49.560185,0.347222,-32.300665,32.995109,0.914488,1,1,1.0
+Ladder steps (each change on top of the rungs before it),"R1 +separable fusion, avg pools vs R0",lean_v2_r1,lean_v2_r0,3,3000,2,51.180556,46.712963,4.467593,-4.650286,13.585471,0.101389,2,0,0.506945
+Ladder steps (each change on top of the rungs before it),"R1 +separable fusion, avg pools vs R0",lean_v2_r1,lean_v2_r0,3,4000,2,52.87037,50.25463,2.615741,-25.326145,30.557626,0.445045,2,0,1.0
+Ladder steps (each change on top of the rungs before it),"R1 +separable fusion, avg pools vs R0",lean_v2_r1,lean_v2_r0,3,avg,2,51.429398,49.600694,1.828704,-5.524424,9.181831,0.195114,2,0,0.780457
+Ladder steps (each change on top of the rungs before it),"R2 +TCN, last-step readout vs R1",lean_v2_r2,lean_v2_r1,3,800,2,49.259259,51.759259,-2.5,-13.088504,8.088504,0.204833,0,2,0.819331
+Ladder steps (each change on top of the rungs before it),"R2 +TCN, last-step readout vs R1",lean_v2_r2,lean_v2_r1,3,1500,2,48.888889,49.907407,-1.018519,-9.254022,7.216985,0.360791,0,2,1.0
+Ladder steps (each change on top of the rungs before it),"R2 +TCN, last-step readout vs R1",lean_v2_r2,lean_v2_r1,3,3000,2,49.62963,51.180556,-1.550926,-5.374552,2.2727,0.122007,0,2,0.610036
+Ladder steps (each change on top of the rungs before it),"R2 +TCN, last-step readout vs R1",lean_v2_r2,lean_v2_r1,3,4000,2,52.824074,52.87037,-0.046296,-32.400058,32.307466,0.988426,1,1,1.0
+Ladder steps (each change on top of the rungs before it),"R2 +TCN, last-step readout vs R1",lean_v2_r2,lean_v2_r1,3,avg,2,50.150463,51.429398,-1.278935,-10.911533,8.353662,0.340642,0,2,1.0
+Ladder steps (each change on top of the rungs before it),R3 +shared temporal filters vs R2,lean_v2_r3,lean_v2_r2,3,800,2,50.185185,49.259259,0.925926,-10.839078,12.69093,0.5,1,0,1.0
+Ladder steps (each change on top of the rungs before it),R3 +shared temporal filters vs R2,lean_v2_r3,lean_v2_r2,3,1500,2,50.0,48.888889,1.111111,-13.006894,15.229116,0.5,1,0,1.0
+Ladder steps (each change on top of the rungs before it),R3 +shared temporal filters vs R2,lean_v2_r3,lean_v2_r2,3,3000,2,51.111111,49.62963,1.481481,-17.342526,20.305488,0.5,1,0,1.0
+Ladder steps (each change on top of the rungs before it),R3 +shared temporal filters vs R2,lean_v2_r3,lean_v2_r2,3,4000,2,50.0,52.824074,-2.824074,-19.88333,14.235182,0.282521,0,2,1.0
+Ladder steps (each change on top of the rungs before it),R3 +shared temporal filters vs R2,lean_v2_r3,lean_v2_r2,3,avg,2,50.324074,50.150463,0.173611,-15.267957,15.615179,0.909666,1,1,1.0
+Ladder steps (each change on top of the rungs before it),R4 +depth attention vs R3,lean_v2_r4,lean_v2_r3,3,800,2,49.768519,50.185185,-0.416667,-5.710919,4.877585,0.5,0,1,1.0
+Ladder steps (each change on top of the rungs before it),R4 +depth attention vs R3,lean_v2_r4,lean_v2_r3,3,1500,2,50.185185,50.0,0.185185,-2.167816,2.538186,0.5,1,0,1.0
+Ladder steps (each change on top of the rungs before it),R4 +depth attention vs R3,lean_v2_r4,lean_v2_r3,3,3000,2,51.643519,51.111111,0.532407,-29.762479,30.827294,0.860137,1,1,1.0
+Ladder steps (each change on top of the rungs before it),R4 +depth attention vs R3,lean_v2_r4,lean_v2_r3,3,4000,2,49.62963,50.0,-0.37037,-5.076372,4.335631,0.5,0,1,1.0
+Ladder steps (each change on top of the rungs before it),R4 +depth attention vs R3,lean_v2_r4,lean_v2_r3,3,avg,2,50.306713,50.324074,-0.017361,-6.85577,6.821048,0.979471,1,1,1.0
+Ladder steps (each change on top of the rungs before it),"R5 +ELU/max-norm/dropout, fixed schedule vs R4",lean_v2_r5,lean_v2_r4,3,800,2,53.888889,49.768519,4.12037,-38.821896,47.062636,0.437327,2,0,1.0
+Ladder steps (each change on top of the rungs before it),"R5 +ELU/max-norm/dropout, fixed schedule vs R4",lean_v2_r5,lean_v2_r4,3,1500,2,50.601852,50.185185,0.416667,-4.877585,5.710919,0.5,1,0,1.0
+Ladder steps (each change on top of the rungs before it),"R5 +ELU/max-norm/dropout, fixed schedule vs R4",lean_v2_r5,lean_v2_r4,3,3000,2,48.194444,51.643519,-3.449074,-28.449708,21.55156,0.330038,0,2,1.0
+Ladder steps (each change on top of the rungs before it),"R5 +ELU/max-norm/dropout, fixed schedule vs R4",lean_v2_r5,lean_v2_r4,3,4000,2,49.814815,49.62963,0.185185,-2.167816,2.538186,0.5,1,0,1.0
+Ladder steps (each change on top of the rungs before it),"R5 +ELU/max-norm/dropout, fixed schedule vs R4",lean_v2_r5,lean_v2_r4,3,avg,2,50.625,50.306713,0.318287,-4.902434,5.539008,0.58041,1,1,1.0
+Ladder steps (each change on top of the rungs before it),R6 +SupCon vs R5,lean_v2_r6,lean_v2_r5,3,800,2,52.222222,53.888889,-1.666667,-22.843675,19.510341,0.5,0,1,1.0
+Ladder steps (each change on top of the rungs before it),R6 +SupCon vs R5,lean_v2_r6,lean_v2_r5,3,1500,2,50.787037,50.601852,0.185185,-2.167816,2.538186,0.5,1,0,1.0
+Ladder steps (each change on top of the rungs before it),R6 +SupCon vs R5,lean_v2_r6,lean_v2_r5,3,3000,2,45.949074,48.194444,-2.24537,-21.363502,16.872762,0.375846,0,2,1.0
+Ladder steps (each change on top of the rungs before it),R6 +SupCon vs R5,lean_v2_r6,lean_v2_r5,3,4000,2,51.296296,49.814815,1.481481,-17.342526,20.305488,0.5,1,0,1.0
+Ladder steps (each change on top of the rungs before it),R6 +SupCon vs R5,lean_v2_r6,lean_v2_r5,3,avg,2,50.063657,50.625,-0.561343,-15.92938,14.806694,0.72337,1,1,1.0
+Ladder steps (each change on top of the rungs before it),R7 +crops (final) vs R6,lean_v2_r7,lean_v2_r6,3,800,2,51.25,52.222222,-0.972222,-2.736973,0.792528,0.090334,0,2,0.361338
+Ladder steps (each change on top of the rungs before it),R7 +crops (final) vs R6,lean_v2_r7,lean_v2_r6,3,1500,2,48.75,50.787037,-2.037037,-27.920047,23.845973,0.5,0,1,1.0
+Ladder steps (each change on top of the rungs before it),R7 +crops (final) vs R6,lean_v2_r7,lean_v2_r6,3,3000,2,48.101852,45.949074,2.152778,1.270402,3.035153,0.020529,2,0,0.102645
+Ladder steps (each change on top of the rungs before it),R7 +crops (final) vs R6,lean_v2_r7,lean_v2_r6,3,4000,2,49.791667,51.296296,-1.50463,-15.32851,12.319251,0.398554,0,2,1.0
+Ladder steps (each change on top of the rungs before it),R7 +crops (final) vs R6,lean_v2_r7,lean_v2_r6,3,avg,2,49.47338,50.063657,-0.590278,-10.737594,9.557039,0.594786,1,1,1.0
+Ladder steps (each change on top of the rungs before it),R7 vs R0 (all changes),lean_v2_r7,lean_v2_r0,3,800,2,51.25,51.875,-0.625,-8.566378,7.316378,0.5,0,1,1.0
+Ladder steps (each change on top of the rungs before it),R7 vs R0 (all changes),lean_v2_r7,lean_v2_r0,3,1500,2,48.75,49.560185,-0.810185,-37.575824,35.955454,0.826197,1,1,1.0
+Ladder steps (each change on top of the rungs before it),R7 vs R0 (all changes),lean_v2_r7,lean_v2_r0,3,3000,2,48.101852,46.712963,1.388889,-37.435626,40.213403,0.728401,1,1,1.0
+Ladder steps (each change on top of the rungs before it),R7 vs R0 (all changes),lean_v2_r7,lean_v2_r0,3,4000,2,49.791667,50.25463,-0.462963,-15.757469,14.831543,0.76625,1,1,1.0
+Ladder steps (each change on top of the rungs before it),R7 vs R0 (all changes),lean_v2_r7,lean_v2_r0,3,avg,2,49.47338,49.600694,-0.127315,-6.451005,6.196375,0.840563,1,1,1.0
+Leave-one-out: R7 minus R7 without the change (positive = the change helps),separable fusion,lean_v2_r7,lean_v2_loo_fusion,3,800,2,51.25,51.157407,0.092593,-19.907915,20.0931,0.962595,1,1,1.0
+Leave-one-out: R7 minus R7 without the change (positive = the change helps),separable fusion,lean_v2_r7,lean_v2_loo_fusion,3,1500,2,48.75,49.189815,-0.439815,-32.499452,31.619822,0.890133,1,1,1.0
+Leave-one-out: R7 minus R7 without the change (positive = the change helps),separable fusion,lean_v2_r7,lean_v2_loo_fusion,3,3000,2,48.101852,49.027778,-0.925926,-31.514937,29.663085,0.76625,1,1,1.0
+Leave-one-out: R7 minus R7 without the change (positive = the change helps),separable fusion,lean_v2_r7,lean_v2_loo_fusion,3,4000,2,49.791667,54.00463,-4.212963,-24.801721,16.375795,0.23375,0,2,0.935
+Leave-one-out: R7 minus R7 without the change (positive = the change helps),separable fusion,lean_v2_r7,lean_v2_loo_fusion,3,avg,2,49.47338,50.844907,-1.371528,-1.592122,-1.150934,0.008058,0,2,0.04029
+Leave-one-out: R7 minus R7 without the change (positive = the change helps),TCN (transformer),lean_v2_r7,lean_v2_loo_tcn,3,800,2,51.25,48.055556,3.194444,-93.866842,100.255731,0.747847,1,1,1.0
+Leave-one-out: R7 minus R7 without the change (positive = the change helps),TCN (transformer),lean_v2_r7,lean_v2_loo_tcn,3,1500,2,48.75,50.509259,-1.759259,-87.643791,84.125273,0.837901,1,1,1.0
+Leave-one-out: R7 minus R7 without the change (positive = the change helps),TCN (transformer),lean_v2_r7,lean_v2_loo_tcn,3,3000,2,48.101852,51.412037,-3.310185,-8.310312,1.689942,0.075329,0,2,0.376643
+Leave-one-out: R7 minus R7 without the change (positive = the change helps),TCN (transformer),lean_v2_r7,lean_v2_loo_tcn,3,4000,2,49.791667,46.203704,3.587963,-26.118673,33.294599,0.367653,2,0,1.0
+Leave-one-out: R7 minus R7 without the change (positive = the change helps),TCN (transformer),lean_v2_r7,lean_v2_loo_tcn,3,avg,2,49.47338,49.045139,0.428241,-39.131587,39.988068,0.912981,1,1,1.0
+Leave-one-out: R7 minus R7 without the change (positive = the change helps),last-step readout (GAP+MLP),lean_v2_r7,lean_v2_loo_readout,3,800,2,51.25,50.37037,0.87963,-19.709128,21.468387,0.683382,1,1,1.0
+Leave-one-out: R7 minus R7 without the change (positive = the change helps),last-step readout (GAP+MLP),lean_v2_r7,lean_v2_loo_readout,3,1500,2,48.75,49.606481,-0.856481,-27.621866,25.908903,0.754152,1,1,1.0
+Leave-one-out: R7 minus R7 without the change (positive = the change helps),last-step readout (GAP+MLP),lean_v2_r7,lean_v2_loo_readout,3,3000,2,48.101852,50.0,-1.898148,-30.722409,26.926113,0.55644,1,1,1.0
+Leave-one-out: R7 minus R7 without the change (positive = the change helps),last-step readout (GAP+MLP),lean_v2_r7,lean_v2_loo_readout,3,4000,2,49.791667,47.777778,2.013889,-28.869248,32.897025,0.559509,1,1,1.0
+Leave-one-out: R7 minus R7 without the change (positive = the change helps),last-step readout (GAP+MLP),lean_v2_r7,lean_v2_loo_readout,3,avg,2,49.47338,49.438657,0.034722,-3.053591,3.123036,0.909666,1,1,1.0
+Leave-one-out: R7 minus R7 without the change (positive = the change helps),shared temporal (and depth att.),lean_v2_r7,lean_v2_loo_shared,3,800,2,51.25,49.467593,1.782407,-2.041219,5.606034,0.106477,2,0,0.425909
+Leave-one-out: R7 minus R7 without the change (positive = the change helps),shared temporal (and depth att.),lean_v2_r7,lean_v2_loo_shared,3,1500,2,48.75,50.555556,-1.805556,-35.335818,31.724707,0.617996,1,1,0.775987
+Leave-one-out: R7 minus R7 without the change (positive = the change helps),shared temporal (and depth att.),lean_v2_r7,lean_v2_loo_shared,3,3000,2,48.101852,50.555556,-2.453704,-24.218962,19.311554,0.387993,0,2,0.775987
+Leave-one-out: R7 minus R7 without the change (positive = the change helps),shared temporal (and depth att.),lean_v2_r7,lean_v2_loo_shared,3,4000,2,49.791667,50.578704,-0.787037,-1.375287,-0.198787,0.037405,0,2,0.187026
+Leave-one-out: R7 minus R7 without the change (positive = the change helps),shared temporal (and depth att.),lean_v2_r7,lean_v2_loo_shared,3,avg,2,49.47338,50.289352,-0.815972,-4.566067,2.934123,0.220946,0,2,0.662839
+Leave-one-out: R7 minus R7 without the change (positive = the change helps),depth attention,lean_v2_r7,lean_v2_loo_depthatt,3,800,2,51.25,49.351852,1.898148,-26.926113,30.722409,0.55644,1,1,1.0
+Leave-one-out: R7 minus R7 without the change (positive = the change helps),depth attention,lean_v2_r7,lean_v2_loo_depthatt,3,1500,2,48.75,50.162037,-1.412037,-35.236425,32.412351,0.689522,1,1,1.0
+Leave-one-out: R7 minus R7 without the change (positive = the change helps),depth attention,lean_v2_r7,lean_v2_loo_depthatt,3,3000,2,48.101852,49.583333,-1.481481,-25.01149,22.048527,0.570447,1,1,1.0
+Leave-one-out: R7 minus R7 without the change (positive = the change helps),depth attention,lean_v2_r7,lean_v2_loo_depthatt,3,4000,2,49.791667,51.25,-1.458333,-19.988215,17.071549,0.5,0,1,1.0
+Leave-one-out: R7 minus R7 without the change (positive = the change helps),depth attention,lean_v2_r7,lean_v2_loo_depthatt,3,avg,2,49.47338,50.086806,-0.613426,-5.760615,4.533763,0.371554,0,2,1.0
+Leave-one-out: R7 minus R7 without the change (positive = the change helps),ELU/max-norm/dropout,lean_v2_r7,lean_v2_loo_reg,3,800,2,51.25,49.768519,1.481481,-22.048527,25.01149,0.570447,1,1,1.0
+Leave-one-out: R7 minus R7 without the change (positive = the change helps),ELU/max-norm/dropout,lean_v2_r7,lean_v2_loo_reg,3,1500,2,48.75,50.185185,-1.435185,-30.259446,27.389076,0.640893,1,1,1.0
+Leave-one-out: R7 minus R7 without the change (positive = the change helps),ELU/max-norm/dropout,lean_v2_r7,lean_v2_loo_reg,3,3000,2,48.101852,50.185185,-2.083333,-28.554593,24.387927,0.5,0,1,1.0
+Leave-one-out: R7 minus R7 without the change (positive = the change helps),ELU/max-norm/dropout,lean_v2_r7,lean_v2_loo_reg,3,4000,2,49.791667,50.740741,-0.949074,-7.713952,5.815803,0.32546,0,2,1.0
+Leave-one-out: R7 minus R7 without the change (positive = the change helps),ELU/max-norm/dropout,lean_v2_r7,lean_v2_loo_reg,3,avg,2,49.47338,50.219907,-0.746528,-8.9085,7.415444,0.452343,0,2,1.0
+Leave-one-out: R7 minus R7 without the change (positive = the change helps),fixed schedule (best-val),lean_v2_r7,lean_v2_loo_schedule,3,800,2,51.25,52.083333,-0.833333,-11.421837,9.755171,0.5,0,1,1.0
+Leave-one-out: R7 minus R7 without the change (positive = the change helps),fixed schedule (best-val),lean_v2_r7,lean_v2_loo_schedule,3,1500,2,48.75,48.773148,-0.023148,-5.023275,4.976979,0.962595,1,1,1.0
+Leave-one-out: R7 minus R7 without the change (positive = the change helps),fixed schedule (best-val),lean_v2_r7,lean_v2_loo_schedule,3,3000,2,48.101852,47.893519,0.208333,-2.438793,2.855459,0.5,1,0,1.0
+Leave-one-out: R7 minus R7 without the change (positive = the change helps),fixed schedule (best-val),lean_v2_r7,lean_v2_loo_schedule,3,4000,2,49.791667,50.023148,-0.231481,-7.878734,7.415771,0.76625,1,1,1.0
+Leave-one-out: R7 minus R7 without the change (positive = the change helps),fixed schedule (best-val),lean_v2_r7,lean_v2_loo_schedule,3,avg,2,49.47338,49.693287,-0.219907,-5.367097,4.927282,0.683382,1,1,1.0
+Leave-one-out: R7 minus R7 without the change (positive = the change helps),SupCon,lean_v2_r7,lean_v2_loo_supcon,3,800,2,51.25,51.875,-0.625,-8.566378,7.316378,0.5,0,1,1.0
+Leave-one-out: R7 minus R7 without the change (positive = the change helps),SupCon,lean_v2_r7,lean_v2_loo_supcon,3,1500,2,48.75,50.324074,-1.574074,-2.750575,-0.397574,0.037405,0,2,0.187026
+Leave-one-out: R7 minus R7 without the change (positive = the change helps),SupCon,lean_v2_r7,lean_v2_loo_supcon,3,3000,2,48.101852,48.611111,-0.509259,-25.804019,24.7855,0.840563,1,1,1.0
+Leave-one-out: R7 minus R7 without the change (positive = the change helps),SupCon,lean_v2_r7,lean_v2_loo_supcon,3,4000,2,49.791667,50.37037,-0.578704,-2.637579,1.480172,0.173803,0,2,0.695211
+Leave-one-out: R7 minus R7 without the change (positive = the change helps),SupCon,lean_v2_r7,lean_v2_loo_supcon,3,avg,2,49.47338,50.295139,-0.821759,-8.9102,7.266681,0.41959,0,2,1.0
+Leave-one-out: R7 minus R7 without the change (positive = the change helps),crops,lean_v2_r7,lean_v2_r6,3,800,2,51.25,52.222222,-0.972222,-2.736973,0.792528,0.090334,0,2,0.361338
+Leave-one-out: R7 minus R7 without the change (positive = the change helps),crops,lean_v2_r7,lean_v2_r6,3,1500,2,48.75,50.787037,-2.037037,-27.920047,23.845973,0.5,0,1,1.0
+Leave-one-out: R7 minus R7 without the change (positive = the change helps),crops,lean_v2_r7,lean_v2_r6,3,3000,2,48.101852,45.949074,2.152778,1.270402,3.035153,0.020529,2,0,0.102645
+Leave-one-out: R7 minus R7 without the change (positive = the change helps),crops,lean_v2_r7,lean_v2_r6,3,4000,2,49.791667,51.296296,-1.50463,-15.32851,12.319251,0.398554,0,2,1.0
+Leave-one-out: R7 minus R7 without the change (positive = the change helps),crops,lean_v2_r7,lean_v2_r6,3,avg,2,49.47338,50.063657,-0.590278,-10.737594,9.557039,0.594786,1,1,1.0
+"Training changes alone, on LEAN (minus R0)",LEAN + fixed schedule,lean_schedule,lean_v2_r0,3,800,2,50.856481,51.875,-1.018519,-9.254022,7.216985,0.360791,0,2,1.0
+"Training changes alone, on LEAN (minus R0)",LEAN + fixed schedule,lean_schedule,lean_v2_r0,3,1500,2,50.138889,49.560185,0.578704,-1.480172,2.637579,0.173803,2,0,0.869014
+"Training changes alone, on LEAN (minus R0)",LEAN + fixed schedule,lean_schedule,lean_v2_r0,3,3000,2,48.263889,46.712963,1.550926,-36.979463,40.081315,0.699028,1,1,1.0
+"Training changes alone, on LEAN (minus R0)",LEAN + fixed schedule,lean_schedule,lean_v2_r0,3,4000,2,50.347222,50.25463,0.092593,-19.907915,20.0931,0.962595,1,1,1.0
+"Training changes alone, on LEAN (minus R0)",LEAN + fixed schedule,lean_schedule,lean_v2_r0,3,avg,2,49.90162,49.600694,0.300926,-11.758204,12.360055,0.804529,1,1,1.0
+"Training changes alone, on LEAN (minus R0)",LEAN + SupCon,lean_supcon,lean_v2_r0,3,800,2,48.634259,51.875,-3.240741,-23.241248,16.759767,0.28785,0,2,0.819331
+"Training changes alone, on LEAN (minus R0)",LEAN + SupCon,lean_supcon,lean_v2_r0,3,1500,2,50.046296,49.560185,0.486111,-21.573272,22.545494,0.826197,1,1,0.826197
+"Training changes alone, on LEAN (minus R0)",LEAN + SupCon,lean_supcon,lean_v2_r0,3,3000,2,49.212963,46.712963,2.5,-8.088504,13.088504,0.204833,2,0,0.819331
+"Training changes alone, on LEAN (minus R0)",LEAN + SupCon,lean_supcon,lean_v2_r0,3,4000,2,52.037037,50.25463,1.782407,-2.041219,5.606034,0.106477,2,0,0.532386
+"Training changes alone, on LEAN (minus R0)",LEAN + SupCon,lean_supcon,lean_v2_r0,3,avg,2,49.982639,49.600694,0.381944,-1.823994,2.587883,0.271599,2,0,0.819331
+"Training changes alone, on LEAN (minus R0)",LEAN + R7 recipe,lean_recipe,lean_v2_r0,3,800,2,48.888889,51.875,-2.986111,-55.046256,49.074033,0.599055,1,1,1.0
+"Training changes alone, on LEAN (minus R0)",LEAN + R7 recipe,lean_recipe,lean_v2_r0,3,1500,2,48.819444,49.560185,-0.740741,-10.152744,8.671263,0.5,0,1,1.0
+"Training changes alone, on LEAN (minus R0)",LEAN + R7 recipe,lean_recipe,lean_v2_r0,3,3000,2,46.203704,46.712963,-0.509259,-17.568516,16.549997,0.769197,1,1,1.0
+"Training changes alone, on LEAN (minus R0)",LEAN + R7 recipe,lean_recipe,lean_v2_r0,3,4000,2,48.333333,50.25463,-1.921296,-10.450924,6.608332,0.213992,0,2,0.855969
+"Training changes alone, on LEAN (minus R0)",LEAN + R7 recipe,lean_recipe,lean_v2_r0,3,avg,2,48.061343,49.600694,-1.539352,-5.804166,2.725462,0.136673,0,2,0.683363
+Baselines and reproduction checks,EEGNet 50 Hz + R7 recipe vs EEGNet 50 Hz,eegnet_50_recipe,eegnet_50,3,800,2,51.50463,54.884259,-3.37963,-13.379883,6.620624,0.145658,0,2,0.291316
+Baselines and reproduction checks,EEGNet 50 Hz + R7 recipe vs EEGNet 50 Hz,eegnet_50_recipe,eegnet_50,3,1500,2,51.527778,50.949074,0.578704,-1.480172,2.637579,0.173803,2,0,0.291316
+Baselines and reproduction checks,EEGNet 50 Hz + R7 recipe vs EEGNet 50 Hz,eegnet_50_recipe,eegnet_50,3,3000,2,57.5,57.5,0.0,,,,0,0,
+Baselines and reproduction checks,EEGNet 50 Hz + R7 recipe vs EEGNet 50 Hz,eegnet_50_recipe,eegnet_50,3,4000,2,53.101852,59.537037,-6.435185,-14.082438,1.212068,0.059367,0,2,0.178102
+Baselines and reproduction checks,EEGNet 50 Hz + R7 recipe vs EEGNet 50 Hz,eegnet_50_recipe,eegnet_50,3,avg,2,53.408565,55.717593,-2.309028,-3.411997,-1.206059,0.023922,0,2,0.095687
+Baselines and reproduction checks,R7 +crops (final) vs EEGNet 50 Hz + R7 recipe,lean_v2_r7,eegnet_50_recipe,3,800,2,51.25,51.50463,-0.25463,-12.902009,12.39275,0.840563,1,1,1.0
+Baselines and reproduction checks,R7 +crops (final) vs EEGNet 50 Hz + R7 recipe,lean_v2_r7,eegnet_50_recipe,3,1500,2,48.75,51.527778,-2.777778,-9.83678,4.281225,0.125666,0,2,0.62833
+Baselines and reproduction checks,R7 +crops (final) vs EEGNet 50 Hz + R7 recipe,lean_v2_r7,eegnet_50_recipe,3,3000,2,48.101852,57.5,-9.398148,-91.164929,72.368632,0.382229,0,2,1.0
+Baselines and reproduction checks,R7 +crops (final) vs EEGNet 50 Hz + R7 recipe,lean_v2_r7,eegnet_50_recipe,3,4000,2,49.791667,53.101852,-3.310185,-40.664074,34.043704,0.462318,0,2,1.0
+Baselines and reproduction checks,R7 +crops (final) vs EEGNet 50 Hz + R7 recipe,lean_v2_r7,eegnet_50_recipe,3,avg,2,49.47338,53.408565,-3.935185,-38.641948,30.771578,0.38628,0,2,1.0
+Baselines and reproduction checks,R7 +crops (final) vs EEGNet 50 Hz,lean_v2_r7,eegnet_50,3,800,2,51.25,54.884259,-3.634259,-26.281893,19.013374,0.290283,0,2,0.809725
+Baselines and reproduction checks,R7 +crops (final) vs EEGNet 50 Hz,lean_v2_r7,eegnet_50,3,1500,2,48.75,50.949074,-2.199074,-11.316952,6.918804,0.200804,0,2,0.803214
+Baselines and reproduction checks,R7 +crops (final) vs EEGNet 50 Hz,lean_v2_r7,eegnet_50,3,3000,2,48.101852,57.5,-9.398148,-91.164929,72.368632,0.382229,0,2,0.809725
+Baselines and reproduction checks,R7 +crops (final) vs EEGNet 50 Hz,lean_v2_r7,eegnet_50,3,4000,2,49.791667,59.537037,-9.74537,-39.452006,19.961266,0.149895,0,2,0.749477
+Baselines and reproduction checks,R7 +crops (final) vs EEGNet 50 Hz,lean_v2_r7,eegnet_50,3,avg,2,49.47338,55.717593,-6.244213,-42.053945,29.565519,0.269908,0,2,0.809725

@@ -1,0 +1,262 @@
+Run:          screen_20261121_224941
+Host:         582d8cfb56e0
+Started:      Sat Nov 21 22:49:41 UTC 2026
+Mode:         screen
+Presets:      14: lean_v2_r0 lean_v2_r4 lean_v2_r5 lean_v2_r4_sched lean_v2_r4_reg lean_v2_r5_loo_fusion lean_v2_r5_loo_tcn lean_v2_r5_loo_readout lean_v2_r5_loo_shared lean_v2_r5_loo_depthatt lean_r5recipe eegnet_50_sched lean_schedule eegnet_50
+Pairs:        6 selected, 6 with work left
+Pending:      HOC_SPS WAA_SFE HOC_WFE EPS_SAA EPS_EFE SPS_SAA
+Overwrite:    0
+Workers/GPU:  3 (6 training processes on 2 GPU(s))
+Dataset:      /workspace/fixationcrossbaseline_0.5_3hz_MIonly (18 files)
+Results:      /workspace/FineMI-enhancements/LEAN_v2/results/screen
+GPU 0: NVIDIA GeForce RTX 3090 (UUID: GPU-1def84b2-025e-acc7-ff8d-6773edf71852)
+GPU 1: NVIDIA GeForce RTX 3090 (UUID: GPU-f5ac8ec4-0e4e-9f32-9b8f-2541c04a0767)
+
+Step 1: preflight Sat Nov 21 22:49:41 UTC 2026
+========================================================================
+PREFLIGHT  14 preset(s): lean_v2_r0, lean_v2_r4, lean_v2_r5, lean_v2_r4_sched, lean_v2_r4_reg, lean_v2_r5_loo_fusion, lean_v2_r5_loo_tcn, lean_v2_r5_loo_readout, lean_v2_r5_loo_shared, lean_v2_r5_loo_depthatt, lean_r5recipe, eegnet_50_sched, lean_schedule, eegnet_50
+  dataset=/workspace/fixationcrossbaseline_0.5_3hz_MIonly  band=0.5-3 Hz  50 Hz
+========================================================================
+
+--- packages ---
+[ok]   packages: python 3.12.15, torch 2.14.1+cu130, numpy 2.0.2, scipy 1.13.1, sklearn 1.6.1, pandas 2.3.3  (0.8s)
+
+--- device ---
+[ok]   device: NVIDIA GeForce RTX 3090, 25.3 GB, cuda 13.0, visible devices 1  (1.5s)
+
+--- results folder writable ---
+[ok]   results folder writable: /workspace/FineMI-enhancements/LEAN_v2/results/screen  (0.0s)
+
+--- data (all subjects, 50 Hz) ---
+
+Found 18 subject .npz files (0.5_3hz) in /workspace/fixationcrossbaseline_0.5_3hz_MIonly; decimating by 5
+  WARNING: subject 1: 360 trials (the dataset paper has 320)
+  WARNING: subject 5: 321 trials (the dataset paper has 320)
+[ok]   data (all subjects, 50 Hz): 18 subjects, (C=62, T=200 @ 50 Hz, 1000 @ 250 Hz), trials/class 40-45, 2 warning(s)  (16.3s)
+
+--- band (0.5-3 Hz) ---
+[ok]   band (0.5-3 Hz): 68-89% of the 0.1-25 Hz power lies in 0.5-3 Hz  (1.6s)
+
+--- LEAN layout (lean_v2_r0) ---
+[ok]   LEAN layout (lean_v2_r0): 25,752 parameters in LEAN's layout (44 tensors)  (0.1s)
+
+--- model lean_v2_r0 (R0 LEAN) ---
+  lean_v2_r0               800 ms  T=  40 (model input 40)  params 25,752
+  lean_v2_r0              1500 ms  T=  75 (model input 75)  params 25,752
+  lean_v2_r0              3000 ms  T= 150 (model input 150)  params 25,752
+  lean_v2_r0              4000 ms  T= 200 (model input 200)  params 25,752
+[ok]   model lean_v2_r0 (R0 LEAN): 25,752 parameters as predicted; best_val run at every window  (1.6s)
+
+--- determinism lean_v2_r0 ---
+[ok]   determinism lean_v2_r0: bit-identical weights after 3 training steps  (0.4s)
+
+--- model lean_v2_r4 (R4 +depth attention) ---
+  lean_v2_r4               800 ms  T=  40 (model input 40)  params 9,286
+  lean_v2_r4              1500 ms  T=  75 (model input 75)  params 9,286
+  lean_v2_r4              3000 ms  T= 150 (model input 150)  params 9,286
+  lean_v2_r4              4000 ms  T= 200 (model input 200)  params 9,286
+[ok]   model lean_v2_r4 (R4 +depth attention): 9,286 parameters as predicted; best_val run at every window  (0.7s)
+
+--- determinism lean_v2_r4 ---
+[ok]   determinism lean_v2_r4: bit-identical weights after 3 training steps  (0.2s)
+
+--- model lean_v2_r5 (R5 +ELU/max-norm/dropout, fixed schedule) ---
+  lean_v2_r5               800 ms  T=  40 (model input 40)  params 9,286
+  lean_v2_r5              1500 ms  T=  75 (model input 75)  params 9,286
+  lean_v2_r5              3000 ms  T= 150 (model input 150)  params 9,286
+  lean_v2_r5              4000 ms  T= 200 (model input 200)  params 9,286
+[ok]   model lean_v2_r5 (R5 +ELU/max-norm/dropout, fixed schedule): 9,286 parameters as predicted; fixed_avg run at every window  (0.5s)
+
+--- determinism lean_v2_r5 ---
+[ok]   determinism lean_v2_r5: bit-identical weights after 3 training steps  (0.2s)
+
+--- model lean_v2_r4_sched (R4 + fixed schedule only) ---
+  lean_v2_r4_sched         800 ms  T=  40 (model input 40)  params 9,286
+  lean_v2_r4_sched        1500 ms  T=  75 (model input 75)  params 9,286
+  lean_v2_r4_sched        3000 ms  T= 150 (model input 150)  params 9,286
+  lean_v2_r4_sched        4000 ms  T= 200 (model input 200)  params 9,286
+[ok]   model lean_v2_r4_sched (R4 + fixed schedule only): 9,286 parameters as predicted; fixed_avg run at every window  (0.6s)
+
+--- determinism lean_v2_r4_sched ---
+[ok]   determinism lean_v2_r4_sched: bit-identical weights after 3 training steps  (0.2s)
+
+--- model lean_v2_r4_reg (R4 + ELU/max-norm/dropout only) ---
+  lean_v2_r4_reg           800 ms  T=  40 (model input 40)  params 9,286
+  lean_v2_r4_reg          1500 ms  T=  75 (model input 75)  params 9,286
+  lean_v2_r4_reg          3000 ms  T= 150 (model input 150)  params 9,286
+  lean_v2_r4_reg          4000 ms  T= 200 (model input 200)  params 9,286
+[ok]   model lean_v2_r4_reg (R4 + ELU/max-norm/dropout only): 9,286 parameters as predicted; best_val run at every window  (0.5s)
+
+--- determinism lean_v2_r4_reg ---
+[ok]   determinism lean_v2_r4_reg: bit-identical weights after 3 training steps  (0.2s)
+
+--- model lean_v2_r5_loo_fusion (R5 - separable fusion) ---
+  lean_v2_r5_loo_fusion    800 ms  T=  40 (model input 40)  params 9,862
+  lean_v2_r5_loo_fusion   1500 ms  T=  75 (model input 75)  params 9,862
+  lean_v2_r5_loo_fusion   3000 ms  T= 150 (model input 150)  params 9,862
+  lean_v2_r5_loo_fusion   4000 ms  T= 200 (model input 200)  params 9,862
+[ok]   model lean_v2_r5_loo_fusion (R5 - separable fusion): 9,862 parameters as predicted; fixed_avg run at every window  (0.6s)
+
+--- determinism lean_v2_r5_loo_fusion ---
+[ok]   determinism lean_v2_r5_loo_fusion: bit-identical weights after 3 training steps  (0.2s)
+
+--- model lean_v2_r5_loo_tcn (R5 - TCN (transformer)) ---
+  lean_v2_r5_loo_tcn       800 ms  T=  40 (model input 40)  params 6,662
+  lean_v2_r5_loo_tcn      1500 ms  T=  75 (model input 75)  params 6,662
+  lean_v2_r5_loo_tcn      3000 ms  T= 150 (model input 150)  params 6,662
+  lean_v2_r5_loo_tcn      4000 ms  T= 200 (model input 200)  params 6,662
+[ok]   model lean_v2_r5_loo_tcn (R5 - TCN (transformer)): 6,662 parameters as predicted; fixed_avg run at every window  (0.5s)
+
+--- determinism lean_v2_r5_loo_tcn ---
+[ok]   determinism lean_v2_r5_loo_tcn: bit-identical weights after 3 training steps  (0.2s)
+
+--- model lean_v2_r5_loo_readout (R5 - last-step readout (GAP+MLP)) ---
+  lean_v2_r5_loo_readout   800 ms  T=  40 (model input 40)  params 10,918
+  lean_v2_r5_loo_readout  1500 ms  T=  75 (model input 75)  params 10,918
+  lean_v2_r5_loo_readout  3000 ms  T= 150 (model input 150)  params 10,918
+  lean_v2_r5_loo_readout  4000 ms  T= 200 (model input 200)  params 10,918
+[ok]   model lean_v2_r5_loo_readout (R5 - last-step readout (GAP+MLP)): 10,918 parameters as predicted; fixed_avg run at every window  (0.5s)
+
+--- determinism lean_v2_r5_loo_readout ---
+[ok]   determinism lean_v2_r5_loo_readout: bit-identical weights after 3 training steps  (0.2s)
+
+--- model lean_v2_r5_loo_shared (R5 - shared temporal (and depth att.)) ---
+  lean_v2_r5_loo_shared    800 ms  T=  40 (model input 40)  params 14,440
+  lean_v2_r5_loo_shared   1500 ms  T=  75 (model input 75)  params 14,440
+  lean_v2_r5_loo_shared   3000 ms  T= 150 (model input 150)  params 14,440
+  lean_v2_r5_loo_shared   4000 ms  T= 200 (model input 200)  params 14,440
+[ok]   model lean_v2_r5_loo_shared (R5 - shared temporal (and depth att.)): 14,440 parameters as predicted; fixed_avg run at every window  (0.5s)
+
+--- determinism lean_v2_r5_loo_shared ---
+[ok]   determinism lean_v2_r5_loo_shared: bit-identical weights after 3 training steps  (0.2s)
+
+--- model lean_v2_r5_loo_depthatt (R5 - depth attention) ---
+  lean_v2_r5_loo_depthatt   800 ms  T=  40 (model input 40)  params 9,278
+  lean_v2_r5_loo_depthatt  1500 ms  T=  75 (model input 75)  params 9,278
+  lean_v2_r5_loo_depthatt  3000 ms  T= 150 (model input 150)  params 9,278
+  lean_v2_r5_loo_depthatt  4000 ms  T= 200 (model input 200)  params 9,278
+[ok]   model lean_v2_r5_loo_depthatt (R5 - depth attention): 9,278 parameters as predicted; fixed_avg run at every window  (0.5s)
+
+--- determinism lean_v2_r5_loo_depthatt ---
+[ok]   determinism lean_v2_r5_loo_depthatt: bit-identical weights after 3 training steps  (0.2s)
+
+--- model lean_r5recipe (LEAN + R5 recipe (reg + fixed schedule)) ---
+  lean_r5recipe            800 ms  T=  40 (model input 40)  params 25,752
+  lean_r5recipe           1500 ms  T=  75 (model input 75)  params 25,752
+  lean_r5recipe           3000 ms  T= 150 (model input 150)  params 25,752
+  lean_r5recipe           4000 ms  T= 200 (model input 200)  params 25,752
+[ok]   model lean_r5recipe (LEAN + R5 recipe (reg + fixed schedule)): 25,752 parameters as predicted; fixed_avg run at every window  (0.5s)
+
+--- determinism lean_r5recipe ---
+[ok]   determinism lean_r5recipe: bit-identical weights after 3 training steps  (0.2s)
+
+--- model eegnet_50_sched (EEGNet 50 Hz + fixed schedule) ---
+  eegnet_50_sched          800 ms  T=  40 (model input 40)  params 1,818
+  eegnet_50_sched         1500 ms  T=  75 (model input 75)  params 1,946
+  eegnet_50_sched         3000 ms  T= 150 (model input 150)  params 2,234
+  eegnet_50_sched         4000 ms  T= 200 (model input 200)  params 2,458
+[ok]   model eegnet_50_sched (EEGNet 50 Hz + fixed schedule): 1,818 / 1,946 / 2,234 / 2,458 parameters as predicted; fixed_avg run at every window  (0.2s)
+
+--- determinism eegnet_50_sched ---
+[ok]   determinism eegnet_50_sched: bit-identical weights after 3 training steps  (0.1s)
+
+--- model lean_schedule (LEAN + fixed schedule) ---
+  lean_schedule            800 ms  T=  40 (model input 40)  params 25,752
+  lean_schedule           1500 ms  T=  75 (model input 75)  params 25,752
+  lean_schedule           3000 ms  T= 150 (model input 150)  params 25,752
+  lean_schedule           4000 ms  T= 200 (model input 200)  params 25,752
+[ok]   model lean_schedule (LEAN + fixed schedule): 25,752 parameters as predicted; fixed_avg run at every window  (0.5s)
+
+--- determinism lean_schedule ---
+[ok]   determinism lean_schedule: bit-identical weights after 3 training steps  (0.2s)
+
+--- model eegnet_50 (EEGNet 50 Hz) ---
+  eegnet_50                800 ms  T=  40 (model input 40)  params 1,818
+  eegnet_50               1500 ms  T=  75 (model input 75)  params 1,946
+  eegnet_50               3000 ms  T= 150 (model input 150)  params 2,234
+  eegnet_50               4000 ms  T= 200 (model input 200)  params 2,458
+[ok]   model eegnet_50 (EEGNet 50 Hz): 1,818 / 1,946 / 2,234 / 2,458 parameters as predicted; best_val run at every window  (0.2s)
+
+--- determinism eegnet_50 ---
+[ok]   determinism eegnet_50: bit-identical weights after 3 training steps  (0.1s)
+
+========================================================================
+  [ok  ] packages: python 3.12.15, torch 2.14.1+cu130, numpy 2.0.2, scipy 1.13.1, sklearn 1.6.1, pandas 2.3.3
+  [ok  ] device: NVIDIA GeForce RTX 3090, 25.3 GB, cuda 13.0, visible devices 1
+  [ok  ] results folder writable: /workspace/FineMI-enhancements/LEAN_v2/results/screen
+  [ok  ] data (all subjects, 50 Hz): 18 subjects, (C=62, T=200 @ 50 Hz, 1000 @ 250 Hz), trials/class 40-45, 2 warning(s)
+  [ok  ] band (0.5-3 Hz): 68-89% of the 0.1-25 Hz power lies in 0.5-3 Hz
+  [ok  ] LEAN layout (lean_v2_r0): 25,752 parameters in LEAN's layout (44 tensors)
+  [ok  ] model lean_v2_r0 (R0 LEAN): 25,752 parameters as predicted; best_val run at every window
+  [ok  ] determinism lean_v2_r0: bit-identical weights after 3 training steps
+  [ok  ] model lean_v2_r4 (R4 +depth attention): 9,286 parameters as predicted; best_val run at every window
+  [ok  ] determinism lean_v2_r4: bit-identical weights after 3 training steps
+  [ok  ] model lean_v2_r5 (R5 +ELU/max-norm/dropout, fixed schedule): 9,286 parameters as predicted; fixed_avg run at every window
+  [ok  ] determinism lean_v2_r5: bit-identical weights after 3 training steps
+  [ok  ] model lean_v2_r4_sched (R4 + fixed schedule only): 9,286 parameters as predicted; fixed_avg run at every window
+  [ok  ] determinism lean_v2_r4_sched: bit-identical weights after 3 training steps
+  [ok  ] model lean_v2_r4_reg (R4 + ELU/max-norm/dropout only): 9,286 parameters as predicted; best_val run at every window
+  [ok  ] determinism lean_v2_r4_reg: bit-identical weights after 3 training steps
+  [ok  ] model lean_v2_r5_loo_fusion (R5 - separable fusion): 9,862 parameters as predicted; fixed_avg run at every window
+  [ok  ] determinism lean_v2_r5_loo_fusion: bit-identical weights after 3 training steps
+  [ok  ] model lean_v2_r5_loo_tcn (R5 - TCN (transformer)): 6,662 parameters as predicted; fixed_avg run at every window
+  [ok  ] determinism lean_v2_r5_loo_tcn: bit-identical weights after 3 training steps
+  [ok  ] model lean_v2_r5_loo_readout (R5 - last-step readout (GAP+MLP)): 10,918 parameters as predicted; fixed_avg run at every window
+  [ok  ] determinism lean_v2_r5_loo_readout: bit-identical weights after 3 training steps
+  [ok  ] model lean_v2_r5_loo_shared (R5 - shared temporal (and depth att.)): 14,440 parameters as predicted; fixed_avg run at every window
+  [ok  ] determinism lean_v2_r5_loo_shared: bit-identical weights after 3 training steps
+  [ok  ] model lean_v2_r5_loo_depthatt (R5 - depth attention): 9,278 parameters as predicted; fixed_avg run at every window
+  [ok  ] determinism lean_v2_r5_loo_depthatt: bit-identical weights after 3 training steps
+  [ok  ] model lean_r5recipe (LEAN + R5 recipe (reg + fixed schedule)): 25,752 parameters as predicted; fixed_avg run at every window
+  [ok  ] determinism lean_r5recipe: bit-identical weights after 3 training steps
+  [ok  ] model eegnet_50_sched (EEGNet 50 Hz + fixed schedule): 1,818 / 1,946 / 2,234 / 2,458 parameters as predicted; fixed_avg run at every window
+  [ok  ] determinism eegnet_50_sched: bit-identical weights after 3 training steps
+  [ok  ] model lean_schedule (LEAN + fixed schedule): 25,752 parameters as predicted; fixed_avg run at every window
+  [ok  ] determinism lean_schedule: bit-identical weights after 3 training steps
+  [ok  ] model eegnet_50 (EEGNet 50 Hz): 1,818 / 1,946 / 2,234 / 2,458 parameters as predicted; best_val run at every window
+  [ok  ] determinism eegnet_50: bit-identical weights after 3 training steps
+========================================================================
+PREFLIGHT PASSED
+
+Step 2: training Sat Nov 21 22:50:15 UTC 2026
+GPU 0 worker 0: pairs=[HOC_SPS] -> results/screen/logs/gpu0_w0_screen_20261121_224941.log
+GPU 1 worker 0: pairs=[WAA_SFE] -> results/screen/logs/gpu1_w0_screen_20261121_224941.log
+GPU 0 worker 1: pairs=[HOC_WFE] -> results/screen/logs/gpu0_w1_screen_20261121_224941.log
+GPU 1 worker 1: pairs=[EPS_SAA] -> results/screen/logs/gpu1_w1_screen_20261121_224941.log
+GPU 0 worker 2: pairs=[EPS_EFE] -> results/screen/logs/gpu0_w2_screen_20261121_224941.log
+GPU 1 worker 2: pairs=[SPS_SAA] -> results/screen/logs/gpu1_w2_screen_20261121_224941.log
+Workers launched: PIDs 4245 4246 4247 4248 4249 4250  (follow one with: tail -f results/screen/logs/gpu0_w0_screen_20261121_224941.log)
+Workers finished: Sun Nov 22 00:55:53 UTC 2026
+
+Step 3: checking outputs Sun Nov 22 00:55:53 UTC 2026
+check_results (screen): 84/84 pair runs present, expecting 18 subjects each
+CHECK PASSED: every run is complete
+
+Step 4: summary Sun Nov 22 00:55:53 UTC 2026
+summarize: written /workspace/FineMI-enhancements/LEAN_v2/results/screen/summary/summary.md
+
+Mean accuracy over the pairs:
+                                          800 ms  4000 ms    Avg
+R0 LEAN                                    60.03    55.12  57.58
+R1 +separable fusion, avg pools            59.60    54.20  56.90
+R2 +TCN, last-step readout                 60.02    53.03  56.53
+R3 +shared temporal filters                59.30    53.66  56.48
+R4 +depth attention                        59.50    53.49  56.49
+R5 +ELU/max-norm/dropout, fixed schedule   66.17    64.17  65.17
+R6 +SupCon                                 58.08    54.13  56.10
+R7 +crops (final)                          57.67    53.61  55.64
+LEAN + fixed schedule                      62.54    56.62  59.58
+EEGNet 50 Hz                               63.26    63.69  63.48
+R4 + fixed schedule only                   62.78    56.46  59.62
+R4 + ELU/max-norm/dropout only             63.81    60.18  61.99
+R5 - separable fusion                      65.82    55.67  60.75
+R5 - TCN (transformer)                     63.91    53.76  58.84
+R5 - last-step readout (GAP+MLP)           63.68    56.87  60.27
+R5 - shared temporal (and depth att.)      66.28    64.34  65.31
+R5 - depth attention                       66.50    63.81  65.16
+LEAN + R5 recipe (reg + fixed schedule)    63.68    55.23  59.45
+EEGNet 50 Hz + fixed schedule              65.58    66.20  65.89
+LEAN (paper run)                           60.81    55.32  58.07
+EEGNet 50 Hz (paper run)                   63.31    63.89  63.60
+
+All runs completed Sun Nov 22 00:55:55 UTC 2026: results/screen/summary/summary.md

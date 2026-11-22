@@ -1,0 +1,107 @@
+{
+  "pair": "HOC/WFE",
+  "class_a": 0,
+  "class_b": 1,
+  "windows": [
+    800,
+    1500,
+    3000,
+    4000
+  ],
+  "seed": 42,
+  "gpu": "NVIDIA GeForce RTX 3090",
+  "torch": "2.14.1+cu130",
+  "model": "lean_v2_loo_reg",
+  "model_label": "R7 - ELU/max-norm/dropout",
+  "mode": "smoke",
+  "band": "0.5_3hz",
+  "dataset_root": "/workspace/fixationcrossbaseline_0.5_3hz_MIonly",
+  "pipeline_version": 1,
+  "preset_hash": "4e2bb7c107e5",
+  "decim": 5,
+  "orig_sampling_rate": 250,
+  "sampling_rate": 50,
+  "window_samples": [
+    40,
+    75,
+    150,
+    200
+  ],
+  "n_folds": 2,
+  "n_epochs": 2,
+  "n_params": {
+    "800": 9286,
+    "1500": 9286,
+    "3000": 9286,
+    "4000": 9286
+  },
+  "arch": {
+    "arch": "lean_v2",
+    "temporal": "shared",
+    "mtc_kernels": [
+      7,
+      15,
+      31
+    ],
+    "mtc_filters": 16,
+    "shared_filters": 4,
+    "depth_mult": 2,
+    "depth_attention": true,
+    "da_kernel": 7,
+    "fusion": "separable",
+    "width": 16,
+    "lean_fusion_kernel": 3,
+    "lean_pool": 3,
+    "sep_kernel": 8,
+    "pool1": 2,
+    "pool2": 4,
+    "context": "tcn",
+    "n_heads": 4,
+    "d_ff": 64,
+    "p_att": 0.3,
+    "tcn_blocks": 3,
+    "tcn_kernel": 4,
+    "p_tcn": 0.3,
+    "refine_kernel": 5,
+    "eca_reduction": 4,
+    "readout": "last_step",
+    "embedding_dim": 32,
+    "p_proj": 0.3,
+    "classifier_hidden": 32,
+    "p_head": 0.4,
+    "act": "relu",
+    "max_norm": false,
+    "max_norm_spatial": 1.0,
+    "max_norm_linear": 0.25,
+    "p_conv": 0.0
+  },
+  "train": {
+    "n_epochs": 50,
+    "schedule": "fixed_avg",
+    "avg_last": 10,
+    "supcon_weight": 0.5,
+    "supcon_tau": 0.05,
+    "supcon_dim": 16,
+    "n_crops": 3,
+    "crop_frac": 0.9
+  },
+  "seconds": 3.7,
+  "subjects": [
+    1,
+    2
+  ],
+  "matrix": [
+    [
+      51.11111111111111,
+      51.11111111111111,
+      51.11111111111111,
+      53.333333333333336
+    ],
+    [
+      50.0,
+      50.0,
+      48.75,
+      50.0
+    ]
+  ]
+}

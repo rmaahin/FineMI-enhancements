@@ -1,0 +1,152 @@
+{
+  "pair": "WAA/SFE",
+  "class_a": 2,
+  "class_b": 7,
+  "windows": [
+    800,
+    4000
+  ],
+  "seed": 42,
+  "gpu": "NVIDIA GeForce RTX 3090",
+  "torch": "2.14.1+cu130",
+  "model": "eegnet_50_sched",
+  "model_label": "EEGNet 50 Hz + fixed schedule",
+  "mode": "screen",
+  "band": "0.5_3hz",
+  "dataset_root": "/workspace/fixationcrossbaseline_0.5_3hz_MIonly",
+  "pipeline_version": 1,
+  "preset_hash": "ff064a110ec9",
+  "decim": 5,
+  "orig_sampling_rate": 250,
+  "sampling_rate": 50,
+  "window_samples": [
+    40,
+    200
+  ],
+  "n_folds": 5,
+  "n_epochs": 50,
+  "n_params": {
+    "800": 1818,
+    "4000": 2458
+  },
+  "arch": {
+    "arch": "eegnet",
+    "F1": 8,
+    "D": 2,
+    "F2": 16,
+    "drop_prob": 0.5,
+    "bn_momentum": 0.1,
+    "bn_eps": 0.001,
+    "max_norm_depthwise": 1.0,
+    "max_norm_linear": 0.25,
+    "kern_length": 25,
+    "pool1": 2,
+    "sep_kern_length": 8,
+    "pool2": 4
+  },
+  "train": {
+    "n_epochs": 50,
+    "schedule": "fixed_avg",
+    "avg_last": 10,
+    "supcon_weight": 0.0,
+    "supcon_tau": 0.05,
+    "supcon_dim": 16,
+    "n_crops": 0,
+    "crop_frac": 0.9
+  },
+  "seconds": 242.7,
+  "subjects": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18
+  ],
+  "matrix": [
+    [
+      60.0,
+      57.77777777777777
+    ],
+    [
+      66.25,
+      63.74999999999999
+    ],
+    [
+      76.25,
+      83.75
+    ],
+    [
+      85.0,
+      86.25
+    ],
+    [
+      81.48148148148148,
+      82.71604938271605
+    ],
+    [
+      65.0,
+      61.25000000000001
+    ],
+    [
+      62.5,
+      65.0
+    ],
+    [
+      61.25000000000001,
+      52.5
+    ],
+    [
+      55.00000000000001,
+      75.0
+    ],
+    [
+      65.0,
+      71.25
+    ],
+    [
+      66.25,
+      67.5
+    ],
+    [
+      61.25000000000001,
+      58.75
+    ],
+    [
+      67.5,
+      67.5
+    ],
+    [
+      75.0,
+      66.25
+    ],
+    [
+      66.25,
+      67.5
+    ],
+    [
+      55.00000000000001,
+      43.75
+    ],
+    [
+      55.00000000000001,
+      58.75
+    ],
+    [
+      88.75,
+      95.0
+    ]
+  ]
+}

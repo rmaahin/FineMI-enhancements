@@ -1,0 +1,190 @@
+{
+  "packages": "python 3.12.15, torch 2.14.1+cu130, numpy 2.0.2, scipy 1.13.1, sklearn 1.6.1, pandas 2.3.3",
+  "device": "NVIDIA GeForce RTX 3090, 25.3 GB, cuda 13.0, visible devices 1",
+  "data": {
+    "n_subjects": 18,
+    "shapes": [
+      [
+        62,
+        200,
+        1000
+      ]
+    ],
+    "warnings": [
+      "subject 1: 360 trials (the dataset paper has 320)",
+      "subject 5: 321 trials (the dataset paper has 320)"
+    ]
+  },
+  "band": {
+    "band_hz": [
+      0.5,
+      3.0
+    ],
+    "share_by_subject": {
+      "1": 0.7522691864738853,
+      "2": 0.8380731374459764,
+      "3": 0.7576115499537807,
+      "4": 0.745646058802676,
+      "5": 0.8944963396186372,
+      "6": 0.8575288021209508,
+      "7": 0.7990695908657909,
+      "8": 0.7645950721952074,
+      "9": 0.7829246936572495,
+      "10": 0.708965315755393,
+      "11": 0.8106923675861445,
+      "12": 0.679481564301492,
+      "13": 0.8006978292783746,
+      "14": 0.8540183632162086,
+      "15": 0.8744619245041225,
+      "16": 0.7652067835472802,
+      "17": 0.8742109633081695,
+      "18": 0.869805802832247
+    }
+  },
+  "model": [
+    "lean_v2_r0               800 ms  T=  40 (model input 40)  params 25,752",
+    "lean_v2_r0              1500 ms  T=  75 (model input 75)  params 25,752",
+    "lean_v2_r0              3000 ms  T= 150 (model input 150)  params 25,752",
+    "lean_v2_r0              4000 ms  T= 200 (model input 200)  params 25,752",
+    "lean_v2_r1               800 ms  T=  40 (model input 40)  params 21,752",
+    "lean_v2_r1              1500 ms  T=  75 (model input 75)  params 21,752",
+    "lean_v2_r1              3000 ms  T= 150 (model input 150)  params 21,752",
+    "lean_v2_r1              4000 ms  T= 200 (model input 200)  params 21,752",
+    "lean_v2_r2               800 ms  T=  40 (model input 40)  params 14,440",
+    "lean_v2_r2              1500 ms  T=  75 (model input 75)  params 14,440",
+    "lean_v2_r2              3000 ms  T= 150 (model input 150)  params 14,440",
+    "lean_v2_r2              4000 ms  T= 200 (model input 200)  params 14,440",
+    "lean_v2_r3               800 ms  T=  40 (model input 40)  params 9,278",
+    "lean_v2_r3              1500 ms  T=  75 (model input 75)  params 9,278",
+    "lean_v2_r3              3000 ms  T= 150 (model input 150)  params 9,278",
+    "lean_v2_r3              4000 ms  T= 200 (model input 200)  params 9,278",
+    "lean_v2_r4               800 ms  T=  40 (model input 40)  params 9,286",
+    "lean_v2_r4              1500 ms  T=  75 (model input 75)  params 9,286",
+    "lean_v2_r4              3000 ms  T= 150 (model input 150)  params 9,286",
+    "lean_v2_r4              4000 ms  T= 200 (model input 200)  params 9,286",
+    "lean_v2_r5               800 ms  T=  40 (model input 40)  params 9,286",
+    "lean_v2_r5              1500 ms  T=  75 (model input 75)  params 9,286",
+    "lean_v2_r5              3000 ms  T= 150 (model input 150)  params 9,286",
+    "lean_v2_r5              4000 ms  T= 200 (model input 200)  params 9,286",
+    "lean_v2_r6               800 ms  T=  40 (model input 40)  params 9,286",
+    "lean_v2_r6              1500 ms  T=  75 (model input 75)  params 9,286",
+    "lean_v2_r6              3000 ms  T= 150 (model input 150)  params 9,286",
+    "lean_v2_r6              4000 ms  T= 200 (model input 200)  params 9,286",
+    "lean_v2_r7               800 ms  T=  40 (model input 36)  params 9,286",
+    "lean_v2_r7              1500 ms  T=  75 (model input 67)  params 9,286",
+    "lean_v2_r7              3000 ms  T= 150 (model input 135)  params 9,286",
+    "lean_v2_r7              4000 ms  T= 200 (model input 180)  params 9,286"
+  ],
+  "checks": [
+    {
+      "status": "ok",
+      "name": "packages",
+      "detail": "python 3.12.15, torch 2.14.1+cu130, numpy 2.0.2, scipy 1.13.1, sklearn 1.6.1, pandas 2.3.3"
+    },
+    {
+      "status": "ok",
+      "name": "device",
+      "detail": "NVIDIA GeForce RTX 3090, 25.3 GB, cuda 13.0, visible devices 1"
+    },
+    {
+      "status": "ok",
+      "name": "results folder writable",
+      "detail": "/workspace/FineMI-enhancements/LEAN_v2/results/screen"
+    },
+    {
+      "status": "ok",
+      "name": "data (all subjects, 50 Hz)",
+      "detail": "18 subjects, (C=62, T=200 @ 50 Hz, 1000 @ 250 Hz), trials/class 40-45, 2 warning(s)"
+    },
+    {
+      "status": "ok",
+      "name": "band (0.5-3 Hz)",
+      "detail": "68-89% of the 0.1-25 Hz power lies in 0.5-3 Hz"
+    },
+    {
+      "status": "ok",
+      "name": "LEAN layout (lean_v2_r0)",
+      "detail": "25,752 parameters in LEAN's layout (44 tensors)"
+    },
+    {
+      "status": "ok",
+      "name": "model lean_v2_r0 (R0 LEAN)",
+      "detail": "25,752 parameters as predicted; best_val run at every window"
+    },
+    {
+      "status": "ok",
+      "name": "determinism lean_v2_r0",
+      "detail": "bit-identical weights after 3 training steps"
+    },
+    {
+      "status": "ok",
+      "name": "model lean_v2_r1 (R1 +separable fusion, avg pools)",
+      "detail": "21,752 parameters as predicted; best_val run at every window"
+    },
+    {
+      "status": "ok",
+      "name": "determinism lean_v2_r1",
+      "detail": "bit-identical weights after 3 training steps"
+    },
+    {
+      "status": "ok",
+      "name": "model lean_v2_r2 (R2 +TCN, last-step readout)",
+      "detail": "14,440 parameters as predicted; best_val run at every window"
+    },
+    {
+      "status": "ok",
+      "name": "determinism lean_v2_r2",
+      "detail": "bit-identical weights after 3 training steps"
+    },
+    {
+      "status": "ok",
+      "name": "model lean_v2_r3 (R3 +shared temporal filters)",
+      "detail": "9,278 parameters as predicted; best_val run at every window"
+    },
+    {
+      "status": "ok",
+      "name": "determinism lean_v2_r3",
+      "detail": "bit-identical weights after 3 training steps"
+    },
+    {
+      "status": "ok",
+      "name": "model lean_v2_r4 (R4 +depth attention)",
+      "detail": "9,286 parameters as predicted; best_val run at every window"
+    },
+    {
+      "status": "ok",
+      "name": "determinism lean_v2_r4",
+      "detail": "bit-identical weights after 3 training steps"
+    },
+    {
+      "status": "ok",
+      "name": "model lean_v2_r5 (R5 +ELU/max-norm/dropout, fixed schedule)",
+      "detail": "9,286 parameters as predicted; fixed_avg run at every window"
+    },
+    {
+      "status": "ok",
+      "name": "determinism lean_v2_r5",
+      "detail": "bit-identical weights after 3 training steps"
+    },
+    {
+      "status": "ok",
+      "name": "model lean_v2_r6 (R6 +SupCon)",
+      "detail": "9,286 parameters as predicted; fixed_avg, SupCon 0.5 run at every window"
+    },
+    {
+      "status": "ok",
+      "name": "determinism lean_v2_r6",
+      "detail": "bit-identical weights after 3 training steps"
+    },
+    {
+      "status": "ok",
+      "name": "model lean_v2_r7 (R7 +crops (final))",
+      "detail": "9,286 parameters as predicted; fixed_avg, SupCon 0.5, 3 crops run at every window"
+    },
+    {
+      "status": "ok",
+      "name": "determinism lean_v2_r7",
+      "detail": "bit-identical weights after 3 training steps"
+    }
+  ]
+}
