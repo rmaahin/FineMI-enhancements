@@ -1,0 +1,219 @@
+{
+  "pair": "SPS/SFE",
+  "class_a": 5,
+  "class_b": 7,
+  "windows": [
+    800,
+    1500,
+    3000,
+    4000
+  ],
+  "seed": 42,
+  "gpu": "NVIDIA GeForce RTX 3090",
+  "torch": "2.14.1+cu130",
+  "model": "lean_v2_final",
+  "model_label": "LEAN v2 (final)",
+  "mode": "full",
+  "band": "0.5_3hz",
+  "dataset_root": "/workspace/fixationcrossbaseline_0.5_3hz_MIonly",
+  "pipeline_version": 1,
+  "preset_hash": "9ac91ef2a6c9",
+  "decim": 5,
+  "orig_sampling_rate": 250,
+  "sampling_rate": 50,
+  "window_samples": [
+    40,
+    75,
+    150,
+    200
+  ],
+  "n_folds": 5,
+  "n_epochs": 50,
+  "n_params": {
+    "800": 9278,
+    "1500": 9278,
+    "3000": 9278,
+    "4000": 9278
+  },
+  "arch": {
+    "arch": "lean_v2",
+    "temporal": "shared",
+    "mtc_kernels": [
+      7,
+      15,
+      31
+    ],
+    "mtc_filters": 16,
+    "shared_filters": 4,
+    "depth_mult": 2,
+    "depth_attention": false,
+    "da_kernel": 7,
+    "fusion": "separable",
+    "width": 16,
+    "lean_fusion_kernel": 3,
+    "lean_pool": 3,
+    "sep_kernel": 8,
+    "pool1": 2,
+    "pool2": 4,
+    "context": "tcn",
+    "n_heads": 4,
+    "d_ff": 64,
+    "p_att": 0.3,
+    "tcn_blocks": 3,
+    "tcn_kernel": 4,
+    "p_tcn": 0.3,
+    "refine_kernel": 5,
+    "eca_reduction": 4,
+    "readout": "last_step",
+    "embedding_dim": 32,
+    "p_proj": 0.3,
+    "classifier_hidden": 32,
+    "p_head": 0.4,
+    "act": "elu",
+    "max_norm": true,
+    "max_norm_spatial": 1.0,
+    "max_norm_linear": 0.25,
+    "p_conv": 0.25
+  },
+  "train": {
+    "n_epochs": 50,
+    "schedule": "fixed_avg",
+    "avg_last": 10,
+    "supcon_weight": 0.0,
+    "supcon_tau": 0.05,
+    "supcon_dim": 16,
+    "n_crops": 0,
+    "crop_frac": 0.9
+  },
+  "seconds": 1434.5,
+  "subjects": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18
+  ],
+  "matrix": [
+    [
+      56.666666666666664,
+      56.666666666666664,
+      52.22222222222223,
+      52.22222222222223
+    ],
+    [
+      71.25,
+      75.0,
+      78.75,
+      66.25
+    ],
+    [
+      70.0,
+      68.75,
+      63.74999999999999,
+      60.0
+    ],
+    [
+      96.25,
+      93.75,
+      95.0,
+      88.75
+    ],
+    [
+      80.24691358024691,
+      82.71604938271605,
+      79.01234567901234,
+      70.37037037037037
+    ],
+    [
+      57.49999999999999,
+      66.25,
+      73.75,
+      71.25
+    ],
+    [
+      71.25,
+      66.25,
+      67.5,
+      57.49999999999999
+    ],
+    [
+      48.75,
+      45.0,
+      55.00000000000001,
+      45.0
+    ],
+    [
+      57.49999999999999,
+      56.25,
+      58.75,
+      55.00000000000001
+    ],
+    [
+      81.25,
+      77.5,
+      75.0,
+      73.75
+    ],
+    [
+      56.25,
+      55.00000000000001,
+      67.5,
+      68.75
+    ],
+    [
+      67.5,
+      58.75,
+      63.74999999999999,
+      48.75
+    ],
+    [
+      71.25,
+      72.5,
+      65.0,
+      63.74999999999999
+    ],
+    [
+      52.5,
+      57.49999999999999,
+      60.0,
+      52.5
+    ],
+    [
+      80.0,
+      82.5,
+      80.0,
+      80.0
+    ],
+    [
+      51.24999999999999,
+      55.00000000000001,
+      61.25000000000001,
+      55.00000000000001
+    ],
+    [
+      68.75,
+      71.25,
+      61.25000000000001,
+      58.75
+    ],
+    [
+      82.5,
+      90.0,
+      91.25,
+      92.5
+    ]
+  ]
+}

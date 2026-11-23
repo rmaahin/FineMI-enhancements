@@ -1,0 +1,26 @@
+section,label,a,b,n_pairs,window,n_subjects,mean_a,mean_b,diff,ci_lo,ci_hi,p_ttest,n_a_better,n_b_better,p_holm
+Final model (positive = LEAN v2 better),LEAN v2 (final) vs EEGNet 50 Hz + fixed schedule,lean_v2_final,eegnet_50_sched,28,800,18,65.254017,64.363579,0.890438,0.391828,1.389048,0.001534,16,2,0.007672
+Final model (positive = LEAN v2 better),LEAN v2 (final) vs EEGNet 50 Hz + fixed schedule,lean_v2_final,eegnet_50_sched,28,1500,18,66.466937,65.113138,1.353799,0.551015,2.156583,0.00242,15,3,0.00968
+Final model (positive = LEAN v2 better),LEAN v2 (final) vs EEGNet 50 Hz + fixed schedule,lean_v2_final,eegnet_50_sched,28,3000,18,67.16377,66.663482,0.500288,-0.275501,1.276077,0.191417,11,7,0.191417
+Final model (positive = LEAN v2 better),LEAN v2 (final) vs EEGNet 50 Hz + fixed schedule,lean_v2_final,eegnet_50_sched,28,4000,18,64.597541,65.769462,-1.171921,-2.118328,-0.225514,0.018201,5,13,0.054603
+Final model (positive = LEAN v2 better),LEAN v2 (final) vs EEGNet 50 Hz + fixed schedule,lean_v2_final,eegnet_50_sched,28,avg,18,65.870566,65.477415,0.393151,0.017491,0.768811,0.041266,12,6,0.082531
+Final model (positive = LEAN v2 better),LEAN v2 (final) vs EEGNet 50 Hz (paper run),lean_v2_final,EEGNet 50 Hz (paper run),28,800,18,65.254017,62.705057,2.54896,1.620613,3.477307,2.2e-05,17,1,4.3e-05
+Final model (positive = LEAN v2 better),LEAN v2 (final) vs EEGNet 50 Hz (paper run),lean_v2_final,EEGNet 50 Hz (paper run),28,1500,18,66.466937,63.258224,3.208713,2.086156,4.33127,1.3e-05,16,2,4e-05
+Final model (positive = LEAN v2 better),LEAN v2 (final) vs EEGNet 50 Hz (paper run),lean_v2_final,EEGNet 50 Hz (paper run),28,3000,18,67.16377,64.277049,2.886721,2.003118,3.770324,3e-06,17,1,1e-05
+Final model (positive = LEAN v2 better),LEAN v2 (final) vs EEGNet 50 Hz (paper run),lean_v2_final,EEGNet 50 Hz (paper run),28,4000,18,64.597541,63.415332,1.182209,0.406484,1.957934,0.005077,14,4,0.005077
+Final model (positive = LEAN v2 better),LEAN v2 (final) vs EEGNet 50 Hz (paper run),lean_v2_final,EEGNet 50 Hz (paper run),28,avg,18,65.870566,63.413916,2.456651,1.905255,3.008046,0.0,18,0,0.0
+Final model (positive = LEAN v2 better),LEAN v2 (final) vs LEAN (paper run),lean_v2_final,LEAN (paper run),28,800,18,65.254017,60.059616,5.194402,3.876301,6.512502,0.0,18,0,1e-06
+Final model (positive = LEAN v2 better),LEAN v2 (final) vs LEAN (paper run),lean_v2_final,LEAN (paper run),28,1500,18,66.466937,58.29362,8.173317,6.011218,10.335416,0.0,18,0,1e-06
+Final model (positive = LEAN v2 better),LEAN v2 (final) vs LEAN (paper run),lean_v2_final,LEAN (paper run),28,3000,18,67.16377,55.674419,11.489351,8.438107,14.540594,0.0,18,0,1e-06
+Final model (positive = LEAN v2 better),LEAN v2 (final) vs LEAN (paper run),lean_v2_final,LEAN (paper run),28,4000,18,64.597541,55.165283,9.432258,6.838671,12.025845,1e-06,18,0,1e-06
+Final model (positive = LEAN v2 better),LEAN v2 (final) vs LEAN (paper run),lean_v2_final,LEAN (paper run),28,avg,18,65.870566,57.298234,8.572332,6.545671,10.598992,0.0,18,0,0.0
+Every preset minus EEGNet 50 Hz (paper run) (positive = beats EEGNet),EEGNet 50 Hz + fixed schedule,eegnet_50_sched,EEGNet 50 Hz (paper run),28,800,18,64.363579,62.705057,1.658522,0.904339,2.412705,0.000234,14,4,0.000234
+Every preset minus EEGNet 50 Hz (paper run) (positive = beats EEGNet),EEGNet 50 Hz + fixed schedule,eegnet_50_sched,EEGNet 50 Hz (paper run),28,1500,18,65.113138,63.258224,1.854914,1.069642,2.640185,0.000113,14,4,0.000227
+Every preset minus EEGNet 50 Hz (paper run) (positive = beats EEGNet),EEGNet 50 Hz + fixed schedule,eegnet_50_sched,EEGNet 50 Hz (paper run),28,3000,18,66.663482,64.277049,2.386433,1.790264,2.982603,0.0,18,0,1e-06
+Every preset minus EEGNet 50 Hz (paper run) (positive = beats EEGNet),EEGNet 50 Hz + fixed schedule,eegnet_50_sched,EEGNet 50 Hz (paper run),28,4000,18,65.769462,63.415332,2.35413,1.825091,2.883169,0.0,18,0,0.0
+Every preset minus EEGNet 50 Hz (paper run) (positive = beats EEGNet),EEGNet 50 Hz + fixed schedule,eegnet_50_sched,EEGNet 50 Hz (paper run),28,avg,18,65.477415,63.413916,2.0635,1.577878,2.549122,0.0,18,0,0.0
+Every preset minus EEGNet 50 Hz (paper run) (positive = beats EEGNet),LEAN v2 (final),lean_v2_final,EEGNet 50 Hz (paper run),28,800,18,65.254017,62.705057,2.54896,1.620613,3.477307,2.2e-05,17,1,4.3e-05
+Every preset minus EEGNet 50 Hz (paper run) (positive = beats EEGNet),LEAN v2 (final),lean_v2_final,EEGNet 50 Hz (paper run),28,1500,18,66.466937,63.258224,3.208713,2.086156,4.33127,1.3e-05,16,2,4e-05
+Every preset minus EEGNet 50 Hz (paper run) (positive = beats EEGNet),LEAN v2 (final),lean_v2_final,EEGNet 50 Hz (paper run),28,3000,18,67.16377,64.277049,2.886721,2.003118,3.770324,3e-06,17,1,1e-05
+Every preset minus EEGNet 50 Hz (paper run) (positive = beats EEGNet),LEAN v2 (final),lean_v2_final,EEGNet 50 Hz (paper run),28,4000,18,64.597541,63.415332,1.182209,0.406484,1.957934,0.005077,14,4,0.005077
+Every preset minus EEGNet 50 Hz (paper run) (positive = beats EEGNet),LEAN v2 (final),lean_v2_final,EEGNet 50 Hz (paper run),28,avg,18,65.870566,63.413916,2.456651,1.905255,3.008046,0.0,18,0,0.0

@@ -1,0 +1,219 @@
+{
+  "pair": "EFE/SPS",
+  "class_a": 4,
+  "class_b": 5,
+  "windows": [
+    800,
+    1500,
+    3000,
+    4000
+  ],
+  "seed": 42,
+  "gpu": "NVIDIA GeForce RTX 3090",
+  "torch": "2.14.1+cu130",
+  "model": "lean_v2_final",
+  "model_label": "LEAN v2 (final)",
+  "mode": "full",
+  "band": "0.5_3hz",
+  "dataset_root": "/workspace/fixationcrossbaseline_0.5_3hz_MIonly",
+  "pipeline_version": 1,
+  "preset_hash": "9ac91ef2a6c9",
+  "decim": 5,
+  "orig_sampling_rate": 250,
+  "sampling_rate": 50,
+  "window_samples": [
+    40,
+    75,
+    150,
+    200
+  ],
+  "n_folds": 5,
+  "n_epochs": 50,
+  "n_params": {
+    "800": 9278,
+    "1500": 9278,
+    "3000": 9278,
+    "4000": 9278
+  },
+  "arch": {
+    "arch": "lean_v2",
+    "temporal": "shared",
+    "mtc_kernels": [
+      7,
+      15,
+      31
+    ],
+    "mtc_filters": 16,
+    "shared_filters": 4,
+    "depth_mult": 2,
+    "depth_attention": false,
+    "da_kernel": 7,
+    "fusion": "separable",
+    "width": 16,
+    "lean_fusion_kernel": 3,
+    "lean_pool": 3,
+    "sep_kernel": 8,
+    "pool1": 2,
+    "pool2": 4,
+    "context": "tcn",
+    "n_heads": 4,
+    "d_ff": 64,
+    "p_att": 0.3,
+    "tcn_blocks": 3,
+    "tcn_kernel": 4,
+    "p_tcn": 0.3,
+    "refine_kernel": 5,
+    "eca_reduction": 4,
+    "readout": "last_step",
+    "embedding_dim": 32,
+    "p_proj": 0.3,
+    "classifier_hidden": 32,
+    "p_head": 0.4,
+    "act": "elu",
+    "max_norm": true,
+    "max_norm_spatial": 1.0,
+    "max_norm_linear": 0.25,
+    "p_conv": 0.25
+  },
+  "train": {
+    "n_epochs": 50,
+    "schedule": "fixed_avg",
+    "avg_last": 10,
+    "supcon_weight": 0.0,
+    "supcon_tau": 0.05,
+    "supcon_dim": 16,
+    "n_crops": 0,
+    "crop_frac": 0.9
+  },
+  "seconds": 1445.6,
+  "subjects": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18
+  ],
+  "matrix": [
+    [
+      72.22222222222221,
+      72.22222222222221,
+      65.55555555555556,
+      53.333333333333336
+    ],
+    [
+      56.25,
+      76.25,
+      72.5,
+      66.25
+    ],
+    [
+      72.5,
+      71.25,
+      68.75,
+      63.74999999999999
+    ],
+    [
+      95.0,
+      93.75,
+      92.5,
+      77.5
+    ],
+    [
+      75.0,
+      67.5,
+      60.0,
+      60.0
+    ],
+    [
+      50.0,
+      51.24999999999999,
+      46.25,
+      46.25
+    ],
+    [
+      66.25,
+      61.25000000000001,
+      66.25,
+      52.5
+    ],
+    [
+      43.75,
+      52.5,
+      53.75,
+      50.0
+    ],
+    [
+      58.75,
+      51.24999999999999,
+      66.25,
+      60.0
+    ],
+    [
+      66.25,
+      67.5,
+      82.5,
+      76.25
+    ],
+    [
+      51.24999999999999,
+      55.00000000000001,
+      65.0,
+      66.25
+    ],
+    [
+      60.0,
+      68.75,
+      68.75,
+      80.0
+    ],
+    [
+      60.0,
+      65.0,
+      63.74999999999999,
+      55.00000000000001
+    ],
+    [
+      58.75,
+      52.5,
+      65.0,
+      60.0
+    ],
+    [
+      95.0,
+      87.5,
+      91.25,
+      92.5
+    ],
+    [
+      56.25,
+      56.25,
+      57.49999999999999,
+      56.25
+    ],
+    [
+      57.49999999999999,
+      62.5,
+      52.5,
+      55.00000000000001
+    ],
+    [
+      67.5,
+      76.25,
+      80.0,
+      78.75
+    ]
+  ]
+}

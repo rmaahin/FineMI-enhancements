@@ -1,0 +1,106 @@
+{
+  "packages": "python 3.12.15, torch 2.14.1+cu130, numpy 2.0.2, scipy 1.13.1, sklearn 1.6.1, pandas 2.3.3",
+  "device": "NVIDIA GeForce RTX 3090, 25.3 GB, cuda 13.0, visible devices 1",
+  "data": {
+    "n_subjects": 18,
+    "shapes": [
+      [
+        62,
+        200,
+        1000
+      ]
+    ],
+    "warnings": [
+      "subject 1: 360 trials (the dataset paper has 320)",
+      "subject 5: 321 trials (the dataset paper has 320)"
+    ]
+  },
+  "band": {
+    "band_hz": [
+      0.5,
+      3.0
+    ],
+    "share_by_subject": {
+      "1": 0.7522691864738853,
+      "2": 0.8380731374459764,
+      "3": 0.7576115499537807,
+      "4": 0.745646058802676,
+      "5": 0.8944963396186372,
+      "6": 0.8575288021209508,
+      "7": 0.7990695908657909,
+      "8": 0.7645950721952074,
+      "9": 0.7829246936572495,
+      "10": 0.708965315755393,
+      "11": 0.8106923675861445,
+      "12": 0.679481564301492,
+      "13": 0.8006978292783746,
+      "14": 0.8540183632162086,
+      "15": 0.8744619245041225,
+      "16": 0.7652067835472802,
+      "17": 0.8742109633081695,
+      "18": 0.869805802832247
+    }
+  },
+  "model": [
+    "lean_v2_final            800 ms  T=  40 (model input 40)  params 9,278",
+    "lean_v2_final           1500 ms  T=  75 (model input 75)  params 9,278",
+    "lean_v2_final           3000 ms  T= 150 (model input 150)  params 9,278",
+    "lean_v2_final           4000 ms  T= 200 (model input 200)  params 9,278",
+    "eegnet_50_sched          800 ms  T=  40 (model input 40)  params 1,818",
+    "eegnet_50_sched         1500 ms  T=  75 (model input 75)  params 1,946",
+    "eegnet_50_sched         3000 ms  T= 150 (model input 150)  params 2,234",
+    "eegnet_50_sched         4000 ms  T= 200 (model input 200)  params 2,458"
+  ],
+  "checks": [
+    {
+      "status": "ok",
+      "name": "packages",
+      "detail": "python 3.12.15, torch 2.14.1+cu130, numpy 2.0.2, scipy 1.13.1, sklearn 1.6.1, pandas 2.3.3"
+    },
+    {
+      "status": "ok",
+      "name": "device",
+      "detail": "NVIDIA GeForce RTX 3090, 25.3 GB, cuda 13.0, visible devices 1"
+    },
+    {
+      "status": "ok",
+      "name": "results folder writable",
+      "detail": "/workspace/FineMI-enhancements/LEAN_v2/results/full"
+    },
+    {
+      "status": "ok",
+      "name": "data (all subjects, 50 Hz)",
+      "detail": "18 subjects, (C=62, T=200 @ 50 Hz, 1000 @ 250 Hz), trials/class 40-45, 2 warning(s)"
+    },
+    {
+      "status": "ok",
+      "name": "band (0.5-3 Hz)",
+      "detail": "68-89% of the 0.1-25 Hz power lies in 0.5-3 Hz"
+    },
+    {
+      "status": "ok",
+      "name": "LEAN layout (lean_v2_r0)",
+      "detail": "25,752 parameters in LEAN's layout (44 tensors)"
+    },
+    {
+      "status": "ok",
+      "name": "model lean_v2_final (LEAN v2 (final))",
+      "detail": "9,278 parameters as predicted; fixed_avg run at every window"
+    },
+    {
+      "status": "ok",
+      "name": "determinism lean_v2_final",
+      "detail": "bit-identical weights after 3 training steps"
+    },
+    {
+      "status": "ok",
+      "name": "model eegnet_50_sched (EEGNet 50 Hz + fixed schedule)",
+      "detail": "1,818 / 1,946 / 2,234 / 2,458 parameters as predicted; fixed_avg run at every window"
+    },
+    {
+      "status": "ok",
+      "name": "determinism eegnet_50_sched",
+      "detail": "bit-identical weights after 3 training steps"
+    }
+  ]
+}

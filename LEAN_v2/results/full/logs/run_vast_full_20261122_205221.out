@@ -1,0 +1,101 @@
+Run:          full_20261122_205221
+Host:         582d8cfb56e0
+Started:      Sun Nov 22 20:52:22 UTC 2026
+Mode:         full
+Presets:      2: lean_v2_final eegnet_50_sched
+Pairs:        28 selected, 28 with work left
+Pending:      HOC_WFE HOC_WAA HOC_EPS HOC_EFE HOC_SPS HOC_SAA HOC_SFE WFE_WAA WFE_EPS WFE_EFE WFE_SPS WFE_SAA WFE_SFE WAA_EPS WAA_EFE WAA_SPS WAA_SAA WAA_SFE EPS_EFE EPS_SPS EPS_SAA EPS_SFE EFE_SPS EFE_SAA EFE_SFE SPS_SAA SPS_SFE SAA_SFE
+Overwrite:    0
+Workers/GPU:  3 (6 training processes on 2 GPU(s))
+Dataset:      /workspace/fixationcrossbaseline_0.5_3hz_MIonly (18 files)
+Results:      /workspace/FineMI-enhancements/LEAN_v2/results/full
+GPU 0: NVIDIA GeForce RTX 3090 (UUID: GPU-1def84b2-025e-acc7-ff8d-6773edf71852)
+GPU 1: NVIDIA GeForce RTX 3090 (UUID: GPU-f5ac8ec4-0e4e-9f32-9b8f-2541c04a0767)
+
+Step 1: preflight Sun Nov 22 20:52:22 UTC 2026
+========================================================================
+PREFLIGHT  2 preset(s): lean_v2_final, eegnet_50_sched
+  dataset=/workspace/fixationcrossbaseline_0.5_3hz_MIonly  band=0.5-3 Hz  50 Hz
+========================================================================
+
+--- packages ---
+[ok]   packages: python 3.12.15, torch 2.14.1+cu130, numpy 2.0.2, scipy 1.13.1, sklearn 1.6.1, pandas 2.3.3  (0.8s)
+
+--- device ---
+[ok]   device: NVIDIA GeForce RTX 3090, 25.3 GB, cuda 13.0, visible devices 1  (1.5s)
+
+--- results folder writable ---
+[ok]   results folder writable: /workspace/FineMI-enhancements/LEAN_v2/results/full  (0.0s)
+
+--- data (all subjects, 50 Hz) ---
+
+Found 18 subject .npz files (0.5_3hz) in /workspace/fixationcrossbaseline_0.5_3hz_MIonly; decimating by 5
+  WARNING: subject 1: 360 trials (the dataset paper has 320)
+  WARNING: subject 5: 321 trials (the dataset paper has 320)
+[ok]   data (all subjects, 50 Hz): 18 subjects, (C=62, T=200 @ 50 Hz, 1000 @ 250 Hz), trials/class 40-45, 2 warning(s)  (16.7s)
+
+--- band (0.5-3 Hz) ---
+[ok]   band (0.5-3 Hz): 68-89% of the 0.1-25 Hz power lies in 0.5-3 Hz  (1.6s)
+
+--- LEAN layout (lean_v2_r0) ---
+[ok]   LEAN layout (lean_v2_r0): 25,752 parameters in LEAN's layout (44 tensors)  (0.1s)
+
+--- model lean_v2_final (LEAN v2 (final)) ---
+  lean_v2_final            800 ms  T=  40 (model input 40)  params 9,278
+  lean_v2_final           1500 ms  T=  75 (model input 75)  params 9,278
+  lean_v2_final           3000 ms  T= 150 (model input 150)  params 9,278
+  lean_v2_final           4000 ms  T= 200 (model input 200)  params 9,278
+[ok]   model lean_v2_final (LEAN v2 (final)): 9,278 parameters as predicted; fixed_avg run at every window  (1.5s)
+
+--- determinism lean_v2_final ---
+[ok]   determinism lean_v2_final: bit-identical weights after 3 training steps  (0.4s)
+
+--- model eegnet_50_sched (EEGNet 50 Hz + fixed schedule) ---
+  eegnet_50_sched          800 ms  T=  40 (model input 40)  params 1,818
+  eegnet_50_sched         1500 ms  T=  75 (model input 75)  params 1,946
+  eegnet_50_sched         3000 ms  T= 150 (model input 150)  params 2,234
+  eegnet_50_sched         4000 ms  T= 200 (model input 200)  params 2,458
+[ok]   model eegnet_50_sched (EEGNet 50 Hz + fixed schedule): 1,818 / 1,946 / 2,234 / 2,458 parameters as predicted; fixed_avg run at every window  (0.3s)
+
+--- determinism eegnet_50_sched ---
+[ok]   determinism eegnet_50_sched: bit-identical weights after 3 training steps  (0.1s)
+
+========================================================================
+  [ok  ] packages: python 3.12.15, torch 2.14.1+cu130, numpy 2.0.2, scipy 1.13.1, sklearn 1.6.1, pandas 2.3.3
+  [ok  ] device: NVIDIA GeForce RTX 3090, 25.3 GB, cuda 13.0, visible devices 1
+  [ok  ] results folder writable: /workspace/FineMI-enhancements/LEAN_v2/results/full
+  [ok  ] data (all subjects, 50 Hz): 18 subjects, (C=62, T=200 @ 50 Hz, 1000 @ 250 Hz), trials/class 40-45, 2 warning(s)
+  [ok  ] band (0.5-3 Hz): 68-89% of the 0.1-25 Hz power lies in 0.5-3 Hz
+  [ok  ] LEAN layout (lean_v2_r0): 25,752 parameters in LEAN's layout (44 tensors)
+  [ok  ] model lean_v2_final (LEAN v2 (final)): 9,278 parameters as predicted; fixed_avg run at every window
+  [ok  ] determinism lean_v2_final: bit-identical weights after 3 training steps
+  [ok  ] model eegnet_50_sched (EEGNet 50 Hz + fixed schedule): 1,818 / 1,946 / 2,234 / 2,458 parameters as predicted; fixed_avg run at every window
+  [ok  ] determinism eegnet_50_sched: bit-identical weights after 3 training steps
+========================================================================
+PREFLIGHT PASSED
+
+Step 2: training Sun Nov 22 20:52:48 UTC 2026
+GPU 0 worker 0: pairs=[HOC_WFE HOC_SFE WFE_SFE EPS_EFE EFE_SFE] -> results/full/logs/gpu0_w0_full_20261122_205221.log
+GPU 1 worker 0: pairs=[HOC_WAA WFE_WAA WAA_EPS EPS_SPS SPS_SAA] -> results/full/logs/gpu1_w0_full_20261122_205221.log
+GPU 0 worker 1: pairs=[HOC_EPS WFE_EPS WAA_EFE EPS_SAA SPS_SFE] -> results/full/logs/gpu0_w1_full_20261122_205221.log
+GPU 1 worker 1: pairs=[HOC_EFE WFE_EFE WAA_SPS EPS_SFE SAA_SFE] -> results/full/logs/gpu1_w1_full_20261122_205221.log
+GPU 0 worker 2: pairs=[HOC_SPS WFE_SPS WAA_SAA EFE_SPS] -> results/full/logs/gpu0_w2_full_20261122_205221.log
+GPU 1 worker 2: pairs=[HOC_SAA WFE_SAA WAA_SFE EFE_SAA] -> results/full/logs/gpu1_w2_full_20261122_205221.log
+Workers launched: PIDs 5992 5993 5994 5995 5996 5997  (follow one with: tail -f results/full/logs/gpu0_w0_full_20261122_205221.log)
+Workers finished: Sun Nov 22 23:31:47 UTC 2026
+
+Step 3: checking outputs Sun Nov 22 23:31:47 UTC 2026
+check_results (full): 56/56 pair runs present, expecting 18 subjects each
+CHECK PASSED: every run is complete
+
+Step 4: summary Sun Nov 22 23:31:48 UTC 2026
+summarize: written /workspace/FineMI-enhancements/LEAN_v2/results/full/summary/summary.md
+
+Mean accuracy over the pairs:
+                               800 ms  1500 ms  3000 ms  4000 ms    Avg
+EEGNet 50 Hz + fixed schedule   64.36    65.11    66.66    65.77  65.48
+LEAN v2 (final)                 65.25    66.47    67.16    64.60  65.87
+LEAN (paper run)                60.06    58.29    55.67    55.17  57.30
+EEGNet 50 Hz (paper run)        62.71    63.26    64.28    63.42  63.41
+
+All runs completed Sun Nov 22 23:31:50 UTC 2026: results/full/summary/summary.md
